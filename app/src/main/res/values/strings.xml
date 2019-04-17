@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Howse</string>
+    <string name="et_CorreoLogin">Introduce tu Correo</string>
+    <string name="et_PasswordLogin">Introduce tu Contraseña</string>
+    <string name="btn_Iniciar_Sesion">Iniciar Sesion</string>
+    <string name="tv_OlvidarPsw">¿Olvidaste tu Contraseña? Pincha Aqui</string>
+    <string name="tv_Registrarse">Registrate Aqui</string>
 </resources>
