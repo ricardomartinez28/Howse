@@ -3,4 +3,6 @@
     <string name="btn_inquilino">INQUILINO</string>
     <string name="btn_arrendaador">ARRENDADOR</string>
     <string name="tv_preg_inicio">¿Qué eres?</string>
+    <string name="tvBienvenida">¡Bienvenid@ a Howse! </string>
+    <string name="tv_descripcion_inicio">good start, best stay!</string>
 </resources>
