@@ -1,16 +1,18 @@
 package com.example.howse;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.view.View;
 import android.widget.TextView;
 
 public class ActivityCaseroInquilino extends AppCompatActivity {
 
-    TextView tvDescInicio;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,16 +22,18 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
 
 
 
-        tvDescInicio=findViewById(R.id.tvDescricionInicio);
 
-        String desIni="Good start. Best stay!";
-        SpannableString ss= new SpannableString(desIni);
+    }
 
-        ForegroundColorSpan fcsOrange= new ForegroundColorSpan(Color.rgb(242,169,34));
+    public void inquilino(View v){
 
+        Intent i= new Intent(ActivityCaseroInquilino.this, ActivityCodigoCasa.class);
+        startActivity(i);
 
-        ss.setSpan(fcsOrange,12,22, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tvDescInicio.setText(ss);
+    }
+
+    public void arrendador(View v){
+
 
     }
 
