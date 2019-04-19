@@ -40,7 +40,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         btnRegistrar.setOnClickListener( this );
     }
-
+//TODO TIENE QUE RECOGER UN NOMBRE, APELLIDO, EMAIL Y FOTO Y METERLO EN DATABSE DE FIREBASE CONSULTANDO "MIS EVENTOS"
     private void registrarUsuario(){
 
         String email = etEmail.getText().toString().trim();

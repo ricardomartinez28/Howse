@@ -77,7 +77,7 @@ public class Login extends AppCompatActivity  {
                         if (task.isSuccessful()) {
                             Toast.makeText( Login.this, "Bienvenido" +etEmail.getText(), Toast.LENGTH_SHORT ).show();
 
-                            Intent i = new Intent( Login.this, PruebaPaBorrar.class );
+                            Intent i = new Intent( Login.this, PruebaPaBorrar.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
                             startActivity(i);
                         } else {
                             Toast.makeText( Login.this, "La JODISTE MAMON", Toast.LENGTH_LONG ).show();
