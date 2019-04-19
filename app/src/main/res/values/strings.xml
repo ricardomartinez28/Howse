@@ -3,4 +3,21 @@
     <string name="btn_inquilino">INQUILINO</string>
     <string name="btn_arrendaador">ARRENDADOR</string>
     <string name="tv_preg_inicio">¿Qué eres?</string>
+    <string name="et_CorreoLogin">Introduce tu Correo</string>
+    <string name="et_PasswordLogin">Introduce tu contraseña</string>
+    <string name="btn_Iniciar_Sesion">Iniciar Sesion</string>
+    <string name="btn_RecuperarPsw">¿No Recuerdas tu Contraseña? Pincha Aquí</string>
+    <string name="btn_Registrarse">Registrate Aquí</string>
+
+    <string name="msj_registrado">Se ha registrado</string>
+    <string name="msj_no_registrado">No se ha podido registrar</string>
+    <string name="msj_nodatos">No hay datos</string>
+    <string name="msj_logado">Se ha Logueado</string>
+    <string name="msj_no_accede">404 no found No se Puede loguear</string>
+    <string name="msj_no_data">No se encontraron los datos</string>
+    <string name="msj_pwd_length">Tiene que tener la contraseña mas de 6 digitos</string>
+    <string name="et_EmailReg">Introduce tu Email</string>
+    <string name="et_PasswordReg">Introduce tu contraseña</string>
+    <string name="btn_RegistrarUsuario">registrar</string>
+    <string name="et_NombreReg">Introduzca su Nombre</string>
 </resources>
