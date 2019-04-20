@@ -6,4 +6,7 @@
     <string name="tvBienvenida">¡Bienvenid@ a Howse! </string>
     <string name="tv_descripcion_inicio">good start, best stay!</string>
     <string name="tv_logo">Howse</string>
+    <string name="hint_codigo_casa">Ej: #4F6G83</string>
+    <string name="btn_siguiente_paso_codcasa">Siguiente</string>
+    <string name="tv_cod_casa">Escribe el código de tu nueva casa    : )</string>
 </resources>
