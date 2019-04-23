@@ -4,9 +4,13 @@
     <string name="btn_arrendaador">ARRENDADOR</string>
     <string name="tv_preg_inicio">¿Qué eres?</string>
     <string name="tvBienvenida">¡Bienvenid@ a Howse! </string>
-    <string name="tv_descripcion_inicio">good start, best stay!</string>
+    <string name="tv_descripcion_inicio">Organize, make it simple.</string>
     <string name="tv_logo">Howse</string>
     <string name="hint_codigo_casa">Ej: #4F6G83</string>
-    <string name="btn_siguiente_paso_codcasa">Siguiente</string>
-    <string name="tv_cod_casa">Escribe el código de tu nueva casa    : )</string>
+
+    <string name="tv_cod_casa">Escribe el código de tu nueva casa:</string>
+    <string name="nav_tareas">Tareas</string>
+    <string name="nav_chat">Chat</string>
+    <string name="nav_compra">Compra</string>
+    <string name="nav_perfil">Perfil</string>
 </resources>
