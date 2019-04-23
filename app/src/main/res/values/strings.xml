@@ -8,6 +8,7 @@
     <string name="btn_Iniciar_Sesion">Iniciar Sesion</string>
     <string name="btn_RecuperarPsw">¿No Recuerdas tu Contraseña? Pincha Aquí</string>
     <string name="btn_Registrarse">Registrate Aquí</string>
+    <string name="msj_userregistered_register">Usuario registrado:</string>
 
     <string name="msj_registrado">Se ha registrado</string>
     <string name="msj_no_registrado">No se ha podido registrar</string>
@@ -19,5 +20,7 @@
     <string name="et_EmailReg">Introduce tu Email</string>
     <string name="et_PasswordReg">Introduce tu contraseña</string>
     <string name="btn_RegistrarUsuario">registrar</string>
-    <string name="et_NombreReg">Introduzca su Nombre</string>
+    <string name="et_NombreReg">Nombre</string>
+    <string name="et_ApellidoReg">Apellido</string>
+    <string name="et_PasswordRepeat">Repite la contraseña</string>
 </resources>
