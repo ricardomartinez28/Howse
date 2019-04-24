@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "516802514129",
+    "firebase_url": "https://howse-c18d2.firebaseio.com",
+    "project_id": "howse-c18d2",
+    "storage_bucket": "howse-c18d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516802514129:android:4203beb6e3a75de6",
+        "android_client_info": {
+          "package_name": "com.example.howse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516802514129-thr7u8u2smospqd780r42m64kpgrn98a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.howse",
+            "certificate_hash": "121d83792b6a965bb3669fa95864fe0cd7a668ce"
+          }
+        },
+        {
+          "client_id": "516802514129-dgdfjafmajbcedrl0ats92igjhqvusp6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1L9lIWhoz25GfvTcPLUKIB1DLFa14oqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516802514129-dgdfjafmajbcedrl0ats92igjhqvusp6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
