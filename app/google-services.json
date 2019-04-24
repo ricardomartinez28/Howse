@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "516802514129-cg14l4njv5v4tpo0vq3bbe5eka3i2883.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.howse",
+            "certificate_hash": "abb5a62de34f77a3b8454f4cc707e3852df46c60"
+          }
+        },
+        {
           "client_id": "516802514129-dgdfjafmajbcedrl0ats92igjhqvusp6.apps.googleusercontent.com",
           "client_type": 3
         }

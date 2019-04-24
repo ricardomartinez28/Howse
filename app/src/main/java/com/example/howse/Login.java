@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.howse.javabean.Inquilino;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,6 +48,7 @@ public class Login extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
+
         setContentView( R.layout.activity_login );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
@@ -149,6 +151,10 @@ public class Login extends AppCompatActivity  {
 
     }
 
+    private void revokeAccess() {
+        // Firebase sign out
+        auth.signOut();
+    }
 
 
-}
+    }
