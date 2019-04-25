@@ -42,13 +42,13 @@ public class SplashScreen extends AppCompatActivity {
 
         tvDescInicio=findViewById(R.id.tvDescricionInicio);
 
-        String desIni="Organize. Make it simple!";
+        String desIni="Make the living easy!";
         SpannableString ss= new SpannableString(desIni);
 
         ForegroundColorSpan fcsOrange= new ForegroundColorSpan(Color.rgb(242,169,34));
 
 
-        ss.setSpan(fcsOrange,18,24, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(fcsOrange,16,21, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvDescInicio.setText(ss);
 
 

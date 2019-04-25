@@ -68,34 +68,49 @@ public class Register extends AppCompatActivity {
     private UploadTask ut;
     private Boolean imagenSubida = false;
 
+    private boolean tipoUs;
+    private String codCasa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_register );
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageRef = FirebaseStorage.getInstance().getReference("FotosPerfil");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
-        etNombre = (EditText) findViewById( R.id.etNombreReg );
-        etApellido = (EditText) findViewById( R.id.etApellidoReg );
-        etEmail = (EditText) findViewById( R.id.etEmailReg );
-        etPassword = (EditText) findViewById( R.id.etPasswordReg );
-        etPasswordRepeat = (EditText) findViewById( R.id.etPasswordRepeat ) ;
+        etNombre = (EditText) findViewById(R.id.etNombreReg);
+        etApellido = (EditText) findViewById(R.id.etApellidoReg);
+        etEmail = (EditText) findViewById(R.id.etEmailReg);
+        etPassword = (EditText) findViewById(R.id.etPasswordReg);
+        etPasswordRepeat = (EditText) findViewById(R.id.etPasswordRepeat);
 
-        ImgvFotoPefil = (ImageView) findViewById( R.id.imgvFotoPerfil);
+        ImgvFotoPefil = (ImageView) findViewById(R.id.imgvFotoPerfil);
 
-        btnRegistrar = (Button) findViewById( R.id.btnRegistrar );
+        btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
 
-        progressDialog = new ProgressDialog( this );
+        progressDialog = new ProgressDialog(this);
 
-        ImgvFotoPefil.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                enviarFoto();
-            }
-        } );
+        tipoUs=getIntent().getBooleanExtra("tipo",true);
+
+        if(tipoUs==true){
+
+            codCasa= getIntent().getStringExtra("codCasa");
+        }
+
+        getSupportActionBar().hide();
+
+
+
+
     }
+
+    public void fotoPerfil(View v) {
+        enviarFoto();
+    }
+
+
     public void enviarFoto() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");

@@ -2,17 +2,22 @@ package com.example.howse;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.howse.javabean.Inquilino;
@@ -45,6 +50,11 @@ public class Login extends AppCompatActivity  {
     private String nombrePersona;
     private String emailPersona;
 
+    private TextView tvLogo;
+
+    private boolean tipoUs=true;
+    private String codCasa="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -61,20 +71,52 @@ public class Login extends AppCompatActivity  {
 
         auth = FirebaseAuth.getInstance();
 
-        btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Login.this, Register.class));
-            }
-        });
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loguearse();
+        tvLogo=findViewById(R.id.tvLogoLogIn);
 
-            }
-        });
+
+
+        String logo="Howse";
+        SpannableString ss1= new SpannableString(logo);
+        ForegroundColorSpan fcsOrange= new ForegroundColorSpan(Color.rgb(242,169,34));
+
+
+        ss1.setSpan(fcsOrange,1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tvLogo.setText(ss1);
+
+        getSupportActionBar().hide();
+
+        tipoUs=getIntent().getBooleanExtra("tipo",true);
+
+    }
+
+    public void logIn(View v) {
+        loguearse();
+
+    }
+
+
+    public void register(View v) {
+
+        if(tipoUs=true){
+
+            codCasa=getIntent().getStringExtra("codCasa");
+            Intent i= new Intent(Login.this, Register.class);
+            i.putExtra("tipo",tipoUs);
+            i.putExtra("codCasa", codCasa);
+            startActivity(i);
+
+        }else{
+
+            Intent i= new Intent(Login.this, Register.class);
+            i.putExtra("tipo",tipoUs);
+            startActivity(i);
+
+        }
+
+
+
+
 
     }
     private void addChildEventListener() {
