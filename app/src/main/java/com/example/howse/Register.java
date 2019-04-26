@@ -58,6 +58,7 @@ public class Register extends AppCompatActivity {
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    private StorageReference fotoRef;
 
     private String email;
     private String password;
@@ -127,7 +128,7 @@ public class Register extends AppCompatActivity {
                                 if (imagenSubida) {
                                     Uri selectedUri = mImageUri;
 
-                                    StorageReference fotoRef = mStorageRef.child(selectedUri.getLastPathSegment());
+                                    fotoRef = mStorageRef.child(selectedUri.getLastPathSegment());
                                     ut = fotoRef.putFile(selectedUri);
 
                                     Handler handler = new Handler();

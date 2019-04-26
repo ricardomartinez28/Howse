@@ -116,6 +116,11 @@ public class Login extends AppCompatActivity  {
             mDatabaseRef.addChildEventListener(cel);
         }
     }
+    public void enviarDatosPerfil(){
+        Intent intent = new Intent(Login.this, Perfil.class);
+        intent.putExtra("Correo", etEmail.getText());
+        startActivity(intent);
+    }
     public void loguearse(){
 
         String email = etEmail.getText().toString();
