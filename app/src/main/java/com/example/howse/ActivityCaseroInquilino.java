@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class ActivityCaseroInquilino extends AppCompatActivity {
 
 
-    private boolean opcion=true;
+    private boolean opcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,8 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
 
     public void inquilino(View v){
 
+
+        opcion=true;
         Intent i= new Intent(ActivityCaseroInquilino.this, ActivityCodigoCasa.class);
         i.putExtra("tipo", opcion);
         startActivity(i);

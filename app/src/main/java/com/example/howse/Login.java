@@ -52,7 +52,7 @@ public class Login extends AppCompatActivity  {
 
     private TextView tvLogo;
 
-    private boolean tipoUs=true;
+    private boolean tipoUs;
     private String codCasa="";
 
     @Override
@@ -87,6 +87,7 @@ public class Login extends AppCompatActivity  {
         getSupportActionBar().hide();
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
+        codCasa=getIntent().getStringExtra("codCasa");
 
     }
 
@@ -98,9 +99,9 @@ public class Login extends AppCompatActivity  {
 
     public void register(View v) {
 
-        if(tipoUs=true){
+        if(tipoUs){
 
-            codCasa=getIntent().getStringExtra("codCasa");
+
             Intent i= new Intent(Login.this, Register.class);
             i.putExtra("tipo",tipoUs);
             i.putExtra("codCasa", codCasa);
@@ -113,9 +114,6 @@ public class Login extends AppCompatActivity  {
             startActivity(i);
 
         }
-
-
-
 
 
     }
@@ -133,7 +131,6 @@ public class Login extends AppCompatActivity  {
                         nombrePersona = inq.getNombreUsuario();
                     }
                 }
-
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 

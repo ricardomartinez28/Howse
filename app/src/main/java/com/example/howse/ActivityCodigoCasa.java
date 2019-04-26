@@ -14,6 +14,7 @@ public class ActivityCodigoCasa extends AppCompatActivity {
     EditText codCasa;
 
     private boolean tipoUs;
+    private  String codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,9 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
         codCasa=findViewById(R.id.etCodigoCasa);
 
-        tipoUs=getIntent().getBooleanExtra("tipo", false);
+        tipoUs=getIntent().getBooleanExtra("tipo", true);
+
+
     }
 
     public void atras(View v){
@@ -34,7 +37,7 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
     public void siguiente(View v){
 
-        String codigo= codCasa.getText().toString();
+        codigo= codCasa.getText().toString();
 
         if(codigo.isEmpty()){
             Toast.makeText(this, "Debes introducir un codigo", Toast.LENGTH_LONG).show();
