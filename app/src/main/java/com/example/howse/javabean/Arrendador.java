@@ -53,4 +53,8 @@ public class Arrendador {
     public String getCodCasa() {
         return codCasa;
     }
+
+    public void setCodCasa(String codCasa) {
+        this.codCasa = codCasa;
+    }
 }

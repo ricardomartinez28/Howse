@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.howse.javabean.Arrendador;
 import com.example.howse.javabean.Inquilino;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -40,13 +42,15 @@ public class Login extends AppCompatActivity  {
     private EditText etEmail, etPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
-    private Button btnRegistrar, btnLogin, btnRecuperarPs;
     private DatabaseReference mDatabaseRef;
 
     private ChildEventListener cel;
     private ArrayList<Inquilino> datos;
     private String id;
+    private String email;
 
+    private final Inquilino[] inq= new Inquilino[1];
+    private final Arrendador[] arren= new Arrendador[1];
     private String nombrePersona;
     private String emailPersona;
 
@@ -61,10 +65,8 @@ public class Login extends AppCompatActivity  {
 
         setContentView( R.layout.activity_login );
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
-        btnRegistrar = (Button) findViewById( R.id.btnRegistrarte );
-        btnLogin = (Button) findViewById( R.id.btnIniciarSesion );
+
 
         etEmail = (EditText) findViewById( R.id.etCorreoLogin );
         etPassword = (EditText) findViewById( R.id.etPasswordLogin );
@@ -73,6 +75,8 @@ public class Login extends AppCompatActivity  {
 
 
         tvLogo=findViewById(R.id.tvLogoLogIn);
+
+
 
 
 
@@ -88,6 +92,15 @@ public class Login extends AppCompatActivity  {
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
         codCasa=getIntent().getStringExtra("codCasa");
+
+        if(tipoUs){
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
+
+
+        }else{
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("Arrendadores");
+        }
+
 
     }
 
@@ -123,13 +136,33 @@ public class Login extends AppCompatActivity  {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    emailPersona = etEmail.getText().toString();
-                    Inquilino inq = dataSnapshot.getValue(Inquilino.class);
 
-                    if (emailPersona.equals( inq.getEmailUsuario() )){
+                    if(tipoUs){
+                        emailPersona = etEmail.getText().toString();
+                        inq[0] = dataSnapshot.getValue(Inquilino.class);
 
-                        nombrePersona = inq.getNombreUsuario();
+                        if (emailPersona.equals( inq[0].getEmailUsuario() )){
+
+                            nombrePersona = inq[0].getNombreUsuario();
+
+
+
+                        }
+                    }else{
+
+                        emailPersona = etEmail.getText().toString();
+                        inq[0] = dataSnapshot.getValue(Inquilino.class);
+
+                        if (emailPersona.equals( inq[0].getEmailUsuario() )){
+
+                            nombrePersona = inq[0].getNombreUsuario();
+
+
+
+                        }
                     }
+
+
                 }
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -157,7 +190,7 @@ public class Login extends AppCompatActivity  {
     }
     public void loguearse(){
 
-        String email = etEmail.getText().toString();
+         email = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
 
         if (TextUtils.isEmpty(email)) {
@@ -178,10 +211,42 @@ public class Login extends AppCompatActivity  {
                         if (task.isSuccessful()) {
                             Toast.makeText( Login.this, "Bienvenido " +nombrePersona, Toast.LENGTH_SHORT ).show();
 
-                            Intent i = new Intent( Login.this, PruebaPaBorrar.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
+                            Query qq=mDatabaseRef.orderByChild("emailUsuario").equalTo(email);
+
+                            qq.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                                    if(tipoUs){
+
+                                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                            inq[0] = dataSnapshot1.getValue(Inquilino.class);
+                                        }
+
+                                        inq[0].setCodCasa(codCasa);
+
+                                        mDatabaseRef.child(inq[0].getKeyUsuario()).setValue(inq[0]);
+
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            final String clave = mDatabaseRef.getKey();
+
+
+                            if(tipoUs){
+                                mDatabaseRef.child("codCasa").setValue(codCasa);
+                            }
+                            Intent i = new Intent( Login.this, PreviewDelChat.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
                             startActivity(i);
                         } else {
-                            Toast.makeText( Login.this, "La JODISTE MAMON", Toast.LENGTH_LONG ).show();
+                            Toast.makeText( Login.this, "El email o la contraseña no es correcta", Toast.LENGTH_LONG ).show();
                         }
                     }
                 });
@@ -190,10 +255,7 @@ public class Login extends AppCompatActivity  {
 
     }
 
-    private void revokeAccess() {
-        // Firebase sign out
-        auth.signOut();
-    }
+
 
 
     }
