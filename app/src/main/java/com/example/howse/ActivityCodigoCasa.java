@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.howse.javabean.Arrendador;
+import com.example.howse.javabean.Usuario;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +31,7 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
     DatabaseReference mDatabaseRefCas;
 
-    ArrayList<Arrendador> listaArrendadores;
+    ArrayList<Usuario> listaArrendadores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,7 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
         listaArrendadores= new ArrayList<>();
 
-        mDatabaseRefCas = FirebaseDatabase.getInstance().getReference().child("Arrendadores");
+        mDatabaseRefCas = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
         addChildEventListener();
 
@@ -68,8 +69,8 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
 
 
-            for (Arrendador arrendador: listaArrendadores){
-                if(codigo.trim().equals(arrendador.getCodCasa())){
+            for (Usuario usuario: listaArrendadores){
+                if(codigo.trim().equals(usuario.getCodCasa()) && !usuario.getTipoUs()){
                     esCorrecto=true;
 
                 }
@@ -102,10 +103,10 @@ public class ActivityCodigoCasa extends AppCompatActivity {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    Arrendador arren= dataSnapshot.getValue(Arrendador.class);
+                    Usuario usuario= dataSnapshot.getValue(Usuario.class);
 
 
-                    listaArrendadores.add(arren);
+                    listaArrendadores.add(usuario);
 
 
 
