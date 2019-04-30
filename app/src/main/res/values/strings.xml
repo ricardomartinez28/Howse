@@ -35,4 +35,10 @@
     <string name="nav_perfil">Perfil</string>
     <string name="tvLogIn">Log In</string>
     <string name="tvRegistro">Nuevo Usuario</string>
+
+    <string name="txt_t_NombreUserProfile">Nombre:  %1$s</string>
+    <string name="btn_ModificarDatosPerfil">Modificar Datos</string>
+    <string name="campo_titulo">nombreUsuario</string>
+    <string name="campo_anyo">apellidosUsuario</string>
+
 </resources>

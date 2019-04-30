@@ -1,6 +1,7 @@
 package com.example.howse;
 
 import android.content.Intent;
+import android.os.Process;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +31,8 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                 case R.id.nav_chat:
                     Toast.makeText(MenuAbstractActivity.this,"Chat",Toast.LENGTH_LONG).show();
                     if(actActual!=CHAT){
-
+                        Intent i1 = new Intent(MenuAbstractActivity.this, PreviewDelChat.class);
+                        startActivity(i1);
                     }
 
                     return true;
@@ -48,8 +50,9 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_perfil:
                     Toast.makeText(MenuAbstractActivity.this,"Perfil",Toast.LENGTH_LONG).show();
-                    if(actActual!=CHAT){
-                        //TODO
+                    if(actActual!=PERFIL){
+                        Intent i4 = new Intent(MenuAbstractActivity.this, Perfil.class);
+                        startActivity(i4);
                     }
                     return true;
             }
@@ -92,8 +95,12 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
         //super.onBackPressed();
 
         if(actActual!=1){
-            //TODO activity
+            Intent i1= new Intent(MenuAbstractActivity.this, PreviewDelChat.class);
+            startActivity(i1);
+
         }else{
+
+            android.os.Process.killProcess( Process.myPid() );
             System.exit(0);
         }
     }

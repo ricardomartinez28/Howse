@@ -130,16 +130,19 @@ public class Login extends AppCompatActivity  {
 
 
     }
-    private void addChildEventListener() {
-        if (cel == null) {
-            cel = new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+    private void bienvenido() {
+        Query qq = mDatabaseRef.orderByChild("emailUsuario").equalTo(email);
+
+        qq.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
                     if(tipoUs){
                         emailPersona = etEmail.getText().toString();
-                        inq[0] = dataSnapshot.getValue(Inquilino.class);
+                        for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                            inq[0] = dataSnapshot1.getValue(Inquilino.class);
+                        }
 
                         if (emailPersona.equals( inq[0].getEmailUsuario() )){
 
@@ -164,30 +167,15 @@ public class Login extends AppCompatActivity  {
 
 
                 }
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-            };
+            });
 
-            mDatabaseRef.addChildEventListener(cel);
         }
-    }
+
     public void loguearse(){
 
          email = etEmail.getText().toString();
@@ -251,7 +239,7 @@ public class Login extends AppCompatActivity  {
                     }
                 });
 
-        addChildEventListener();
+        bienvenido();
 
     }
 

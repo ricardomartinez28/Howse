@@ -50,6 +50,26 @@ public class Inquilino implements Serializable{
         return nombreUsuario;
     }
 
+    public void setKeyUsuario(String keyUsuario) {
+        this.keyUsuario = keyUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setApellidosUsuario(String apellidosUsuario) {
+        this.apellidosUsuario = apellidosUsuario;
+    }
+
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
+    public void setFotoUsuario(String fotoUsuario) {
+        this.fotoUsuario = fotoUsuario;
+    }
+
     public String getApellidosUsuario() {
         return apellidosUsuario;
     }
