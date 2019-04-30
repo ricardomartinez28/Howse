@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.howse.javabean.Arrendador;
 import com.example.howse.javabean.Inquilino;
+import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -49,10 +50,10 @@ public class Login extends AppCompatActivity  {
     private String id;
     private String email;
 
-    private final Inquilino[] inq= new Inquilino[1];
-    private final Arrendador[] arren= new Arrendador[1];
+    private final Usuario[] usuario= new Usuario[1];
+
     private String nombrePersona;
-    private String emailPersona;
+    private String emailPersona="";
 
     private TextView tvLogo;
 
@@ -93,13 +94,11 @@ public class Login extends AppCompatActivity  {
         tipoUs=getIntent().getBooleanExtra("tipo",true);
         codCasa=getIntent().getStringExtra("codCasa");
 
-        if(tipoUs){
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
 
-        }else{
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("Arrendadores");
-        }
+
 
 
     }
@@ -130,64 +129,7 @@ public class Login extends AppCompatActivity  {
 
 
     }
-    private void addChildEventListener() {
-        if (cel == null) {
-            cel = new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-
-                    if(tipoUs){
-                        emailPersona = etEmail.getText().toString();
-                        inq[0] = dataSnapshot.getValue(Inquilino.class);
-
-                        if (emailPersona.equals( inq[0].getEmailUsuario() )){
-
-                            nombrePersona = inq[0].getNombreUsuario();
-
-
-
-                        }
-                    }else{
-
-                        emailPersona = etEmail.getText().toString();
-                        inq[0] = dataSnapshot.getValue(Inquilino.class);
-
-                        if (emailPersona.equals( inq[0].getEmailUsuario() )){
-
-                            nombrePersona = inq[0].getNombreUsuario();
-
-
-
-                        }
-                    }
-
-
-                }
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            };
-
-            mDatabaseRef.addChildEventListener(cel);
-        }
-    }
     public void loguearse(){
 
          email = etEmail.getText().toString();
@@ -221,12 +163,12 @@ public class Login extends AppCompatActivity  {
                                     if(tipoUs){
 
                                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                            inq[0] = dataSnapshot1.getValue(Inquilino.class);
+                                            usuario[0] = dataSnapshot1.getValue(Usuario.class);
                                         }
 
-                                        inq[0].setCodCasa(codCasa);
+                                        usuario[0].setCodCasa(codCasa);
 
-                                        mDatabaseRef.child(inq[0].getKeyUsuario()).setValue(inq[0]);
+                                        mDatabaseRef.child(usuario[0].getKeyUsuario()).setValue(usuario[0]);
 
                                     }
 
@@ -237,7 +179,6 @@ public class Login extends AppCompatActivity  {
 
                                 }
                             });
-                            final String clave = mDatabaseRef.getKey();
 
 
                             if(tipoUs){
@@ -251,7 +192,7 @@ public class Login extends AppCompatActivity  {
                     }
                 });
 
-        addChildEventListener();
+
 
     }
 

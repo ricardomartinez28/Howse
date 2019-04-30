@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.howse.javabean.Arrendador;
 import com.example.howse.javabean.Inquilino;
+import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -54,8 +55,7 @@ public class Register extends AppCompatActivity {
 
     private StorageReference mStorageRefInq;
     private StorageReference mStorageRefCas;
-    private DatabaseReference mDatabaseRefInq;
-    private DatabaseReference mDatabaseRefCas;
+    private DatabaseReference mDatabaseRef;
     private ChildEventListener cel;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
@@ -72,7 +72,7 @@ public class Register extends AppCompatActivity {
     private boolean tipoUs;
     private String codCasa;
 
-    ArrayList<Arrendador>listaArrendadores;
+    ArrayList<Usuario>listaArrendadores;
 
 
 
@@ -92,8 +92,7 @@ public class Register extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         mStorageRefInq = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
         mStorageRefCas = FirebaseStorage.getInstance().getReference("FotosPerfilCas");
-        mDatabaseRefInq = FirebaseDatabase.getInstance().getReference("Usuarios");
-        mDatabaseRefCas = FirebaseDatabase.getInstance().getReference("Arrendadores");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
 
         etNombre = (EditText) findViewById(R.id.etNombreReg);
@@ -168,7 +167,7 @@ public class Register extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 
 
-                                final String clave = mDatabaseRefInq.push().getKey();
+                                final String clave = mDatabaseRef.push().getKey();
                                 if (imagenSubida) {
                                     Uri selectedUri = mImageUri;
 
@@ -186,8 +185,8 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                            Inquilino inq = new Inquilino(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa);
-                                                            mDatabaseRefInq.child(clave).setValue(inq);
+                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
+                                                            mDatabaseRef.child(clave).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
@@ -202,8 +201,8 @@ public class Register extends AppCompatActivity {
 
                                 } else {
 
-                                    Inquilino inq = new Inquilino(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), null, codCasa);
-                                    mDatabaseRefInq.child(clave).setValue(inq);
+                                    Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), null, codCasa,tipoUs);
+                                    mDatabaseRef.child(clave).setValue(usuario);
 
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);
@@ -241,13 +240,13 @@ public class Register extends AppCompatActivity {
                                 codCasa=crearCodCasa();
 
 
-                                mDatabaseRefCas=FirebaseDatabase.getInstance().getReference().child("Arrendadores");
+                                mDatabaseRef=FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
                                 addChildEventListener();
 
-                                for (Arrendador arrendadores: listaArrendadores){
+                                for (Usuario arrendadores: listaArrendadores){
 
-                                    if(arrendadores.getCodCasa().equals(codCasa)){
+                                    if(arrendadores.getCodCasa().equals(codCasa) && !arrendadores.getTipoUs()){
 
                                         codCasa=crearCodCasa();
                                     }
@@ -261,7 +260,7 @@ public class Register extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
 
 
-                                final String clave = mDatabaseRefCas.push().getKey();
+                                final String clave = mDatabaseRef.push().getKey();
                                 if (imagenSubida) {
                                     Uri selectedUri = mImageUri;
 
@@ -279,8 +278,8 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                            Arrendador arren= new Arrendador(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), uri.toString(),codCasa);
-                                                            mDatabaseRefCas.child(clave).setValue(arren);
+                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
+                                                            mDatabaseRef.child(clave).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
@@ -295,8 +294,8 @@ public class Register extends AppCompatActivity {
 
                                 } else {
 
-                                    Arrendador arren= new Arrendador(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), null,codCasa);
-                                    mDatabaseRefCas.child(clave).setValue(arren);
+                                    Usuario usuario= new Usuario(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), null,codCasa,tipoUs);
+                                    mDatabaseRef.child(clave).setValue(usuario);
 
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);
@@ -388,10 +387,14 @@ public class Register extends AppCompatActivity {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    Arrendador arren= dataSnapshot.getValue(Arrendador.class);
+                    Usuario usuario= dataSnapshot.getValue(Usuario.class);
 
 
-                    listaArrendadores.add(arren);
+                    if(!usuario.getTipoUs()){
+                        listaArrendadores.add(usuario);
+                    }
+
+
 
 
 
@@ -419,7 +422,7 @@ public class Register extends AppCompatActivity {
 
                 }
             };
-            mDatabaseRefCas.addChildEventListener(cel);
+            mDatabaseRef.addChildEventListener(cel);
         }
 
 

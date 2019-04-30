@@ -30,7 +30,8 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                 case R.id.nav_chat:
                     Toast.makeText(MenuAbstractActivity.this,"Chat",Toast.LENGTH_LONG).show();
                     if(actActual!=CHAT){
-
+                        Intent i1 = new Intent(MenuAbstractActivity.this, PreviewDelChat.class);
+                        startActivity(i1);
                     }
 
                     return true;

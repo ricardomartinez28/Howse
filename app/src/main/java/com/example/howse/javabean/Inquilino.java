@@ -10,6 +10,7 @@ public class Inquilino implements Serializable{
     public String fotoUsuario;
     public String codCasa;
 
+
     public Inquilino(String keyUsuario, String nombreUsuario, String apellidosUsuario, String emailUsuario, String fotoUsuario, String codCasa) {
         this.keyUsuario = keyUsuario;
         this.nombreUsuario = nombreUsuario;
