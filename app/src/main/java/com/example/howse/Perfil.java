@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.howse.javabean.Arrendador;
-import com.example.howse.javabean.Inquilino;
+
+import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -48,8 +48,8 @@ public class Perfil extends MenuAbstractActivity {
     private String fotoPersona;
 
 
-    private final Inquilino[] inq = new Inquilino[1];
-    private final Arrendador[] arren = new Arrendador[1];
+    private final Usuario[] usr = new Usuario[1];
+    
 
 
 
@@ -90,21 +90,21 @@ public class Perfil extends MenuAbstractActivity {
 
 
                     for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        inq[0] = dataSnapshot1.getValue(Inquilino.class);
+                        usr[0] = dataSnapshot1.getValue(Usuario.class);
                     }
 
-                    if (emailPersona.equals( inq[0].getEmailUsuario() )){
+                    if (emailPersona.equals( usr[0].getEmailUsuario() )){
 
-                        nombrePersona = inq[0].getNombreUsuario();
-                        apellidoPersona = inq[0].getApellidosUsuario();
-                        fotoPersona = inq[0].getFotoUsuario();
+                        nombrePersona = usr[0].getNombreUsuario();
+                        apellidoPersona = usr[0].getApellidosUsuario();
+                        fotoPersona = usr[0].getFotoUsuario();
 
                         Nombre.setText( nombrePersona );
                         Email.setText( emailPersona );
                         Apellido.setText( apellidoPersona );
 
                         Glide.with(fotoPerfil.getContext())
-                                .load(inq[0].getFotoUsuario())
+                                .load(usr[0].getFotoUsuario())
                                 .into(fotoPerfil);
 
                     }
@@ -113,7 +113,7 @@ public class Perfil extends MenuAbstractActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( Perfil.this, "Algo salio Mal", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( Perfil.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
 
             }
         });
@@ -127,7 +127,7 @@ public class Perfil extends MenuAbstractActivity {
             mensaje("No has agregado ningun Apellido");
 
         }else{
-            inq[0].setApellidosUsuario(Apellido.getText().toString().trim());
+            usr[0].setApellidosUsuario(Apellido.getText().toString().trim());
         }
 
         if(Nombre.getText().toString().trim().equalsIgnoreCase("")){
@@ -135,9 +135,9 @@ public class Perfil extends MenuAbstractActivity {
             Nombre.setText("");
 
         }else{
-            inq[0].setNombreUsuario(Nombre.getText().toString().trim());
+            usr[0].setNombreUsuario(Nombre.getText().toString().trim());
 
-            mDatabaseRef.child(inq[0].getKeyUsuario()).setValue(inq[0]);
+            mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 
             cargarDatos();
 

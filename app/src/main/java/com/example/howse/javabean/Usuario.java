@@ -37,18 +37,7 @@ public class Usuario implements Serializable {
     public Usuario() {
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "keyUsuario='" + keyUsuario + '\'' +
-                ", nombreUsuario='" + nombreUsuario + '\'' +
-                ", apellidosUsuario='" + apellidosUsuario + '\'' +
-                ", emailUsuario='" + emailUsuario + '\'' +
-                ", fotoUsuario='" + fotoUsuario + '\'' +
-                ", codCasa='" + codCasa + '\'' +
-                ", tipoUs=" + tipoUs +
-                '}';
-    }
+
 
 
     public void setKeyUsuario(String keyUsuario) {

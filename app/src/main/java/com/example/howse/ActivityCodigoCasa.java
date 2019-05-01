@@ -15,8 +15,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -31,6 +34,8 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
     DatabaseReference mDatabaseRefCas;
 
+
+    private final Usuario[] usr = new Usuario[1];
     ArrayList<Usuario> listaArrendadores;
 
     @Override
@@ -49,7 +54,8 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
         mDatabaseRefCas = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
-        addChildEventListener();
+
+
 
     }
 
@@ -57,21 +63,70 @@ public class ActivityCodigoCasa extends AppCompatActivity {
         finish();
     }
 
-    public void siguiente(View v){
+    public void siguiente(View v) {
 
         codigo = codCasa.getText().toString();
 
-        if(codigo.isEmpty()){
+
+        if (codigo.isEmpty()) {
             Toast.makeText(this, "Debes introducir un codigo", Toast.LENGTH_LONG).show();
 
 
-        }else {
+        } else {
 
 
+            Query qq = mDatabaseRefCas.orderByChild("codCasa").equalTo(codigo).limitToFirst(1);
 
-            for (Usuario usuario: listaArrendadores){
-                if(codigo.trim().equals(usuario.getCodCasa()) && !usuario.getTipoUs()){
-                    esCorrecto=true;
+            qq.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        usr[0] = dataSnapshot1.getValue(Usuario.class);
+                    }
+
+                    if (usr[0] != null) {
+
+                        if(usr[0].getCodCasa().equals(codigo)){
+                            Toast.makeText(ActivityCodigoCasa.this, "Codigo correcto", Toast.LENGTH_LONG).show();
+
+                            Intent i = new Intent(ActivityCodigoCasa.this, Login.class);
+                            i.putExtra("tipo", tipoUs);
+                            i.putExtra("codCasa", codigo);
+                            startActivity(i);
+
+                        }else{
+
+                            Toast.makeText(ActivityCodigoCasa.this, "Codigo Incorrecto", Toast.LENGTH_LONG).show();
+
+                        }
+
+
+                    } else {
+                        Toast.makeText(ActivityCodigoCasa.this, "Codigo Incorrecto", Toast.LENGTH_LONG).show();
+
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(ActivityCodigoCasa.this, "Algo salio Mal ahí", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            /*for (Usuario usuario: listaArrendadores){
+
+                if(usuario!=null){
+                    if(codigo.trim().equals(usuario.getCodCasa()) && !usuario.getTipoUs()){
+                        esCorrecto=true;
+
+                    }
+                }else{
+                    Toast.makeText(this, "Codigo Incorrecto",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -94,23 +149,23 @@ public class ActivityCodigoCasa extends AppCompatActivity {
             }
 
 
+        }*/
         }
-    }
 
-    public void addChildEventListener(){
+    /*public void addChildEventListener(){
         if (cel==null){
             cel= new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    Usuario usuario= dataSnapshot.getValue(Usuario.class);
+
+                        Usuario usuario = dataSnapshot.getValue(Usuario.class);
 
 
-                    listaArrendadores.add(usuario);
+                        if (!usuario.getTipoUs()) {
 
-
-
-
+                            listaArrendadores.add(usuario);
+                        }
 
                 }
 
@@ -139,6 +194,6 @@ public class ActivityCodigoCasa extends AppCompatActivity {
 
 
 
+    }*/
     }
-
 }
