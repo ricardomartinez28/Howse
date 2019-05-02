@@ -32,6 +32,7 @@ import com.google.firebase.storage.UploadTask;
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
 public class Perfil extends MenuAbstractActivity {
+
     private ImageView fotoPerfil;
     private TextView Email;
     private EditText Nombre;
@@ -62,7 +63,7 @@ public class Perfil extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil );
-        setActActual(PERFIL);
+        setActActual(4);
 
         Email = (TextView) findViewById( R.id.tvEmail );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );

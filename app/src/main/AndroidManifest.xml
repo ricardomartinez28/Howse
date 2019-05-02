@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PruebaPonerFoto"></activity>
+        <activity android:name=".TareasActivity"></activity>
+        <activity android:name=".ListaDeLaCompraActivity" />
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".MenuAbstractActivity" />
         <activity android:name=".ActivityCodigoCasa" />
@@ -24,8 +25,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".Login" />
         <activity android:name=".Register" />
-        <activity android:name=".PruebaPaBorrar" />
-        <activity android:name=".Perfil"/>
+        <activity android:name=".Perfil" />
     </application>
 
 </manifest>

@@ -33,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -72,6 +73,7 @@ public class Register extends AppCompatActivity {
     private boolean tipoUs;
     private String codCasa;
 
+    private Usuario usuario;
     ArrayList<Usuario>listaArrendadores;
 
 
@@ -117,7 +119,7 @@ public class Register extends AppCompatActivity {
 
 
 
-        getSupportActionBar().hide();
+
 
 
 
@@ -278,13 +280,49 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
+                                                              usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
                                                             mDatabaseRef.child(clave).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
 
                                                             startActivity(i);
+
+
+                                                            Query qq=mDatabaseRef.orderByChild("emailUsuario").equalTo(email);
+
+
+
+                                                            qq.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                @Override
+                                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                                                                    if(tipoUs){
+
+                                                                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                                                            usuario = dataSnapshot1.getValue(Usuario.class);
+                                                                        }
+
+                                                                        usuario.setCodCasa(codCasa);
+
+                                                                        mDatabaseRef.child(usuario.getKeyUsuario()).setValue(usuario);
+
+                                                                    }
+
+                                                                }
+
+                                                                @Override
+                                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                                }
+                                                            });
+
+
+                                                            if(tipoUs){
+                                                                mDatabaseRef.child("codCasa").setValue(codCasa);
+                                                            }
+
                                                         }
                                                     });
                                                 }
@@ -433,7 +471,7 @@ public class Register extends AppCompatActivity {
     public String crearCodCasa(){
 
         for(int i=0;i<6;i++){
-            int el = (int)(Math.random()*37);
+            int el = (int)(Math.random()*36);
             conjunto[i] = (char)elementos[el];
         }
         return codigoCasa = new String(conjunto);

@@ -89,7 +89,7 @@ public class Login extends AppCompatActivity  {
         ss1.setSpan(fcsOrange,1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvLogo.setText(ss1);
 
-        getSupportActionBar().hide();
+
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
         codCasa=getIntent().getStringExtra("codCasa");
@@ -151,39 +151,7 @@ public class Login extends AppCompatActivity  {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText( Login.this, "Bienvenido " +nombrePersona, Toast.LENGTH_SHORT ).show();
 
-                            Query qq=mDatabaseRef.orderByChild("emailUsuario").equalTo(email);
-
-                            qq.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                                    if(tipoUs){
-
-                                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                                            usuario[0] = dataSnapshot1.getValue(Usuario.class);
-                                        }
-
-                                        usuario[0].setCodCasa(codCasa);
-
-                                        mDatabaseRef.child(usuario[0].getKeyUsuario()).setValue(usuario[0]);
-
-                                    }
-
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
-
-
-                            if(tipoUs){
-                                mDatabaseRef.child("codCasa").setValue(codCasa);
-                            }
                             Intent i = new Intent( Login.this, PreviewDelChat.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
                             startActivity(i);
                         } else {

@@ -37,7 +37,7 @@ public class SplashScreen extends AppCompatActivity {
             // Remember that you should never show the action bar if the
             // status bar is hidden, so hide that too if necessary.
             /*Esconder la AppBar*/
-            getSupportActionBar().hide();
+
         }
 
         tvDescInicio=findViewById(R.id.tvDescricionInicio);
