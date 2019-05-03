@@ -20,7 +20,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
 
-  /*  @Override
+    @Override
     protected void onStart() {
         super.onStart();
 
@@ -32,13 +32,11 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
             finish();
         }
     }
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_casero_inquilino);
-
-
 
 
 

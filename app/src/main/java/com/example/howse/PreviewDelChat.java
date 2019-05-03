@@ -3,6 +3,11 @@ package com.example.howse;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +19,8 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.example.howse.Fragments.ChatsFragment;
+import com.example.howse.Fragments.UsersFragment;
 import com.example.howse.javabean.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -23,6 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -37,8 +46,11 @@ public class PreviewDelChat extends MenuAbstractActivity {
     TextView tvnombre;
 
     FirebaseUser firebaseUser;
-    DatabaseReference dbr;
-    FirebaseAuth fa;
+    DatabaseReference reference;
+
+    private String emailPersona;
+    private final Usuario[] usr = new Usuario[1];
+
 
 
 
@@ -64,6 +76,10 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        emailPersona=firebaseUser.getEmail();
+        reference = FirebaseDatabase.getInstance().getReference( "Usuarios" );
+
+
 
         if(firebaseUser==null){
 
@@ -73,30 +89,64 @@ public class PreviewDelChat extends MenuAbstractActivity {
             System.out.println(firebaseUser.getEmail());
 
         }
-        dbr= FirebaseDatabase.getInstance().getReference("Usuarios").child(firebaseUser.getUid());
 
 
-        dbr.addValueEventListener(new ValueEventListener() {
+
+        TabLayout tabLayout= findViewById(R.id.tab_layout);
+        ViewPager viewPager=findViewById(R.id.view_pager);
+
+        ViewPagerAdapter viewPagerAdapter= new ViewPagerAdapter(getSupportFragmentManager());
+
+        viewPagerAdapter.addFragments(new ChatsFragment(),"Chats");
+        viewPagerAdapter.addFragments(new UsersFragment(),"Usuarios");
+
+        viewPager.setAdapter(viewPagerAdapter);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+
+        cargarDatos();
+    }
+
+    private void cargarDatos() {
+
+        Query qq = reference.orderByChild("emailUsuario").equalTo(emailPersona);
+
+        qq.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Usuario usuario= dataSnapshot.getValue(Usuario.class);
-                tvnombre.setText(usuario.getNombreUsuario());
 
 
-                if(usuario.getFotoUsuario()==null){
-                    imgperfil.setImageResource(R.mipmap.ic_launcher);
-                }else {
-                    Glide.with(PreviewDelChat.this).load(usuario.getFotoUsuario()).into(imgperfil);
+
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    usr[0] = dataSnapshot1.getValue(Usuario.class);
                 }
+
+                if (emailPersona.equals( usr[0].getEmailUsuario() )){
+
+                    tvnombre.setText(usr[0].getNombreUsuario());
+
+                    if(usr[0].getFotoUsuario()==null){
+                        imgperfil.setImageResource(R.drawable.ic_user);
+
+                    }else{
+                        Glide.with(PreviewDelChat.this)
+                                .load(usr[0].getFotoUsuario())
+                                .into(imgperfil);
+
+                    }
+
+                }
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText( PreviewDelChat.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
 
             }
         });
-
     }
 
     @Override
@@ -118,4 +168,41 @@ public class PreviewDelChat extends MenuAbstractActivity {
         }
         return false;
     }
+
+    class ViewPagerAdapter extends FragmentPagerAdapter{
+
+        private ArrayList<Fragment> fragments;
+        private ArrayList<String> titles;
+
+        ViewPagerAdapter(FragmentManager fm){
+
+            super(fm);
+            this.fragments= new ArrayList<>();
+            this.titles= new ArrayList<>();
+
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return fragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.size();
+        }
+
+        public void addFragments(Fragment fragment, String title){
+
+            fragments.add(fragment);
+            titles.add(title);
+        }
+
+        @Nullable
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return titles.get(position);
+        }
+    }
+
 }

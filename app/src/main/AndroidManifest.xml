@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TareasActivity"></activity>
+        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".TareasActivity" />
         <activity android:name=".ListaDeLaCompraActivity" />
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".MenuAbstractActivity" />
