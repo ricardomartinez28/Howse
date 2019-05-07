@@ -163,7 +163,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(PreviewDelChat.this, Login.class));
+                startActivity(new Intent(PreviewDelChat.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
         }
