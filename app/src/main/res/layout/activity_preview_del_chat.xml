@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/username"
                 android:layout_marginLeft="25dp"
+                android:fontFamily="@font/roboto_light"
                 android:text="username"
                 android:textColor="@color/blanco"
                 />

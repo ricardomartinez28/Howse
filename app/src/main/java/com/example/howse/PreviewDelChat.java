@@ -76,7 +76,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        emailPersona=firebaseUser.getEmail();
+
         reference = FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
 
@@ -86,6 +86,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
             System.out.println("es nuloooooooooooooooo");
 
         }else{
+            emailPersona=firebaseUser.getEmail();
             System.out.println(firebaseUser.getEmail());
 
         }

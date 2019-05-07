@@ -11,9 +11,12 @@ public class Usuario implements Serializable {
     private String fotoUsuario;
     private String codCasa;
     private Boolean tipoUs;
+    private String uid;
 
 
-    public Usuario(String keyUsuario, String nombreUsuario, String apellidosUsuario, String emailUsuario, String fotoUsuario, String codCasa, Boolean tipoUs) {
+
+
+    public Usuario(String keyUsuario, String nombreUsuario, String apellidosUsuario, String emailUsuario, String fotoUsuario, String codCasa, Boolean tipoUs, String uid) {
         this.keyUsuario = keyUsuario;
         this.nombreUsuario = nombreUsuario;
         this.apellidosUsuario = apellidosUsuario;
@@ -21,18 +24,10 @@ public class Usuario implements Serializable {
         this.fotoUsuario = fotoUsuario;
         this.codCasa = codCasa;
         this.tipoUs = tipoUs;
+        this.uid = uid;
     }
 
 
-
-    public Usuario(String nombreUsuario, String apellidosUsuario, String emailUsuario, String fotoUsuario, String codCasa, Boolean tipoUs) {
-        this.nombreUsuario = nombreUsuario;
-        this.apellidosUsuario = apellidosUsuario;
-        this.emailUsuario = emailUsuario;
-        this.fotoUsuario = fotoUsuario;
-        this.codCasa = codCasa;
-        this.tipoUs = tipoUs;
-    }
 
     public Usuario() {
     }
@@ -93,6 +88,10 @@ public class Usuario implements Serializable {
 
     public String getEmailUsuario() {
         return emailUsuario;
+    }
+
+    public String getUid() {
+        return uid;
     }
 
     public String getFotoUsuario() {

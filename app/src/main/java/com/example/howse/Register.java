@@ -187,8 +187,8 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
-                                                            mDatabaseRef.child(clave).setValue(usuario);
+                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs, user.getUid());
+                                                            mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
@@ -203,8 +203,8 @@ public class Register extends AppCompatActivity {
 
                                 } else {
 
-                                    Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), null, codCasa,tipoUs);
-                                    mDatabaseRef.child(clave).setValue(usuario);
+                                    Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), null, codCasa,tipoUs, user.getUid());
+                                    mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);
@@ -280,8 +280,8 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                              usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs);
-                                                            mDatabaseRef.child(clave).setValue(usuario);
+                                                              usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs,user.getUid());
+                                                            mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
@@ -306,7 +306,7 @@ public class Register extends AppCompatActivity {
 
                                                                         usuario.setCodCasa(codCasa);
 
-                                                                        mDatabaseRef.child(usuario.getKeyUsuario()).setValue(usuario);
+                                                                        mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                                                     }
 
@@ -332,8 +332,8 @@ public class Register extends AppCompatActivity {
 
                                 } else {
 
-                                    Usuario usuario= new Usuario(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), null,codCasa,tipoUs);
-                                    mDatabaseRef.child(clave).setValue(usuario);
+                                    Usuario usuario= new Usuario(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), null,codCasa,tipoUs,user.getUid());
+                                    mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);

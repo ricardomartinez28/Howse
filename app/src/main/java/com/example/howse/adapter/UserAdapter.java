@@ -2,6 +2,7 @@ package com.example.howse.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.howse.MessageActivity;
 import com.example.howse.R;
 import com.example.howse.javabean.Usuario;
 
@@ -38,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Usuario usuario=mUsers.get(position);
+        final Usuario usuario=mUsers.get(position);
         holder.username.setText(usuario.getNombreUsuario());
         if(usuario.getFotoUsuario()==null){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
@@ -46,6 +48,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             Glide.with(mContext).load(usuario.getFotoUsuario()).into(holder.profile_image);
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(mContext, MessageActivity.class);
+                i.putExtra("userid",usuario.getUid());
+                i.putExtra("cocdCasa",usuario.getCodCasa());
+                mContext.startActivity(i);
+
+            }
+        });
     }
 
     @Override
