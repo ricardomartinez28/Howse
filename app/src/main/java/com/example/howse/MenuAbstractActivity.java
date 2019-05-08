@@ -15,11 +15,11 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
 
 
     public static final int CHAT= 1;
-    public static final int LISTA = 2;
+    public static final int TAREAS = 2;
     public static final int COMPRA = 3;
     public static final int PERFIL = 4;
 
-    int actActual=1;
+    int actActual=4;
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -29,29 +29,27 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
 
             switch (menuItem.getItemId()){
                 case R.id.nav_chat:
-                    Toast.makeText(MenuAbstractActivity.this,"Chat",Toast.LENGTH_LONG).show();
-                    if(actActual!=CHAT){
+                    if(actActual!=1){
                         Intent i1 = new Intent(MenuAbstractActivity.this, PreviewDelChat.class);
                         startActivity(i1);
                     }
 
                     return true;
                 case R.id.nav_lista:
-                    Toast.makeText(MenuAbstractActivity.this,"Lista de tareas",Toast.LENGTH_LONG).show();
-                    if(actActual!=LISTA){
+
+                    if(actActual!=2){
                         Intent i2 = new Intent(MenuAbstractActivity.this, TareasActivity.class);
                         startActivity(i2);
                     }
                     return true;
                 case R.id.nav_compra:
-                    Toast.makeText(MenuAbstractActivity.this,"Compra",Toast.LENGTH_LONG).show();
-                    if(actActual!=CHAT){
-                        //TODO
+                    if(actActual!=3){
+                        Intent i3 = new Intent(MenuAbstractActivity.this, ListaDeLaCompraActivity.class);
+                        startActivity(i3);
                     }
                     return true;
                 case R.id.nav_perfil:
-                    Toast.makeText(MenuAbstractActivity.this,"Perfil",Toast.LENGTH_LONG).show();
-                    if(actActual!=PERFIL){
+                    if(actActual!=4){
                         Intent i4 = new Intent(MenuAbstractActivity.this, Perfil.class);
                         startActivity(i4);
                     }
@@ -72,7 +70,7 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
         RelativeLayout rel= (RelativeLayout) v;
         getLayoutInflater().inflate(cargarLayout(),rel);
 
-        BottomNavigationView navigation=findViewById(R.id.navigation);
+        BottomNavigationView navigation=(BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 

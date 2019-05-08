@@ -1,39 +1,24 @@
 package com.example.howse;
-
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-
 import com.example.howse.javabean.Usuario;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
 public class Perfil extends MenuAbstractActivity {
@@ -109,26 +94,26 @@ public class Perfil extends MenuAbstractActivity {
 
 
 
-                    for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        usr[0] = dataSnapshot1.getValue(Usuario.class);
-                    }
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    usr[0] = dataSnapshot1.getValue(Usuario.class);
+                }
 
-                    if (emailPersona.equals( usr[0].getEmailUsuario() )){
+                if (emailPersona.equals( usr[0].getEmailUsuario() )){
 
-                        nombrePersona = usr[0].getNombreUsuario();
-                        apellidoPersona = usr[0].getApellidosUsuario();
-                        fotoPersona = usr[0].getFotoUsuario();
+                    nombrePersona = usr[0].getNombreUsuario();
+                    apellidoPersona = usr[0].getApellidosUsuario();
+                    fotoPersona = usr[0].getFotoUsuario();
 
-                        Nombre.setText( nombrePersona );
+                    Nombre.setText( nombrePersona );
 
-                        Email.setText( "Email: " + emailPersona );
-                        Apellido.setText( apellidoPersona );
+                    Email.setText( "Email: " + emailPersona );
+                    Apellido.setText( apellidoPersona );
 
-                        Glide.with(fotoPerfil.getContext())
-                                .load(usr[0].getFotoUsuario())
-                                .into(fotoPerfil);
+                    Glide.with(fotoPerfil.getContext())
+                            .load(usr[0].getFotoUsuario())
+                            .into(fotoPerfil);
 
-                    }
+                }
 
             }
 
@@ -171,9 +156,3 @@ public class Perfil extends MenuAbstractActivity {
 
 
 }
-
-
-
-
-
-

@@ -12,6 +12,9 @@
         <activity android:name=".TablaActivity"></activity>
         <activity android:name=".TareasActivity" />
         <activity android:name=".PruebaPonerFoto" />
+        <activity android:name=".MessageActivity"></activity>
+        <activity android:name=".TareasActivity" />
+        <activity android:name=".ListaDeLaCompraActivity" />
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".MenuAbstractActivity" />
         <activity android:name=".ActivityCodigoCasa" />
@@ -27,6 +30,7 @@
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".PruebaPaBorrar" />
+        <activity android:name=".Perfil" />
         <activity android:name=".Perfil" />
     </application>
 

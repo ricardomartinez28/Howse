@@ -43,4 +43,7 @@
     <string name="btn_GuardarCambios">Añadir Tarea</string>
     <string name="btn_GuardarCambiosTareas">Guardar Cambios</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

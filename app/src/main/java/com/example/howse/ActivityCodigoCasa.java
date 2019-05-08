@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.howse.javabean.Arrendador;
 import com.example.howse.javabean.Usuario;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +37,7 @@ public class ActivityCodigoCasa extends AppCompatActivity {
     DatabaseReference mDatabaseRefCas;
 
 
+
     private final Usuario[] usr = new Usuario[1];
     ArrayList<Usuario> listaArrendadores;
 
@@ -44,7 +47,9 @@ public class ActivityCodigoCasa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_codigo_casa);
 
-        getSupportActionBar().hide();
+
+
+
 
         codCasa=findViewById(R.id.etCodigoCasa);
 
