@@ -161,11 +161,6 @@ public class UsersFragment extends android.support.v4.app.Fragment {
         });
 
     }
-
-
-
-
-    }
-
+}
 
 
