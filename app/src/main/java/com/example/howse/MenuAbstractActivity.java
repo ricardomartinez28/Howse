@@ -39,7 +39,8 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                 case R.id.nav_lista:
                     Toast.makeText(MenuAbstractActivity.this,"Lista de tareas",Toast.LENGTH_LONG).show();
                     if(actActual!=LISTA){
-                        //TODO
+                        Intent i2 = new Intent(MenuAbstractActivity.this, TareasActivity.class);
+                        startActivity(i2);
                     }
                     return true;
                 case R.id.nav_compra:

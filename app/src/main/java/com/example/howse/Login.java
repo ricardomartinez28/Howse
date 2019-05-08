@@ -54,6 +54,7 @@ public class Login extends AppCompatActivity  {
 
     private String nombrePersona;
     private String emailPersona="";
+    private String emailRecuperado;
 
     private TextView tvLogo;
 
@@ -151,7 +152,7 @@ public class Login extends AppCompatActivity  {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText( Login.this, "Bienvenido " +nombrePersona, Toast.LENGTH_SHORT ).show();
+                          //  Toast.makeText( Login.this, "Bienvenido " +nombrePersona, Toast.LENGTH_SHORT ).show();
 
                             Query qq=mDatabaseRef.orderByChild("emailUsuario").equalTo(email);
 
@@ -160,15 +161,28 @@ public class Login extends AppCompatActivity  {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
+
+
+
+                                //  TODO REVISAR ARRIBA QUE TIENE QUE DECEIR: BIENVENIDO Y COGER EL NOMBRE MEDIANTE EL CURRENT USER
+
                                     if(tipoUs){
 
                                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                             usuario[0] = dataSnapshot1.getValue(Usuario.class);
                                         }
 
+
                                         usuario[0].setCodCasa(codCasa);
 
                                         mDatabaseRef.child(usuario[0].getKeyUsuario()).setValue(usuario[0]);
+                                        nombrePersona = usuario[0].getNombreUsuario();
+
+                                    }else{
+                                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                                            usuario[0] = dataSnapshot1.getValue(Usuario.class);
+                                        }
+                                        nombrePersona = usuario[0].getNombreUsuario();
 
                                     }
 

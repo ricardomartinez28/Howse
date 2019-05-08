@@ -1,12 +1,16 @@
 package com.example.howse;
 
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,11 +38,15 @@ import com.google.firebase.storage.UploadTask;
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
 public class Perfil extends MenuAbstractActivity {
     private ImageView fotoPerfil;
+
     private TextView Email;
     private EditText Nombre;
     private EditText Apellido;
 
-    private StorageReference mStorageRef;
+    private Button btnModificar;
+
+    private FloatingActionButton fba;
+
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser usuario;
@@ -47,10 +56,7 @@ public class Perfil extends MenuAbstractActivity {
     private String apellidoPersona;
     private String fotoPersona;
 
-
     private final Usuario[] usr = new Usuario[1];
-    
-
 
 
     @Override
@@ -68,6 +74,8 @@ public class Perfil extends MenuAbstractActivity {
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         Nombre = (EditText) findViewById( R.id.etNombre );
         Apellido = (EditText) findViewById( R.id.etApellido );
+        btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
+        fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
@@ -77,6 +85,18 @@ public class Perfil extends MenuAbstractActivity {
 
         cargarDatos();
 
+    }
+    public void deshabilitar(){
+        Nombre.setEnabled( false );
+        Apellido.setEnabled( false );
+        btnModificar.setEnabled( false );
+
+    }
+
+    public void editable(View v){
+        Nombre.setEnabled( true );
+        Apellido.setEnabled( true );
+        btnModificar.setEnabled( true );
     }
 
     private void cargarDatos() {
@@ -100,7 +120,8 @@ public class Perfil extends MenuAbstractActivity {
                         fotoPersona = usr[0].getFotoUsuario();
 
                         Nombre.setText( nombrePersona );
-                        Email.setText( emailPersona );
+
+                        Email.setText( "Email: " + emailPersona );
                         Apellido.setText( apellidoPersona );
 
                         Glide.with(fotoPerfil.getContext())
@@ -113,15 +134,14 @@ public class Perfil extends MenuAbstractActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( Perfil.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
+
 
             }
         });
 
     }
+
     public void modificarDatos(View view) {
-
-
 
         if(Apellido.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("No has agregado ningun Apellido");
@@ -140,6 +160,7 @@ public class Perfil extends MenuAbstractActivity {
             mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 
             cargarDatos();
+            deshabilitar();
 
         }
 
