@@ -19,7 +19,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
     private boolean opcion;
     FirebaseUser firebaseUser;
 
-
+/*
    @Override
     protected void onStart() {
         super.onStart();
@@ -32,7 +32,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
             finish();
         }
     }
-
+*/
 
 
     @Override
