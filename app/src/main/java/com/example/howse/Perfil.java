@@ -1,44 +1,37 @@
 package com.example.howse;
-
-import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-
 import com.example.howse.javabean.Usuario;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
 public class Perfil extends MenuAbstractActivity {
-
     private ImageView fotoPerfil;
+
     private TextView Email;
     private EditText Nombre;
     private EditText Apellido;
 
-    private StorageReference mStorageRef;
+    private Button btnModificar;
+
+    private FloatingActionButton fba;
+
     private DatabaseReference mDatabaseRef;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser usuario;
@@ -48,10 +41,7 @@ public class Perfil extends MenuAbstractActivity {
     private String apellidoPersona;
     private String fotoPersona;
 
-
     private final Usuario[] usr = new Usuario[1];
-    
-
 
 
     @Override
@@ -63,12 +53,14 @@ public class Perfil extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil );
-        setActActual(4);
+        setActActual(PERFIL);
 
         Email = (TextView) findViewById( R.id.tvEmail );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         Nombre = (EditText) findViewById( R.id.etNombre );
         Apellido = (EditText) findViewById( R.id.etApellido );
+        btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
+        fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
@@ -78,6 +70,18 @@ public class Perfil extends MenuAbstractActivity {
 
         cargarDatos();
 
+    }
+    public void deshabilitar(){
+        Nombre.setEnabled( false );
+        Apellido.setEnabled( false );
+        btnModificar.setEnabled( false );
+
+    }
+
+    public void editable(View v){
+        Nombre.setEnabled( true );
+        Apellido.setEnabled( true );
+        btnModificar.setEnabled( true );
     }
 
     private void cargarDatos() {
@@ -90,39 +94,39 @@ public class Perfil extends MenuAbstractActivity {
 
 
 
-                    for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                        usr[0] = dataSnapshot1.getValue(Usuario.class);
-                    }
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    usr[0] = dataSnapshot1.getValue(Usuario.class);
+                }
 
-                    if (emailPersona.equals( usr[0].getEmailUsuario() )){
+                if (emailPersona.equals( usr[0].getEmailUsuario() )){
 
-                        nombrePersona = usr[0].getNombreUsuario();
-                        apellidoPersona = usr[0].getApellidosUsuario();
-                        fotoPersona = usr[0].getFotoUsuario();
+                    nombrePersona = usr[0].getNombreUsuario();
+                    apellidoPersona = usr[0].getApellidosUsuario();
+                    fotoPersona = usr[0].getFotoUsuario();
 
-                        Nombre.setText( nombrePersona );
-                        Email.setText( emailPersona );
-                        Apellido.setText( apellidoPersona );
+                    Nombre.setText( nombrePersona );
 
-                        Glide.with(fotoPerfil.getContext())
-                                .load(usr[0].getFotoUsuario())
-                                .into(fotoPerfil);
+                    Email.setText( "Email: " + emailPersona );
+                    Apellido.setText( apellidoPersona );
 
-                    }
+                    Glide.with(fotoPerfil.getContext())
+                            .load(usr[0].getFotoUsuario())
+                            .into(fotoPerfil);
+
+                }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( Perfil.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
+
 
             }
         });
 
     }
+
     public void modificarDatos(View view) {
-
-
 
         if(Apellido.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("No has agregado ningun Apellido");
@@ -141,6 +145,7 @@ public class Perfil extends MenuAbstractActivity {
             mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 
             cargarDatos();
+            deshabilitar();
 
         }
 
@@ -151,9 +156,3 @@ public class Perfil extends MenuAbstractActivity {
 
 
 }
-
-
-
-
-
-
