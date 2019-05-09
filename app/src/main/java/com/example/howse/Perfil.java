@@ -68,13 +68,18 @@ public class Perfil extends MenuAbstractActivity {
         usuario = firebaseAuth.getCurrentUser();
         emailPersona = usuario.getEmail();
 
+
+        btnModificar.setVisibility(View.INVISIBLE);
+
         cargarDatos();
 
     }
     public void deshabilitar(){
+
         Nombre.setEnabled( false );
         Apellido.setEnabled( false );
         btnModificar.setEnabled( false );
+        btnModificar.setVisibility(View.INVISIBLE);
 
     }
 
@@ -82,6 +87,8 @@ public class Perfil extends MenuAbstractActivity {
         Nombre.setEnabled( true );
         Apellido.setEnabled( true );
         btnModificar.setEnabled( true );
+
+        btnModificar.setVisibility(View.VISIBLE);
     }
 
     private void cargarDatos() {
@@ -106,7 +113,7 @@ public class Perfil extends MenuAbstractActivity {
 
                     Nombre.setText( nombrePersona );
 
-                    Email.setText( "Email: " + emailPersona );
+                    Email.setText(  emailPersona );
                     Apellido.setText( apellidoPersona );
 
                     Glide.with(fotoPerfil.getContext())
@@ -144,7 +151,7 @@ public class Perfil extends MenuAbstractActivity {
 
             mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 
-            cargarDatos();
+
             deshabilitar();
 
         }
