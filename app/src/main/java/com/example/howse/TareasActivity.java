@@ -40,20 +40,23 @@ public class TareasActivity extends AppCompatActivity {
 
     private List<Usuario> mUsers;
 
-
+    private ArrayList<String> nombreUsuarios;
 
 
     private final Usuario[] usR = new Usuario[1];
-    Usuario usFin;
 
     private String emailPersona;
     private String codCasa;
 
     private String dia;
     private String persona;
+
     private String tarea;
+    private Usuario usuario;
 
     private String nombres;
+
+    private String imail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class TareasActivity extends AppCompatActivity {
         mUsers = new ArrayList<>();
 
         ArrayList<String> dias = new ArrayList<String>();
-        final ArrayList<String> nombreUsuarios = new ArrayList<String>();
+        nombreUsuarios = new ArrayList<String>();
         ArrayList<String> tareas = new ArrayList<String>();
 
         dias.add( "Lunes" );
@@ -88,11 +91,13 @@ public class TareasActivity extends AppCompatActivity {
 
         readUsers();
 
+
+
         ArrayAdapter adpDias = new ArrayAdapter(
                 TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, dias );
 
         ArrayAdapter adpPersonas = new ArrayAdapter(
-                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreUsuarios );
+                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreUsuarios);
 
         ArrayAdapter adpTareas = new ArrayAdapter(
                 TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, tareas );
@@ -119,6 +124,10 @@ public class TareasActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 persona = (String) spPersona.getAdapter().getItem( position );
+
+
+
+                //String selected = spPersona.getItemAtPosition(position).toString();
 
                 //Toast.makeText( TareasActivity.this, dia+" "+tarea+" "+persona, Toast.LENGTH_SHORT ).show();
             }
@@ -155,7 +164,12 @@ public class TareasActivity extends AppCompatActivity {
         Toast.makeText( TareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
 
         Toast.makeText( TareasActivity.this, "Tarea Añadida", Toast.LENGTH_SHORT ).show();
+//TODO PRUEBA
+        for (String r : nombreUsuarios){
+            System.out.println("\n"+r+"\n");
+        }
 
+        System.out.println(persona);
     }
     public void cargarCodCasa(){
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Usuarios" );
@@ -172,15 +186,14 @@ public class TareasActivity extends AppCompatActivity {
                     usR[0] = dataSnapshot1.getValue(Usuario.class);
                 }
 
-                if(usR[0]==null){
-                    System.out.println(usR[0].getApellidosUsuario()+"Estooooooooooooooooo es nuloooooooooooooooooooooooooooooo");
 
-                }else {
-                    System.out.println( usR[0].getApellidosUsuario() + "Hasdddddddddddddd es el email" );
-                }
                 if (firebaseUser.getEmail().equals( usR[0].getEmailUsuario() )){
 
                     codCasa=usR[0].getCodCasa();
+                }
+                if (codCasa.equals( usR[0].getCodCasa() )){
+
+                    imail=usR[0].getEmailUsuario();
                 }
 
             }
@@ -203,7 +216,7 @@ public class TareasActivity extends AppCompatActivity {
                 mUsers.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Usuario usuario;
+
                     try {
                         usuario = snapshot.getValue( Usuario.class );
                     } catch (DatabaseException de) {
@@ -214,20 +227,19 @@ public class TareasActivity extends AppCompatActivity {
                     assert firebaseUser != null;
 
 
-                    if (usuario.getEmailUsuario().equals( firebaseUser.getEmail() )) {
-                        usFin = usuario;
-
-
-                    }
-
-
-                    if (!(usuario.getEmailUsuario().equals( firebaseUser.getEmail() )) && usuario.getCodCasa().equals( codCasa )) {
-
+                    if ( usuario.getCodCasa().equals( codCasa )) {
 
                         mUsers.add( usuario );
-                        System.out.println(usuario.getApellidosUsuario()+"zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
-                    }
+                    }/*else{
+                        //mUsers.add( usuario );
+                        System.out.println(usuario.getEmailUsuario()+"JOPIUTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+usuario.getCodCasa());
+                    }*/
 
+                }
+                for (Usuario usr : mUsers){
+                    nombres=usr.getNombreUsuario();
+
+                    nombreUsuarios.add( nombres );
                 }
 
 
