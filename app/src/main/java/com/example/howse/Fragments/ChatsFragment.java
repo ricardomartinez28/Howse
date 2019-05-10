@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSmoothScroller;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -35,13 +38,14 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
     private UserAdapter userAdapter;
     private List<Usuario> mUsers;
-
+    private List<Usuario> mUsersHelp;
 
     FirebaseUser fuser;
     DatabaseReference reference;
 
 
     private List<String> userList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +62,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
         fuser= FirebaseAuth.getInstance().getCurrentUser();
 
         userList= new ArrayList<>();
+
         reference= FirebaseDatabase.getInstance().getReference("Chats");
 
         reference.addValueEventListener(new ValueEventListener() {
@@ -99,6 +104,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
     private void readChats(){
         mUsers= new ArrayList<>();
+        mUsersHelp= new ArrayList<>();
 
         reference= FirebaseDatabase.getInstance().getReference("Usuarios");
 
@@ -107,6 +113,7 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 mUsers.clear();
+                mUsersHelp.clear();
 
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
 
@@ -129,19 +136,45 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
                         if(usuario.getUid().equals(id)){
                             if(mUsers.size() != 0 ){
+
+
+
                                 for(Usuario usuario1: mUsers){
-                                    if(!(usuario.getUid().equals(usuario1.getUid()))){
-                                       mUsers.add(usuario);
+                                if(!(usuario.getUid().equals(usuario1.getUid()))){
+                                        mUsersHelp.add(usuario);
+                                        System.out.println("Estaaaaaaaa entrando aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
                                     }
+
+
+
                                 }
                             }else {
 
                                 mUsers.add(usuario);
+                                System.out.println("Es mentiraaaaaaaaaaaaaaaaaaaaaaaa esta entrando aquiiiiiiiiiiiiiiiiiiiiii");
                             }
+
+
                         }
                     }
+
+
                 }
+
+
+                //if(mUsersHelp.size()>1)  mUsersHelp.remove(mUsersHelp.size()-1);
+                mUsers.addAll(mUsersHelp);
+
+                HashSet<Usuario> hs= new HashSet<>();
+                hs.addAll(mUsers);
+                mUsers.clear();
+                mUsers.addAll(hs);
+
+
                 userAdapter= new UserAdapter(getContext(), mUsers);
+                DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycledview_divider));
+                recyclerView.addItemDecoration(dividerItemDecoration);
                 recyclerView.setAdapter(userAdapter);
 
                 /*

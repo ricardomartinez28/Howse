@@ -42,6 +42,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         final Usuario usuario=mUsers.get(position);
         holder.username.setText(usuario.getNombreUsuario());
+
+            if(!usuario.getTipoUs()){
+                holder.tvCasero.setText("Casero");
+            }
+
         if(usuario.getFotoUsuario()==null){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         }else{
@@ -69,12 +74,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
      public TextView username;
      public ImageView profile_image;
+     public  TextView tvCasero;
 
      public ViewHolder(View itemView){
          super(itemView);
 
          username= itemView.findViewById(R.id.username);
          profile_image=itemView.findViewById(R.id.profileImage);
+         tvCasero=itemView.findViewById(R.id.tvCasero);
      }
 
     }
