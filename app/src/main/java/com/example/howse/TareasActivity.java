@@ -56,6 +56,10 @@ public class TareasActivity extends AppCompatActivity {
 
     private String nombres;
 
+    private String porDefectoPersona="--Selecciona una Persona--";
+    private String porDefectoDia="--Selecciona un dia--";
+    private String porDefectoActividad="--Selecciona una Actividad--";
+
     private String imail;
 
     @Override
@@ -77,7 +81,7 @@ public class TareasActivity extends AppCompatActivity {
         ArrayList<String> dias = new ArrayList<String>();
         nombreUsuarios = new ArrayList<String>();
         ArrayList<String> tareas = new ArrayList<String>();
-
+        dias.add( porDefectoDia);
         dias.add( "Lunes" );
         dias.add( "Martes" );
         dias.add( "Miercoles" );
@@ -86,8 +90,10 @@ public class TareasActivity extends AppCompatActivity {
         dias.add( "Sabado" );
         dias.add( "Domingo" );
 
+        tareas.add( porDefectoActividad );
         tareas.add( "Lavar" );
         tareas.add( "Cocinar" );
+        nombreUsuarios.add( porDefectoPersona );
 
         readUsers();
 
@@ -154,9 +160,18 @@ public class TareasActivity extends AppCompatActivity {
     }
 
     public void cargarDatos(View v) {
+    if(persona.equals( porDefectoPersona )){
+        Toast.makeText( this, "Elige una Persona para continuar", Toast.LENGTH_LONG ).show();
 
+    }else if (dia.equals( porDefectoDia )){
+        Toast.makeText( this, "Elige un Dia para continuar", Toast.LENGTH_LONG ).show();
+
+    }else if (tarea.equals( porDefectoActividad )){
+        Toast.makeText( this, "Elige una Actividad para continuar", Toast.LENGTH_LONG ).show();
+
+    }else {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Tareas" );
-        
+
         final String clave = mDatabaseRef.push().getKey();
         Tarea tar = new Tarea( persona, tarea, dia );
         mDatabaseRef.child( clave ).setValue( tar );
@@ -164,6 +179,7 @@ public class TareasActivity extends AppCompatActivity {
         Toast.makeText( TareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
 
         Toast.makeText( TareasActivity.this, "Tarea Añadida", Toast.LENGTH_SHORT ).show();
+    }
 //TODO PRUEBA
         for (String r : nombreUsuarios){
             System.out.println("\n"+r+"\n");
@@ -227,13 +243,10 @@ public class TareasActivity extends AppCompatActivity {
                     assert firebaseUser != null;
 
 
-                    if ( usuario.getCodCasa().equals( codCasa )) {
+                    if ( usuario.getCodCasa().equals( codCasa )&&usuario.getTipoUs()) {
 
                         mUsers.add( usuario );
-                    }/*else{
-                        //mUsers.add( usuario );
-                        System.out.println(usuario.getEmailUsuario()+"JOPIUTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+usuario.getCodCasa());
-                    }*/
+                    }
 
                 }
                 for (Usuario usr : mUsers){
@@ -241,6 +254,7 @@ public class TareasActivity extends AppCompatActivity {
 
                     nombreUsuarios.add( nombres );
                 }
+
 
 
 
