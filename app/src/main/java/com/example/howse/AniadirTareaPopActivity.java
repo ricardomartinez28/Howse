@@ -42,6 +42,7 @@ public class AniadirTareaPopActivity extends Activity {
         setContentView( R.layout.activity_aniadir_tarea_pop );
 
         actividad = (EditText) findViewById( R.id.etActividad );
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -81,9 +82,6 @@ public class AniadirTareaPopActivity extends Activity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-
-
-
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     usR[0] = dataSnapshot1.getValue( Usuario.class);
                 }
@@ -92,7 +90,6 @@ public class AniadirTareaPopActivity extends Activity {
 
                     codCasa=usR[0].getCodCasa();
                 }
-
 
             }
 

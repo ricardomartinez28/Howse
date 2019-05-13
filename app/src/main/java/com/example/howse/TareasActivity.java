@@ -100,7 +100,6 @@ public class TareasActivity extends AppCompatActivity {
         dias.add( "Sabado" );
         dias.add( "Domingo" );
 
-
         readActividad();
 
         nombreActividades.add( porDefectoActividad );
@@ -109,8 +108,6 @@ public class TareasActivity extends AppCompatActivity {
         nombreUsuarios.add( porDefectoPersona );
 
         readUsers();
-
-
 
         ArrayAdapter adpDias = new ArrayAdapter(
                 TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, dias );
@@ -204,13 +201,9 @@ public class TareasActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-
-
-
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     usR[0] = dataSnapshot1.getValue(Usuario.class);
                 }
-
 
                 if (firebaseUser.getEmail().equals( usR[0].getEmailUsuario() )){
 
@@ -292,7 +285,6 @@ public class TareasActivity extends AppCompatActivity {
                     }
                     assert actividad != null;
                     assert firebaseUser != null;
-
 
                     if ( actividad.getCodCasa().equals( codCasa )) {
 
