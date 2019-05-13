@@ -100,11 +100,15 @@ public class TareasActivity extends AppCompatActivity {
         dias.add( "Sabado" );
         dias.add( "Domingo" );
 
+
         readActividad();
 
         nombreActividades.add( porDefectoActividad );
         nombreActividades.add( "Lavar" );
         nombreActividades.add( "Cocinar" );
+
+
+
         nombreUsuarios.add( porDefectoPersona );
 
         readUsers();
@@ -166,6 +170,11 @@ public class TareasActivity extends AppCompatActivity {
     }
 
     public void abrirPop(View v){
+        nombreActividades.clear();
+        nombreActividades.add( porDefectoActividad );
+        nombreActividades.add( "Lavar" );
+        nombreActividades.add( "Cocinar" );
+
         Intent i = new Intent( TareasActivity.this, AniadirTareaPopActivity.class );
         startActivity(i);
     }
@@ -225,6 +234,7 @@ public class TareasActivity extends AppCompatActivity {
     }
 
     private void readUsers() {
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Usuarios" );
 
         mDatabaseRef.addValueEventListener( new ValueEventListener() {
@@ -267,6 +277,7 @@ public class TareasActivity extends AppCompatActivity {
     }
 
     private void readActividad(){
+
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Actividades" );
 
         mDatabaseRef.addValueEventListener( new ValueEventListener() {
@@ -305,6 +316,12 @@ public class TareasActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+    public void abrirTabla(View v){
+
+        Intent i = new Intent( TareasActivity.this, TablaActivity.class );
+        startActivity(i);
     }
 
 }

@@ -50,7 +50,6 @@ public class Register extends AppCompatActivity {
     private EditText etPassword, etPasswordRepeat;
     private ProgressDialog progressDialog;
 
-    private static final int PICK_IMAGE_REQUEST = 1;
     final private int RC_PHOTO_ADJ = 1;
     private Uri mImageUri;
 
@@ -76,15 +75,11 @@ public class Register extends AppCompatActivity {
     private Usuario usuario;
     ArrayList<Usuario>listaArrendadores;
 
-
-
-
     private char[] conjunto = new char[6];
     char[] elementos={'0','1','2','3','4','5','6','7','8','9' ,'a',
             'b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t',
             'u','v','w','x','y','z'};
     String codigoCasa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,14 +91,11 @@ public class Register extends AppCompatActivity {
         mStorageRefCas = FirebaseStorage.getInstance().getReference("FotosPerfilCas");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
-
         etNombre = (EditText) findViewById(R.id.etNombreReg);
         etApellido = (EditText) findViewById(R.id.etApellidoReg);
         etEmail = (EditText) findViewById(R.id.etEmailReg);
         etPassword = (EditText) findViewById(R.id.etPasswordReg);
         etPasswordRepeat = (EditText) findViewById(R.id.etPasswordRepeat);
-
-
 
         progressDialog = new ProgressDialog(this);
 
@@ -115,14 +107,6 @@ public class Register extends AppCompatActivity {
         }
 
         listaArrendadores= new ArrayList<>();
-
-
-
-
-
-
-
-
 
     }
 
@@ -152,7 +136,6 @@ public class Register extends AppCompatActivity {
 
     public void registroInq() {
         String warning = validarDatos();
-
 
         if (warning == null) {
             progressDialog.setMessage( "Realizando registro en linea. . ." );
@@ -228,7 +211,6 @@ public class Register extends AppCompatActivity {
     public void registroCasero() {
         String warning = validarDatos();
 
-
         if (warning == null) {
             progressDialog.setMessage( "Realizando registro en linea. . ." );
             progressDialog.show();
@@ -253,9 +235,6 @@ public class Register extends AppCompatActivity {
                                         codCasa=crearCodCasa();
                                     }
                                 }
-
-
-
 
                                 user = firebaseAuth.getCurrentUser();
                                 Toast.makeText(Register.this, getString(R.string.msj_userregistered_register) + ": " + user.getEmail(),
@@ -382,9 +361,7 @@ public class Register extends AppCompatActivity {
         if (requestCode == RC_PHOTO_ADJ) {
             if (resultCode == RESULT_OK) {
 
-
                 mImageUri = data.getData();
-
 
                 InputStream is;
 
@@ -432,12 +409,6 @@ public class Register extends AppCompatActivity {
                         listaArrendadores.add(usuario);
                     }
 
-
-
-
-
-
-
                 }
 
                 @Override
@@ -476,7 +447,5 @@ public class Register extends AppCompatActivity {
         }
         return codigoCasa = new String(conjunto);
     }
-
-
 
 }

@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.howse.javabean.Actividad;
 import com.example.howse.javabean.Tarea;
@@ -68,11 +69,17 @@ public class AniadirTareaPopActivity extends Activity {
     public void subirActividad(View v){
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Actividades" );
         nombreActividad = actividad.getText().toString().trim();
-
         final String clave = mDatabaseRef.push().getKey();
-        Actividad act = new Actividad( nombreActividad, codCasa );
-        mDatabaseRef.child( clave ).setValue( act );
-        finish();
+        if (nombreActividad.equals( "" )) {
+
+            Toast.makeText( this, "Debes Introducir una Actividad que quieras añadir", Toast.LENGTH_LONG ).show();
+
+        }else{
+
+            Actividad act = new Actividad( nombreActividad, codCasa );
+            mDatabaseRef.child( clave ).setValue( act );
+            finish();
+        }
     }
     public void cargarCodCasa(){
 
