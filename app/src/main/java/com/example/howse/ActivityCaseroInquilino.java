@@ -27,12 +27,12 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
         if(firebaseUser!=null){
-            Intent i= new Intent(ActivityCaseroInquilino.this, PreviewDelChat.class);
+            Intent i= new Intent(ActivityCaseroInquilino.this, TareasActivity.class);
             startActivity(i);
             finish();
         }
-    }
-*/
+    }*/
+
 
 
     @Override

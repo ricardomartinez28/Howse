@@ -1,6 +1,7 @@
 package com.example.howse;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.howse.javabean.Actividad;
 import com.example.howse.javabean.Tarea;
 import com.example.howse.javabean.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,8 +41,10 @@ public class TareasActivity extends AppCompatActivity {
     private FirebaseUser firebaseUser;
 
     private List<Usuario> mUsers;
+    private List<Actividad> mAct;
 
     private ArrayList<String> nombreUsuarios;
+    private ArrayList<String> nombreActividades;
 
 
     private final Usuario[] usR = new Usuario[1];
@@ -54,7 +58,11 @@ public class TareasActivity extends AppCompatActivity {
     private String tarea;
     private Usuario usuario;
 
+    private Actividad actividad;
+
     private String nombres;
+
+    private String actividades;
 
     private String porDefectoPersona="--Selecciona una Persona--";
     private String porDefectoDia="--Selecciona un dia--";
@@ -77,10 +85,12 @@ public class TareasActivity extends AppCompatActivity {
         emailPersona = firebaseUser.getEmail();
         cargarCodCasa();
         mUsers = new ArrayList<>();
+        mAct = new ArrayList<>();
 
         ArrayList<String> dias = new ArrayList<String>();
         nombreUsuarios = new ArrayList<String>();
-        ArrayList<String> tareas = new ArrayList<String>();
+        nombreActividades = new ArrayList<String>();
+
         dias.add( porDefectoDia);
         dias.add( "Lunes" );
         dias.add( "Martes" );
@@ -90,9 +100,12 @@ public class TareasActivity extends AppCompatActivity {
         dias.add( "Sabado" );
         dias.add( "Domingo" );
 
-        tareas.add( porDefectoActividad );
-        tareas.add( "Lavar" );
-        tareas.add( "Cocinar" );
+
+        readActividad();
+
+        nombreActividades.add( porDefectoActividad );
+        nombreActividades.add( "Lavar" );
+        nombreActividades.add( "Cocinar" );
         nombreUsuarios.add( porDefectoPersona );
 
         readUsers();
@@ -106,7 +119,7 @@ public class TareasActivity extends AppCompatActivity {
                 TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreUsuarios);
 
         ArrayAdapter adpTareas = new ArrayAdapter(
-                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, tareas );
+                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreActividades );
 
         spDia.setAdapter( adpDias );
         spPersona.setAdapter( adpPersonas );
@@ -115,9 +128,9 @@ public class TareasActivity extends AppCompatActivity {
         spDia.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 dia = (String) spDia.getAdapter().getItem( position );
 
-                //Toast.makeText( TareasActivity.this, dia+" "+tarea+" "+persona, Toast.LENGTH_SHORT ).show();
             }
 
             @Override
@@ -129,13 +142,9 @@ public class TareasActivity extends AppCompatActivity {
         spPersona.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 persona = (String) spPersona.getAdapter().getItem( position );
 
-
-
-                //String selected = spPersona.getItemAtPosition(position).toString();
-
-                //Toast.makeText( TareasActivity.this, dia+" "+tarea+" "+persona, Toast.LENGTH_SHORT ).show();
             }
 
             @Override
@@ -147,9 +156,9 @@ public class TareasActivity extends AppCompatActivity {
         spTarea.setOnItemSelectedListener( new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 tarea = (String) spTarea.getAdapter().getItem( position );
 
-                //Toast.makeText( TareasActivity.this, dia+" "+tarea+" "+persona, Toast.LENGTH_SHORT ).show();
             }
 
             @Override
@@ -157,6 +166,11 @@ public class TareasActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+    public void abrirPop(View v){
+        Intent i = new Intent( TareasActivity.this, AniadirTareaPopActivity.class );
+        startActivity(i);
     }
 
     public void cargarDatos(View v) {
@@ -173,20 +187,15 @@ public class TareasActivity extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Tareas" );
 
         final String clave = mDatabaseRef.push().getKey();
-        Tarea tar = new Tarea( persona, tarea, dia );
+            Tarea tar = new Tarea( persona, tarea, dia, codCasa );
         mDatabaseRef.child( clave ).setValue( tar );
 
         Toast.makeText( TareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
 
-        Toast.makeText( TareasActivity.this, "Tarea Añadida", Toast.LENGTH_SHORT ).show();
+        Toast.makeText( TareasActivity.this, "Tarea Añadida para "+persona, Toast.LENGTH_LONG ).show();
     }
-//TODO PRUEBA
-        for (String r : nombreUsuarios){
-            System.out.println("\n"+r+"\n");
-        }
+    }
 
-        System.out.println(persona);
-    }
     public void cargarCodCasa(){
         mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Usuarios" );
         Query qq = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
@@ -255,8 +264,47 @@ public class TareasActivity extends AppCompatActivity {
                     nombreUsuarios.add( nombres );
                 }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
+
+    private void readActividad(){
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Actividades" );
+
+        mDatabaseRef.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                mAct.clear();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    try {
+                        actividad = snapshot.getValue( Actividad.class );
+                    } catch (DatabaseException de) {
+
+                        break;
+                    }
+                    assert actividad != null;
+                    assert firebaseUser != null;
 
 
+                    if ( actividad.getCodCasa().equals( codCasa )) {
+
+                        mAct.add( actividad );
+                    }
+
+                }
+                for (Actividad act : mAct){
+                    actividades=act.getNombre();
+
+                    nombreActividades.add( actividades );
+                }
 
             }
 
@@ -266,4 +314,5 @@ public class TareasActivity extends AppCompatActivity {
             }
         } );
     }
+
 }

@@ -7,14 +7,24 @@ public class Tarea implements Serializable {
     private String persona;
     private String tipoTarea;
     private String diaSemana;
+    private String codigoCasa;
 
     public Tarea() {
     }
 
-    public Tarea(String persona, String tipoTarea, String diaSemana) {
+    public Tarea(String persona, String tipoTarea, String diaSemana, String codigoCasa) {
         this.persona = persona;
         this.tipoTarea = tipoTarea;
         this.diaSemana = diaSemana;
+        this.codigoCasa = codigoCasa;
+    }
+
+    public String getCodigoCasa() {
+        return codigoCasa;
+    }
+
+    public void setCodigoCasa(String codigoCasa) {
+        this.codigoCasa = codigoCasa;
     }
 
     public String getPersona() {
