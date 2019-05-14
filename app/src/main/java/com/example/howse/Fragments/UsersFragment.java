@@ -65,7 +65,7 @@ public class UsersFragment extends android.support.v4.app.Fragment {
         mUsers= new ArrayList<>();
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-         emailPersona=firebaseUser.getEmail();
+        emailPersona=firebaseUser.getEmail();
 
         reference= FirebaseDatabase.getInstance().getReference( "Usuarios" );
 

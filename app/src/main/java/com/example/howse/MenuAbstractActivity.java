@@ -44,7 +44,7 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_compra:
                     if(actActual!=3){
-                        Intent i3 = new Intent(MenuAbstractActivity.this, ListaDeLaCompraActivity.class);
+                        Intent i3 = new Intent(MenuAbstractActivity.this, ListaCompraActivity.class);
                         startActivity(i3);
                     }
                     return true;
