@@ -23,4 +23,8 @@ public class HistorialCompra {
     public String getCodCasa() {
         return codCasa;
     }
+
+    public String getFecha() {
+        return fecha;
+    }
 }

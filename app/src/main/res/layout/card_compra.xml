@@ -22,7 +22,7 @@
             android:orientation="vertical"
             android:layout_margin="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -37,8 +37,21 @@
                     android:text="Esponjas para el baño"
                     android:textColor="@color/colorSecundario"/>
 
+                <Button
+                    android:id="@+id/btnEliminarArt"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:text="-"
+                    android:textSize="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/blanco"
+                    android:background="@drawable/custom_button6"
+                    android:gravity="center|top"/>
 
-            </LinearLayout>
+
+            </RelativeLayout>
 
 
             <TextView

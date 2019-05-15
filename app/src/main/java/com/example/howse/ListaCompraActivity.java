@@ -1,5 +1,6 @@
 package com.example.howse;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.example.howse.javabean.Articulo;
 import com.example.howse.javabean.HistorialCompra;
 import com.example.howse.javabean.Usuario;
 import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -53,7 +56,9 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
     String factura="Lista: ";
     ArrayList<String> listaArt;
-
+    Button btnEl;
+    FloatingActionsMenu fam;
+    android.support.design.widget.FloatingActionButton fabconf;
 
 
 
@@ -63,16 +68,26 @@ public class ListaCompraActivity extends MenuAbstractActivity {
         return R.layout.activity_lista_compra;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         setActActual(COMPRA);
 
+        fam=findViewById(R.id.grupoFav);
+
         final FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab1);
         final FloatingActionButton fab2=(FloatingActionButton)findViewById(R.id.fab2);
         final FloatingActionButton fab3=(FloatingActionButton)findViewById(R.id.fab3);
         final FloatingActionButton fab4=(FloatingActionButton)findViewById(R.id.fab4);
+
+
+
+
+
+
+
 
         llManager= new LinearLayoutManager(this);
 
@@ -132,7 +147,6 @@ public class ListaCompraActivity extends MenuAbstractActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ListaCompraActivity.this,"Este es Editar lista",Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -140,7 +154,8 @@ public class ListaCompraActivity extends MenuAbstractActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ListaCompraActivity.this,"Este es Historial",Toast.LENGTH_SHORT).show();
+                Intent i= new Intent(getApplicationContext(),HistorialComprasActivity.class);
+                startActivity(i);
 
             }
         });
@@ -155,9 +170,6 @@ public class ListaCompraActivity extends MenuAbstractActivity {
         qq.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-
 
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     usr[0] = dataSnapshot1.getValue(Usuario.class);
@@ -291,6 +303,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
 
     }
+
 
 
 

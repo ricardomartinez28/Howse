@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+    <TextView
+        android:id="@+id/tvFechaHistorial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:text="12, may, 2019"
+        android:textAlignment="center"
+        android:fontFamily="@font/roboto_light"
+        />
+    <TextView
+        android:id="@+id/tvLista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textSize="14dp"
+        android:text="Lista: fruta, verdura, bla bla bla bña anvehvs.aavjdvbksdk pues cosas varias para variar no se que quieres que te "/>
+
+</LinearLayout>
