@@ -71,7 +71,7 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
-        profile_image=findViewById(R.id.profileImage);
+        profile_image=findViewById(R.id.FotoPersona );
         username=findViewById(R.id.username);
         btn_send=findViewById(R.id.btn_send);
         etSend=findViewById(R.id.text_send);

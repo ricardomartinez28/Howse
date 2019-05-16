@@ -80,7 +80,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
          super(itemView);
 
          username= itemView.findViewById(R.id.username);
-         profile_image=itemView.findViewById(R.id.profileImage);
+         profile_image=itemView.findViewById(R.id.FotoPersona );
          tvCasero=itemView.findViewById(R.id.tvCasero);
      }
 

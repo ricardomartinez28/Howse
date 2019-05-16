@@ -121,7 +121,6 @@ public class Register extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_LOCAL_ONLY, true);
         startActivityForResult(Intent.createChooser(intent,
                 "Complete la acción usando"), RC_PHOTO_ADJ);
-
     }
 
     public void tipoRegistro(View v){
@@ -137,6 +136,7 @@ public class Register extends AppCompatActivity {
     public void registroInq() {
         String warning = validarDatos();
 
+
         if (warning == null) {
             progressDialog.setMessage( "Realizando registro en linea. . ." );
             progressDialog.show();
@@ -150,7 +150,6 @@ public class Register extends AppCompatActivity {
                                 user = firebaseAuth.getCurrentUser();
                                 Toast.makeText(Register.this, getString(R.string.msj_userregistered_register) + ": " + user.getEmail(),
                                         Toast.LENGTH_SHORT).show();
-
 
                                 final String clave = mDatabaseRef.push().getKey();
                                 if (imagenSubida) {
@@ -183,7 +182,7 @@ public class Register extends AppCompatActivity {
                                             });
                                         }
                                     }, 5000);
-
+                                    progressDialog.dismiss();
                                 } else {
 
                                     Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), null, codCasa,tipoUs, user.getUid());
@@ -199,7 +198,7 @@ public class Register extends AppCompatActivity {
                             } else {
                                 Toast.makeText(Register.this, getString(R.string.msj_no_registrado), Toast.LENGTH_SHORT).show();
                             }
-                            progressDialog.dismiss();
+
                         }
                     });
 
@@ -308,7 +307,7 @@ public class Register extends AppCompatActivity {
                                             });
                                         }
                                     }, 5000);
-
+                                    progressDialog.dismiss();
                                 } else {
 
                                     Usuario usuario= new Usuario(clave,etNombre.getText().toString(),etApellido.getText().toString(),etEmail.getText().toString(), null,codCasa,tipoUs,user.getUid());

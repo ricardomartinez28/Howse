@@ -10,6 +10,8 @@
     <string name="btn_Registrarse">¿No tienes cuenta? Registrate Aquí</string>
     <string name="msj_userregistered_register">Usuario registrado:</string>
 
+    <string name="tvDia">%s</string>
+
     <string name="msj_registrado">Se ha registrado</string>
     <string name="msj_no_registrado">No se ha podido registrar</string>
     <string name="msj_nodatos">No hay datos</string>

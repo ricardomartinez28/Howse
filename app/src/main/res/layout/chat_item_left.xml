@@ -10,14 +10,14 @@
        android:layout_width="40dp"
        android:layout_height="40dp"
        android:paddingLeft="5dp"
-       android:id="@+id/profileImage"
+       android:id="@+id/FotoPersona"
        android:src="@mipmap/ic_launcher"
        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/profileImage"
+        android:layout_toRightOf="@+id/FotoPersona"
         android:layout_marginLeft="5dp"
         android:text="hello"
         android:id="@+id/show_message"

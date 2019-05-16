@@ -1,7 +1,6 @@
 package com.example.howse.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,10 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.howse.MessageActivity;
 import com.example.howse.R;
 import com.example.howse.javabean.Chat;
-import com.example.howse.javabean.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -84,7 +81,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             super(itemView);
 
             show_message= itemView.findViewById(R.id.show_message);
-            profile_image=itemView.findViewById(R.id.profileImage);
+            profile_image=itemView.findViewById(R.id.FotoPersona );
         }
 
     }

@@ -9,15 +9,15 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/profileImage"
+        android:id="@+id/FotoPersona"
         android:src="@mipmap/ic_launcher"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/username"
-        android:layout_toRightOf="@+id/profileImage"
-        android:layout_toEndOf="@+id/profileImage"
+        android:layout_toRightOf="@+id/FotoPersona"
+        android:layout_toEndOf="@+id/FotoPersona"
         android:layout_marginLeft="10dp"
         android:fontFamily="@font/roboto_thin"
         android:text="Usernameee"
