@@ -320,8 +320,6 @@ public class TareasActivity extends AppCompatActivity {
 
     public void abrirTabla(View v){
 
-        Intent i = new Intent( TareasActivity.this, TablaActivity.class );
-        startActivity(i);
     }
 
 }

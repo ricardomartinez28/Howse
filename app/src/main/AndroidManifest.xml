@@ -13,7 +13,6 @@
         <activity android:name=".AniadirTareaPopActivity"
             android:theme="@style/AppTheme.PopMe"
             ></activity>
-        <activity android:name=".TablaActivity" />
         <activity android:name=".TareasActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ListaDeLaCompraActivity" />
