@@ -1,4 +1,5 @@
 package com.example.howse;
+import android.annotation.SuppressLint;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class Perfil extends MenuAbstractActivity {
     private String emailPersona;
     private String apellidoPersona;
     private String fotoPersona;
-
+    private FloatingActionButton fab;
     private final Usuario[] usr = new Usuario[1];
 
 
@@ -74,12 +75,14 @@ public class Perfil extends MenuAbstractActivity {
         cargarDatos();
 
     }
+
     public void deshabilitar(){
 
         Nombre.setEnabled( false );
         Apellido.setEnabled( false );
         btnModificar.setEnabled( false );
         btnModificar.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -131,6 +134,7 @@ public class Perfil extends MenuAbstractActivity {
             }
         });
 
+
     }
 
     public void modificarDatos(View view) {
@@ -149,7 +153,7 @@ public class Perfil extends MenuAbstractActivity {
         }else{
             usr[0].setNombreUsuario(Nombre.getText().toString().trim());
 
-            mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
+            mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);
 
 
             deshabilitar();

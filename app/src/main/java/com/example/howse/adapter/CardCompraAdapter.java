@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,7 +37,6 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
 
     public CardCompraAdapter( List<Articulo> mLista) {
 
-        this.context=context;
         this.mLista = mLista;
         reference= FirebaseDatabase.getInstance().getReference("Articulos");
     }
@@ -59,9 +59,12 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
         if(articulo.getPrecio().trim().equals("")){
             holder.tvPrecio.setText("Precio: No especificado");
 
+        }else {
+
+            holder.tvPrecio.setText("Precio:"+articulo.getPrecio());
+            holder.username.setText(articulo.getUsuario().getNombreUsuario());
+
         }
-        holder.tvPrecio.setText("Precio:"+articulo.getPrecio());
-        holder.username.setText(articulo.getUsuario().getNombreUsuario());
 
         if(articulo.getUsuario().getFotoUsuario()==null){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
@@ -119,7 +122,7 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
         public TextView tvPrecio;
         public TextView username;
         public ImageView profile_image;
-        public Button btnEl;
+        public ImageButton btnEl;
 
 
        public CartaCompraViewHolder(View itemView){

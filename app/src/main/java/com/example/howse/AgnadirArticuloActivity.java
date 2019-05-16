@@ -120,7 +120,7 @@ public class AgnadirArticuloActivity extends Activity {
 
 
         if(newArt.trim().equals("")){
-            Toast.makeText(getParent(),"Introduce un articulo",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),"Introduce un nombre para el articulo",Toast.LENGTH_SHORT).show();
         }else{
             Articulo art= new Articulo(newArt,newPrc,usuario,clave,usuario.getCodCasa());
 

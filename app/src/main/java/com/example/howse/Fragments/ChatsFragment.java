@@ -172,9 +172,14 @@ public class ChatsFragment extends android.support.v4.app.Fragment {
 
 
                 userAdapter= new UserAdapter(getContext(), mUsers);
-                DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycledview_divider));
-                recyclerView.addItemDecoration(dividerItemDecoration);
+
+                if(isAdded()){
+                    DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+                    dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycledview_divider));
+                    recyclerView.addItemDecoration(dividerItemDecoration);
+                }
+
+
                 recyclerView.setAdapter(userAdapter);
 
                 /*

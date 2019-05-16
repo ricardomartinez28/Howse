@@ -12,8 +12,8 @@
         android:id="@+id/cardCompra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@android:color/white"
-        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@color/blanco"
+        app:cardCornerRadius="10dp"
         app:cardElevation="2dp">
 
         <LinearLayout
@@ -33,23 +33,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="24dp"
-                    android:fontFamily="@font/roboto_light"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Esponjas para el baño"
-                    android:textColor="@color/colorSecundario"/>
+                    android:textColor="@color/TextGrey"/>
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnEliminarArt"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:text="-"
                     android:textSize="24dp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/blanco"
+                    android:src="@drawable/ic_substract"
                     android:background="@drawable/custom_button6"
-                    android:gravity="center|top"/>
 
+                    android:gravity="center|top"/>
+á
 
             </RelativeLayout>
 

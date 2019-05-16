@@ -67,7 +67,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-
+        setActActual(CHAT);
 
 
 

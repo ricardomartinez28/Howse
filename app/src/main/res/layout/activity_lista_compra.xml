@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e6e6e0"
+    android:background="#444FAFAD"
     tools:context=".MainActivity">
 
     <TextView
@@ -34,15 +34,14 @@
 
 
         android:layout_gravity="bottom|end"
-        app:fab_addButtonColorNormal="@color/ColorBackGround"
-        app:fab_addButtonColorPressed="@color/colorSecundario"
+        app:fab_addButtonColorNormal="#FF966E"
         app:fab_labelStyle="@style/etiqueta">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/ColorBackGround"
+            app:fab_colorNormal="#FF966E"
             app:fab_icon="@drawable/ic_repeat"
             app:fab_size="mini"
             app:fab_title="Nueva Lista" />
@@ -51,7 +50,7 @@
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/ColorBackGround"
+            app:fab_colorNormal="#FF966E"
             app:fab_icon="@drawable/ic_add"
             app:fab_size="mini"
             app:fab_title="Añadir artículo" />
@@ -61,7 +60,7 @@
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/ColorBackGround"
+            app:fab_colorNormal="#FF966E"
             app:fab_icon="@drawable/ic_history"
             app:fab_size="mini"
             app:fab_title="Historial" />
