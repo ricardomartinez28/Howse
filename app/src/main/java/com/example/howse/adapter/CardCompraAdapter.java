@@ -1,6 +1,8 @@
 package com.example.howse.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,9 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.howse.ListaCompraActivity;
 import com.example.howse.R;
 import com.example.howse.javabean.Articulo;
 import com.example.howse.javabean.Usuario;
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,10 +30,13 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
 
     List<Articulo> mLista;
     DatabaseReference reference;
+    private Context context;
+
 
 
     public CardCompraAdapter( List<Articulo> mLista) {
 
+        this.context=context;
         this.mLista = mLista;
         reference= FirebaseDatabase.getInstance().getReference("Articulos");
     }
@@ -39,6 +46,7 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
     public CartaCompraViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int position) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_compra,parent, false);
 
+        context=parent.getContext();
         return new CardCompraAdapter.CartaCompraViewHolder(view);
     }
 
@@ -61,26 +69,36 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
             Glide.with(holder.username.getContext()).load(articulo.getUsuario().getFotoUsuario()).into(holder.profile_image);
 
         }
-        /*
-         tbFav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    // Quitar de los favoritos de usuario
-                    user[0].getPlayasUsuarioFav().remove(playa.getId());
-                    dbR.child(user[0].getKeyUsuario()).setValue(user[0]);
-                    adap.removeAt(getAdapterPosition());
-                }
-            });
 
 
-         */
+
+
+
         holder.btnEl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mLista.remove(mLista.get(position).getKeyArt());
-                reference.child(mLista.get(position).getKeyArt()).removeValue();
-                removeAt(position);
+
+                AlertDialog.Builder builder= new AlertDialog.Builder(context);
+
+                builder.setMessage("Seguro que quieres eliminar este elemento?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                mLista.remove(mLista.get(position).getKeyArt());
+                                reference.child(mLista.get(position).getKeyArt()).removeValue();
+                                removeAt(position);
+
+                            }
+                        }).setNegativeButton("Cancelar", null);
+
+
+                AlertDialog alert=builder.create();
+                alert.show();
+
+
+
+
 
             }
         });
@@ -103,6 +121,7 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
         public ImageView profile_image;
         public Button btnEl;
 
+
        public CartaCompraViewHolder(View itemView){
 
            super(itemView);
@@ -111,6 +130,8 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
            username=itemView.findViewById(R.id.username);
            profile_image=itemView.findViewById(R.id.profileImage);
            btnEl=itemView.findViewById(R.id.btnEliminarArt);
+
+
 
        }
     }

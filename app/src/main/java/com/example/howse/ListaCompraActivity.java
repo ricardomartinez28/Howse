@@ -1,6 +1,5 @@
 package com.example.howse;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,7 +57,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
     ArrayList<String> listaArt;
     Button btnEl;
     FloatingActionsMenu fam;
-    android.support.design.widget.FloatingActionButton fabconf;
+    FloatingActionButton fabconf;
 
 
 
@@ -68,7 +67,6 @@ public class ListaCompraActivity extends MenuAbstractActivity {
         return R.layout.activity_lista_compra;
     }
 
-    @SuppressLint("RestrictedApi")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +77,10 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
         final FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab1);
         final FloatingActionButton fab2=(FloatingActionButton)findViewById(R.id.fab2);
-        final FloatingActionButton fab3=(FloatingActionButton)findViewById(R.id.fab3);
         final FloatingActionButton fab4=(FloatingActionButton)findViewById(R.id.fab4);
+
+        btnEl=findViewById(R.id.btnEliminarArt);
+
 
 
 
@@ -104,13 +104,13 @@ public class ListaCompraActivity extends MenuAbstractActivity {
         cargarCodCasa();
 
 
+
         fab.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ListaCompraActivity.this,"Este es el boton de nueva Lista",Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(ListaCompraActivity.this);
 
@@ -143,13 +143,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
             }
         });
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-
-            }
-        });
         fab4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,6 +153,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
             }
         });
+
 
 
     }
@@ -303,6 +298,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
 
     }
+
 
 
 

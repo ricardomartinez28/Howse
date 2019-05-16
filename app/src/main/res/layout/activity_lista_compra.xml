@@ -56,14 +56,6 @@
             app:fab_size="mini"
             app:fab_title="Añadir artículo" />
 
-        <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/ColorBackGround"
-            app:fab_icon="@drawable/ic_new_file"
-            app:fab_size="mini"
-            app:fab_title="Editar lista" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab4"
@@ -75,8 +67,6 @@
             app:fab_title="Historial" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-
 
 
 </android.support.design.widget.CoordinatorLayout>
