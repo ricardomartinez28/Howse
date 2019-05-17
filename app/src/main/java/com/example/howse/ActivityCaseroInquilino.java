@@ -19,7 +19,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
     private boolean opcion;
     FirebaseUser firebaseUser;
 
-/*
+
    @Override
     protected void onStart() {
         super.onStart();
@@ -27,11 +27,11 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
 
         if(firebaseUser!=null){
-            Intent i= new Intent(ActivityCaseroInquilino.this, TareasActivity.class);
+            Intent i= new Intent(ActivityCaseroInquilino.this, AgnadirTareasActivity.class);
             startActivity(i);
             finish();
         }
-    }*/
+    }
 
 
 

@@ -1,6 +1,5 @@
 package com.example.howse;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.howse.javabean.Actividad;
 import com.example.howse.javabean.Tarea;
 import com.example.howse.javabean.Usuario;
@@ -26,12 +24,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
-
-public class TareasActivity extends AppCompatActivity {
+public class AgnadirTareasActivity extends AppCompatActivity {
     private Spinner spDia;
     private Spinner spPersona;
     private Spinner spTarea;
@@ -73,7 +68,7 @@ public class TareasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_tareas );
+        setContentView( R.layout.activity_agnadir_tarea);
 
         spDia = (Spinner) findViewById( R.id.spDia );
         spPersona = (Spinner) findViewById( R.id.spPersona );
@@ -114,13 +109,13 @@ public class TareasActivity extends AppCompatActivity {
         readUsers();
 
         ArrayAdapter adpDias = new ArrayAdapter(
-                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, dias );
+                AgnadirTareasActivity.this, android.R.layout.simple_spinner_dropdown_item, dias );
 
         ArrayAdapter adpPersonas = new ArrayAdapter(
-                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreUsuarios);
+                AgnadirTareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreUsuarios);
 
         ArrayAdapter adpTareas = new ArrayAdapter(
-                TareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreActividades );
+                AgnadirTareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreActividades );
 
         spDia.setAdapter( adpDias );
         spPersona.setAdapter( adpPersonas );
@@ -175,7 +170,7 @@ public class TareasActivity extends AppCompatActivity {
         nombreActividades.add( "Lavar" );
         nombreActividades.add( "Cocinar" );
 
-        Intent i = new Intent( TareasActivity.this, AniadirTareaPopActivity.class );
+        Intent i = new Intent( AgnadirTareasActivity.this, AniadirTareaPopActivity.class );
         startActivity(i);
     }
 
@@ -196,9 +191,9 @@ public class TareasActivity extends AppCompatActivity {
             Tarea tar = new Tarea( persona, tarea, dia, codCasa );
         mDatabaseRef.child( clave ).setValue( tar );
 
-        Toast.makeText( TareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
+        Toast.makeText( AgnadirTareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
 
-        Toast.makeText( TareasActivity.this, "Tarea Añadida para "+persona, Toast.LENGTH_LONG ).show();
+        Toast.makeText( AgnadirTareasActivity.this, "Tarea Añadida para "+persona, Toast.LENGTH_LONG ).show();
     }
     }
 

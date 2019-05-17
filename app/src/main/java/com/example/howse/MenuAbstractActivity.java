@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public abstract class MenuAbstractActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                 case R.id.nav_lista:
 
                     if(actActual!=2){
-                        Intent i2 = new Intent(MenuAbstractActivity.this, TareasActivity.class);
+                        Intent i2 = new Intent(MenuAbstractActivity.this, AgnadirTareasActivity.class);
                         startActivity(i2);
                     }
                     return true;
