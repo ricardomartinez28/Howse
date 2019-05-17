@@ -50,7 +50,7 @@
                     android:background="@drawable/custom_button6"
 
                     android:gravity="center|top"/>
-á
+
 
             </RelativeLayout>
 
@@ -73,8 +73,8 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:id="@+id/profileImage"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="3dp"
 
                     />
 
@@ -86,7 +86,7 @@
                     android:fontFamily="@font/roboto_light"
                     android:layout_gravity="center"
                     android:text="username"
-                    android:textColor="@color/TextGrey" />
+                    android:textColor="@color/colorSecundario" />
 
             </LinearLayout>
 

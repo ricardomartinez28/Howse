@@ -1,8 +1,11 @@
 package com.example.howse;
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
@@ -44,6 +49,12 @@ public class Perfil extends MenuAbstractActivity {
     private FloatingActionButton fab;
     private final Usuario[] usr = new Usuario[1];
 
+    CircleImageView imgperfil;
+    TextView tvnombre;
+
+    FirebaseUser firebaseUser;
+    DatabaseReference reference;
+
 
     @Override
     public int cargarLayout() {
@@ -54,7 +65,13 @@ public class Perfil extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil );
+
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
         setActActual(PERFIL);
+
 
         Email = (TextView) findViewById( R.id.tvEmail );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
@@ -72,9 +89,15 @@ public class Perfil extends MenuAbstractActivity {
 
         btnModificar.setVisibility(View.INVISIBLE);
 
+
+
+
         cargarDatos();
 
+
     }
+
+
 
     public void deshabilitar(){
 
@@ -119,9 +142,17 @@ public class Perfil extends MenuAbstractActivity {
                     Email.setText(  emailPersona );
                     Apellido.setText( apellidoPersona );
 
-                    Glide.with(fotoPerfil.getContext())
-                            .load(usr[0].getFotoUsuario())
-                            .into(fotoPerfil);
+                    if(usr[0].getFotoUsuario()==null){
+
+                        fotoPerfil.setImageResource(R.mipmap.ic_launcher_round);
+                    }else{
+
+                        Glide.with(fotoPerfil.getContext())
+                                .load(usr[0].getFotoUsuario())
+                                .into(fotoPerfil);
+
+                    }
+
 
                 }
 
@@ -166,4 +197,23 @@ public class Perfil extends MenuAbstractActivity {
     }
 
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Perfil.this, ActivityCaseroInquilino.class));
+                finish();
+                return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat,menu);
+        return true;
+    }
 }

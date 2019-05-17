@@ -57,11 +57,11 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
 
         holder.tvArticulo.setText(articulo.getNombre());
         if(articulo.getPrecio().trim().equals("")){
-            holder.tvPrecio.setText("Precio: No especificado");
+            holder.tvPrecio.setText("Precio : No especificado");
 
         }else {
 
-            holder.tvPrecio.setText("Precio:"+articulo.getPrecio());
+            holder.tvPrecio.setText("Precio Aprox: "+articulo.getPrecio());
             holder.username.setText(articulo.getUsuario().getNombreUsuario());
 
         }

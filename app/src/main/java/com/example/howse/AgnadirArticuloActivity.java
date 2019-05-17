@@ -126,8 +126,9 @@ public class AgnadirArticuloActivity extends Activity {
 
             reference.child(clave).setValue(art);
             reference.push();
+            finish();
         }
-        finish();
+
 
 
     }

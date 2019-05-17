@@ -18,6 +18,16 @@
         android:textColor="@color/TextGrey"
         android:textSize="30sp" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/ic_groceries"
+
+
+        android:layout_gravity="top|left"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCompra"
         android:layout_width="match_parent"
@@ -31,17 +41,18 @@
         android:id="@+id/grupoFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-
         android:layout_gravity="bottom|end"
-        app:fab_addButtonColorNormal="#FF966E"
-        app:fab_labelStyle="@style/etiqueta">
+        app:fab_addButtonColorNormal="#E8BD80"
+        app:fab_labelStyle="@style/etiqueta"
+        >
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FF966E"
+            app:fab_colorNormal="#E8BD80"
+
+
             app:fab_icon="@drawable/ic_repeat"
             app:fab_size="mini"
             app:fab_title="Nueva Lista" />
@@ -50,7 +61,7 @@
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FF966E"
+            app:fab_colorNormal="#E8BD80"
             app:fab_icon="@drawable/ic_add"
             app:fab_size="mini"
             app:fab_title="Añadir artículo" />
@@ -60,7 +71,7 @@
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FF966E"
+            app:fab_colorNormal="#E8BD80"
             app:fab_icon="@drawable/ic_history"
             app:fab_size="mini"
             app:fab_title="Historial" />

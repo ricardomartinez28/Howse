@@ -129,7 +129,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
                     tvnombre.setText(usr[0].getNombreUsuario());
 
                     if(usr[0].getFotoUsuario()==null){
-                        imgperfil.setImageResource(R.drawable.ic_user);
+                        imgperfil.setImageResource(R.mipmap.ic_launcher_round);
 
                     }else{
                         Glide.with(PreviewDelChat.this)

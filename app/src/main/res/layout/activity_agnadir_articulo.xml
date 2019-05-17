@@ -28,8 +28,8 @@
         android:layout_marginTop="110dp"
         android:backgroundTint="@color/TextGrey"
         android:fontFamily="@font/roboto_light"
-        android:hint="Precio €£$: Opcional"
-        android:inputType="number"
+        android:hint="Precio Opcional: €£$"
+        android:inputType="number|numberDecimal"
 
         android:textColor="@color/TextGrey" />
 

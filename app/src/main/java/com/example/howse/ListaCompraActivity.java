@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -55,9 +57,8 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
     String factura="Lista: ";
     ArrayList<String> listaArt;
-    Button btnEl;
+    ImageButton btnEl;
     FloatingActionsMenu fam;
-    FloatingActionButton fabconf;
 
 
 
@@ -114,6 +115,8 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
                 AlertDialog.Builder builder= new AlertDialog.Builder(ListaCompraActivity.this);
 
+
+
                 builder.setMessage("¿Quieres hacer una nueva lista?")
                         .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                             @Override
@@ -130,7 +133,7 @@ public class ListaCompraActivity extends MenuAbstractActivity {
                 AlertDialog alert=builder.create();
                 alert.show();
 
-
+                v.setFocusable(false);
 
             }
         });
