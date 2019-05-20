@@ -82,14 +82,6 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
         btnEl=findViewById(R.id.btnEliminarArt);
 
-
-
-
-
-
-
-
-
         llManager= new LinearLayoutManager(this);
 
         recyclerView= findViewById(R.id.rvCompra);

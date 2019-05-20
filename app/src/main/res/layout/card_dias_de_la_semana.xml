@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Esponjas para el baño"
+                android:text="Lunes"
                 android:textColor="@color/TextGrey"/>
             <android.support.v7.widget.RecyclerView
 

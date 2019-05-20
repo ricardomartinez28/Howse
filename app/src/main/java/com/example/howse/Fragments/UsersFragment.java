@@ -79,11 +79,6 @@ public class UsersFragment extends android.support.v4.app.Fragment {
 
     private void readUsers(){
 
-
-
-
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -106,12 +101,7 @@ public class UsersFragment extends android.support.v4.app.Fragment {
                     if (usuario.getEmailUsuario().equals(firebaseUser.getEmail())){
                          usFin=usuario;
 
-
-
-
-
                     }
-
 
                     if(!(usuario.getEmailUsuario().equals(firebaseUser.getEmail()))  && usuario.getCodCasa().equals(codCasa)){
 
@@ -130,10 +120,8 @@ public class UsersFragment extends android.support.v4.app.Fragment {
 
                 }
 
-
-
                 recyclerView.setAdapter(userAdapter);
-                            }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
