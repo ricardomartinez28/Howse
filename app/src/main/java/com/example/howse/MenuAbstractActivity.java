@@ -37,10 +37,10 @@ public abstract class MenuAbstractActivity extends AppCompatActivity {
                     return true;
                 case R.id.nav_lista:
 
-                    if(actActual!=2){
+                    /*if(actActual!=2){
                         Intent i2 = new Intent(MenuAbstractActivity.this, TareasActivity.class);
                         startActivity(i2);
-                    }
+                    }*/
                     return true;
                 case R.id.nav_compra:
                     if(actActual!=3){

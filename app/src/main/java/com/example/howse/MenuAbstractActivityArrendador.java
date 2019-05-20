@@ -26,14 +26,14 @@ public abstract class MenuAbstractActivityArrendador extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
             switch (menuItem.getItemId()){
-                case R.id.nav_chat:
+                case R.id.nav_chat_arrendador:
                     if(actActual!=1){
                         Intent i1 = new Intent(MenuAbstractActivityArrendador.this, PreviewChatArrendador.class);
                         startActivity(i1);
                     }
 
                     return true;
-                case R.id.nav_perfil:
+                case R.id.nav_perfil_arrendador:
                     if(actActual!=2){
                         Intent i2 = new Intent(MenuAbstractActivityArrendador.this, PerfilArrendador.class);
                         startActivity(i2);

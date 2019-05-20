@@ -16,7 +16,6 @@
         <activity android:name=".PreviewChatArrendador"></activity>
         <activity android:name=".MenuAbstractActivityArrendador" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".TareasActivity" />
         <activity android:name=".ListaDeLaCompraActivity" />
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".MenuAbstractActivity" />
