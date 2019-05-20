@@ -105,6 +105,7 @@ public class Login extends AppCompatActivity  {
 
     public void logIn(View v) {
         loguearse();
+        System.out.println( tipoUs+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" );
 
     }
 
@@ -151,9 +152,16 @@ public class Login extends AppCompatActivity  {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            Intent i = new Intent( Login.this, PreviewDelChat.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
-                            startActivity(i);
+                            System.out.println( tipoUs+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" );
+                            if (tipoUs){
+                                Intent i = new Intent( Login.this, PreviewDelChat.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
+                                startActivity( i );
+                                System.out.println( tipoUs+"CCCCCCCCCCCCCCCCCCCCCCCCCCC" );
+                            }else{
+                                Intent i = new Intent( Login.this, PreviewChatArrendador.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
+                                startActivity( i );
+                                System.out.println( tipoUs+"HHHHHHHHHHHHHHHHHHHHHHHHHH" );
+                            }
                         } else {
                             Toast.makeText( Login.this, "El email o la contraseña no es correcta", Toast.LENGTH_LONG ).show();
                         }

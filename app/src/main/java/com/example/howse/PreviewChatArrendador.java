@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PreviewDelChat extends MenuAbstractActivity {
+public class PreviewChatArrendador extends MenuAbstractActivityArrendador {
 
 
 
@@ -63,7 +63,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_preview_del_chat);
-        setActActual( CHAT );
+        setActActual( CHATARR );
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -132,7 +132,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
                         imgperfil.setImageResource(R.drawable.ic_user);
 
                     }else{
-                        Glide.with(PreviewDelChat.this)
+                        Glide.with(PreviewChatArrendador.this)
                                 .load(usr[0].getFotoUsuario())
                                 .into(imgperfil);
 
@@ -144,7 +144,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PreviewDelChat.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( PreviewChatArrendador.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
 
             }
         });
@@ -163,7 +163,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(PreviewDelChat.this, ActivityCaseroInquilino.class));
+                startActivity(new Intent(PreviewChatArrendador.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
         }

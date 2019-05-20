@@ -31,8 +31,10 @@
     <string name="tv_cod_casa">Escribe el código de tu nueva casa:</string>
     <string name="nav_tareas">Tareas</string>
     <string name="nav_chat">Chat</string>
+    <string name="nav_chat_arrendador">Chat</string>
     <string name="nav_compra">Compra</string>
     <string name="nav_perfil">Perfil</string>
+    <string name="nav_perfil_arrendador">Perfil</string>
     <string name="tvLogIn">Log In</string>
     <string name="tvRegistro">Nuevo Usuario</string>
 

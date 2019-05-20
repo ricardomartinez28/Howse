@@ -1,18 +1,15 @@
 package com.example.howse;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.os.Bundle;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.howse.javabean.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,15 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
-
-import static java.security.AccessController.getContext;
 
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
-public class Perfil extends MenuAbstractActivity {
+public class PerfilArrendador extends MenuAbstractActivityArrendador {
     private ImageView fotoPerfil;
 
     private TextView Email;
@@ -43,13 +35,6 @@ public class Perfil extends MenuAbstractActivity {
     private FloatingActionButton fba;
 
     private DatabaseReference mDatabaseRef;
-
-    StorageReference storageReference;
-    private static final int IMAGE_REQUEST = 1;
-    private Uri imageUri;
-    private StorageTask uploadTask;
-
-
     private FirebaseAuth firebaseAuth;
     private FirebaseUser usuario;
 
@@ -57,7 +42,6 @@ public class Perfil extends MenuAbstractActivity {
     private String emailPersona;
     private String apellidoPersona;
     private String fotoPersona;
-    private Context c;
 
     private final Usuario[] usr = new Usuario[1];
 
@@ -71,7 +55,7 @@ public class Perfil extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil );
-        setActActual(PERFIL);
+        setActActual(PERFILARR);
 
         Email = (TextView) findViewById( R.id.tvEmail );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
@@ -82,10 +66,6 @@ public class Perfil extends MenuAbstractActivity {
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
-        storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
-
-        c=getBaseContext();
-
         firebaseAuth = FirebaseAuth.getInstance();
         usuario = firebaseAuth.getCurrentUser();
         emailPersona = usuario.getEmail();
@@ -95,30 +75,7 @@ public class Perfil extends MenuAbstractActivity {
 
         cargarDatos();
 
-        fotoPerfil.setOnClickListener( new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                openImage();
-            }
-        } );
-
     }
-
-    private void openImage() {
-        Intent intent = new Intent( );
-        intent.setType( "image/*" );
-        intent.setAction( Intent.ACTION_GET_CONTENT );
-        startActivityForResult( intent, IMAGE_REQUEST );
-    }
-
-   // private String getFileExtension(Uri uri){
-
-       // ContentResolver contentResolver = getSharedPreferences()
-       // MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-      //  return  mimeTypeMap.getExtensionFromMimeType( contentResolver.getType( uri ) );
-   //}
-
     public void deshabilitar(){
 
         Nombre.setEnabled( false );

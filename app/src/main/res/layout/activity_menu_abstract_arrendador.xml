@@ -6,18 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
-    tools:context=".MenuAbstractActivity">
+    tools:context=".MenuAbstractActivityArrendador">
 
     <RelativeLayout
         android:id="@+id/relative"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation">
+        android:layout_above="@+id/navigation_arrendador">
 
     </RelativeLayout>
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/navigation_arrendador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -25,7 +25,7 @@
         android:background="?android:attr/windowBackground"
         android:clipChildren="false"
         app:itemBackground="@color/common_google_signin_btn_text_dark_default"
-        app:menu="@menu/navigation">
+        app:menu="@menu/navigation_arrendador">
 
     </android.support.design.widget.BottomNavigationView>
 
