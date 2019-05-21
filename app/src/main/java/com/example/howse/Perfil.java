@@ -40,8 +40,8 @@ public class Perfil extends MenuAbstractActivity {
     private ImageView fotoPerfil;
 
     private TextView email;
-    private EditText Nombre;
-    private EditText Apellido;
+    private EditText nombre;
+    private EditText apellido;
     private TextView casero;
 
     private Button btnModificar;
@@ -87,8 +87,8 @@ public class Perfil extends MenuAbstractActivity {
         casero = (TextView) findViewById( R.id.tvNombreCasero );
 
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
-        Nombre = (EditText) findViewById( R.id.etNombre );
-        Apellido = (EditText) findViewById( R.id.etApellido );
+        nombre = (EditText) findViewById( R.id.etNombre );
+        apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
@@ -200,16 +200,16 @@ public class Perfil extends MenuAbstractActivity {
 
     public void deshabilitar(){
 
-        Nombre.setEnabled( false );
-        Apellido.setEnabled( false );
+        nombre.setEnabled( false );
+        apellido.setEnabled( false );
         btnModificar.setEnabled( false );
         btnModificar.setVisibility(View.INVISIBLE);
 
     }
 
     public void editable(View v){
-        Nombre.setEnabled( true );
-        Apellido.setEnabled( true );
+        nombre.setEnabled( true );
+        apellido.setEnabled( true );
         btnModificar.setEnabled( true );
 
         btnModificar.setVisibility(View.VISIBLE);
@@ -300,10 +300,10 @@ public class Perfil extends MenuAbstractActivity {
                     apellidoPersona = usr[0].getApellidosUsuario();
                     fotoPersona = usr[0].getFotoUsuario();
 
-                    Nombre.setText( nombrePersona );
+                    nombre.setText( nombrePersona );
 
                     email.setText(  emailPersona );
-                    Apellido.setText( apellidoPersona );
+                    apellido.setText( apellidoPersona );
 
                     Glide.with(fotoPerfil.getContext())
                             .load(usr[0].getFotoUsuario())
@@ -324,19 +324,19 @@ public class Perfil extends MenuAbstractActivity {
 
     public void modificarDatos(View view) {
 
-        if(Apellido.getText().toString().trim().equalsIgnoreCase("")){
+        if(apellido.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("No has agregado ningun Apellido");
 
         }else{
-            usr[0].setApellidosUsuario(Apellido.getText().toString().trim());
+            usr[0].setApellidosUsuario(apellido.getText().toString().trim());
         }
 
-        if(Nombre.getText().toString().trim().equalsIgnoreCase("")){
+        if(nombre.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("El campo nombre no puede estar vacio");
-            Nombre.setText("");
+            nombre.setText("");
 
         }else{
-            usr[0].setNombreUsuario(Nombre.getText().toString().trim());
+            usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
             mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 

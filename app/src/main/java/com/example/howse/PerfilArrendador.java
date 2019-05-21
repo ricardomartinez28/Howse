@@ -45,10 +45,10 @@ import java.util.HashMap;
 public class PerfilArrendador extends MenuAbstractActivityArrendador {
     private ImageView fotoPerfil;
 
-    private TextView Email;
+    private TextView email;
     private TextView codigo;
-    private EditText Nombre;
-    private EditText Apellido;
+    private EditText nombre;
+    private EditText apellido;
 
     private Button btnModificar;
     private Button btnClipBoard;
@@ -85,11 +85,11 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
         //setContentView( R.layout.activity_perfil_arrendador );
         setActActual(PERFILARR);
 
-        Email = (TextView) findViewById( R.id.tvEmail );
+        email = (TextView) findViewById( R.id.tvEmail );
         codigo = (TextView) findViewById( R.id.tvCodCasa );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
-        Nombre = (EditText) findViewById( R.id.etNombre );
-        Apellido = (EditText) findViewById( R.id.etApellido );
+        nombre = (EditText) findViewById( R.id.etNombre );
+        apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
         btnClipBoard = (Button) findViewById( R.id.btnClipBoard );
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
@@ -211,16 +211,16 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
 
     public void deshabilitar(){
 
-        Nombre.setEnabled( false );
-        Apellido.setEnabled( false );
+        nombre.setEnabled( false );
+        apellido.setEnabled( false );
         btnModificar.setEnabled( false );
         btnModificar.setVisibility(View.INVISIBLE);
 
     }
 
     public void editable(View v){
-        Nombre.setEnabled( true );
-        Apellido.setEnabled( true );
+        nombre.setEnabled( true );
+        apellido.setEnabled( true );
         btnModificar.setEnabled( true );
 
         btnModificar.setVisibility(View.VISIBLE);
@@ -247,10 +247,10 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
                     fotoPersona = usr[0].getFotoUsuario();
                     codCasa = usr[0].getCodCasa();
 
-                    Nombre.setText( nombrePersona );
+                    nombre.setText( nombrePersona );
 
-                    Email.setText(  emailPersona );
-                    Apellido.setText( apellidoPersona );
+                    email.setText(  emailPersona );
+                    apellido.setText( apellidoPersona );
 
                     Glide.with(fotoPerfil.getContext())
                             .load(usr[0].getFotoUsuario())
@@ -273,19 +273,19 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
 
     public void modificarDatos(View view) {
 
-        if(Apellido.getText().toString().trim().equalsIgnoreCase("")){
+        if(apellido.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("No has agregado ningun Apellido");
 
         }else{
-            usr[0].setApellidosUsuario(Apellido.getText().toString().trim());
+            usr[0].setApellidosUsuario(apellido.getText().toString().trim());
         }
 
-        if(Nombre.getText().toString().trim().equalsIgnoreCase("")){
+        if(nombre.getText().toString().trim().equalsIgnoreCase("")){
             mensaje("El campo nombre no puede estar vacio");
-            Nombre.setText("");
+            nombre.setText("");
 
         }else{
-            usr[0].setNombreUsuario(Nombre.getText().toString().trim());
+            usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
             mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
 
