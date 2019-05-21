@@ -74,7 +74,13 @@ public class ListaCompraActivity extends MenuAbstractActivity {
         //setContentView(R.layout.activity_main);
         setActActual(COMPRA);
 
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+
         fam=findViewById(R.id.grupoFav);
+
+
 
         final FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab1);
         final FloatingActionButton fab2=(FloatingActionButton)findViewById(R.id.fab2);
@@ -292,6 +298,27 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
 
 
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(ListaCompraActivity.this, ActivityCaseroInquilino.class));
+                finish();
+                return true;
+        }
+        return false;
     }
 
 

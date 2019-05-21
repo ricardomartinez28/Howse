@@ -1,11 +1,16 @@
 package com.example.howse;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +20,8 @@ import com.example.howse.javabean.DiasTareas;
 import com.example.howse.javabean.Tarea;
 import com.example.howse.javabean.TareasVisual;
 import com.example.howse.javabean.Usuario;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -52,6 +59,10 @@ public class TareasActivity extends MenuAbstractActivity {
 
 
 
+    FloatingActionsMenu fam;
+
+
+
 
     private String emailPersona;
     private final Usuario[] usr = new Usuario[1];
@@ -66,6 +77,11 @@ public class TareasActivity extends MenuAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_tareas);
+
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
         setActActual(TAREAS);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -78,6 +94,7 @@ public class TareasActivity extends MenuAbstractActivity {
 
         tareasDias= new ArrayList<>();
         listaTareas= new ArrayList<>();
+
 
         tareasLunes= new ArrayList<>();
         tareasMartes= new ArrayList<>();
@@ -92,13 +109,33 @@ public class TareasActivity extends MenuAbstractActivity {
         rvDiasdelaSemana = findViewById(R.id.rvDiasdelaSemana);
         rvDiasdelaSemana.setHasFixedSize(true);
 
+        fam=findViewById(R.id.grupoFavTareas);
+
+
+        final FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab1tarea);
+        final FloatingActionButton fab2=(FloatingActionButton)findViewById(R.id.fab2tarea);
+
         cargarCodCasa();
+        rellenarLista();
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i= new Intent(getApplicationContext(),AniadirTareasActivity.class);
+                startActivity(i);
+
+            }
+        });
+        listaTareas.clear();
 
     }
 
 
     public void rellenarLista() {
 
+        listaTareas.clear();
         reference = FirebaseDatabase.getInstance().getReference("Tareas");
 
         rvDiasdelaSemana.setLayoutManager(new LinearLayoutManager(this));
@@ -129,30 +166,30 @@ public class TareasActivity extends MenuAbstractActivity {
 
                         if(atarea.getDiaSemana().equals("Lunes")){
 
-                            tareasLunes.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasLunes.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
                         }else if (atarea.getDiaSemana().equals("Martes")){
-                            tareasMartes.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasMartes.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
 
                         }else if (atarea.getDiaSemana().equals("Miercoles")){
-                            tareasMiercoles.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasMiercoles.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
                         }else if (atarea.getDiaSemana().equals("Jueves")){
 
-                            tareasJueves.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasJueves.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
                         }else if (atarea.getDiaSemana().equals("Viernes")){
-                            tareasViernes.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasViernes.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
 
                         }else if (atarea.getDiaSemana().equals("Sabado")){
-                            tareasSabado.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasSabado.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
 
                         }else if (atarea.getDiaSemana().equals("Domingo")){
 
-                            tareasDomingo.add(new TareasVisual(atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
+                            tareasDomingo.add(new TareasVisual(atarea.getKeyTarea(),atarea.getPersona().getFotoUsuario(),atarea.getPersona().getNombreUsuario(),atarea.getTipoTarea()));
 
                         }
 
@@ -202,9 +239,10 @@ public class TareasActivity extends MenuAbstractActivity {
 
 
                 }
-
                 adapter = new AdaptadorDiasSemana(getApplicationContext(), tareasDias);
                 rvDiasdelaSemana.setAdapter(adapter);
+
+
 
 
             }
@@ -215,6 +253,7 @@ public class TareasActivity extends MenuAbstractActivity {
             }
         });
 
+        listaTareas.clear();
 
     }
 
@@ -222,7 +261,6 @@ public class TareasActivity extends MenuAbstractActivity {
 
 
         reference = FirebaseDatabase.getInstance().getReference("Usuarios");
-
 
         Query qq = reference.orderByChild("emailUsuario").equalTo(emailPersona);
 
@@ -232,7 +270,9 @@ public class TareasActivity extends MenuAbstractActivity {
 
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     usr[0] = dataSnapshot1.getValue(Usuario.class);
-                    rellenarLista();
+                    listaTareas.clear();
+
+
                 }
 
                 if (emailPersona.equals(usr[0].getEmailUsuario())) {
@@ -249,6 +289,26 @@ public class TareasActivity extends MenuAbstractActivity {
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(TareasActivity.this, ActivityCaseroInquilino.class));
+                finish();
+                return true;
+        }
+        return false;
     }
 
 

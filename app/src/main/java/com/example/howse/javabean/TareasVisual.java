@@ -8,9 +8,11 @@ public class TareasVisual {
     private String fotoUsuario;;
     String username;
     String Tarea;
+    String keyTarea;
 
 
-    public TareasVisual(String fotoUsuario, String username, String tarea) {
+    public TareasVisual(String keyTarea, String fotoUsuario, String username, String tarea) {
+        this.keyTarea=keyTarea;
         this.fotoUsuario = fotoUsuario;
         this.username = username;
         Tarea = tarea;
@@ -26,5 +28,9 @@ public class TareasVisual {
 
     public String getTarea() {
         return Tarea;
+    }
+
+    public String getKeyTarea() {
+        return keyTarea;
     }
 }

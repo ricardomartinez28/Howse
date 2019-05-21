@@ -23,6 +23,7 @@
         <activity android:name=".MenuAbstractActivity" />
         <activity android:name=".ActivityCodigoCasa" />
         <activity android:name=".ActivityCaseroInquilino" />
+        <activity android:name=".AniadirActividadPopActivity"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

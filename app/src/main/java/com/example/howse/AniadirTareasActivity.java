@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AniadirTareasActivity extends AppCompatActivity {
+
+
+
     private Spinner spDia;
     private Spinner spPersona;
     private Spinner spTarea;
@@ -59,6 +63,9 @@ public class AniadirTareasActivity extends AppCompatActivity {
 
     private String actividades;
     Usuario usuarioTarea;
+    Button btnGuardarCambios;
+
+
 
     private String porDefectoPersona="--Selecciona una Persona--";
     private String porDefectoDia="--Selecciona un dia--";
@@ -69,7 +76,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_aniadir_tareas );
+        setContentView(R.layout.activity_aniadir_tareas);
 
         spDia = (Spinner) findViewById( R.id.spDia );
         spPersona = (Spinner) findViewById( R.id.spPersona );
@@ -104,6 +111,16 @@ public class AniadirTareasActivity extends AppCompatActivity {
         nombreActividades.add( "Cocinar" );
 
 
+        btnGuardarCambios=findViewById(R.id.btnGuardarCambios);
+
+
+        btnGuardarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+            }
+        });
 
         nombreUsuarios.add( porDefectoPersona );
 
@@ -164,6 +181,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
             }
         } );
     }
+    
 
     public void abrirPop(View v){
         nombreActividades.clear();
@@ -196,7 +214,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
             }
 
             final String clave = mDatabaseRef.push().getKey();
-            Tarea tar = new Tarea( usuarioTarea, tarea, dia, codCasa );
+            Tarea tar = new Tarea( clave, usuarioTarea, tarea, dia, codCasa );
             mDatabaseRef.child( clave ).setValue( tar );
 
             Toast.makeText( AniadirTareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
@@ -267,6 +285,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
                 for (Usuario usr : mUsers){
                     nombres=usr.getNombreUsuario();
 
+
                     nombreUsuarios.add( nombres );
                 }
 
@@ -321,8 +340,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
         } );
     }
 
-    public void abrirTabla(View v){
 
-    }
+
 
 }

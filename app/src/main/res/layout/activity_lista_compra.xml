@@ -5,34 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#444FAFAD"
+    android:background="#154FAFAD"
     tools:context=".MainActivity">
 
-    <TextView
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_thin"
-        android:padding="16dp"
-        android:text="@string/tv_titulo_compra"
-        android:textAlignment="center"
-        android:textColor="@color/TextGrey"
-        android:textSize="30sp" />
+        android:background="@color/ColorBackGround"
+        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+        app:popupTheme="@style/MenuStyle"
+        >
 
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/ic_groceries"
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_groceries"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_thin"
+            android:padding="18dp"
+
+            android:text="@string/tv_titulo_compra"
+            android:textColor="@color/blanco"
+            android:textSize="24sp" />
 
 
-        android:layout_gravity="top|left"/>
+
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCompra"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="66dp"
 
         ></android.support.v7.widget.RecyclerView>
 
@@ -42,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:fab_addButtonColorNormal="#E8BD80"
+        app:fab_addButtonColorNormal="@color/colorSecundario"
         app:fab_labelStyle="@style/etiqueta"
         >
 
@@ -50,7 +63,7 @@
             android:id="@+id/fab1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#E8BD80"
+            app:fab_colorNormal="@color/colorSecundario"
 
 
             app:fab_icon="@drawable/ic_repeat"
@@ -61,7 +74,7 @@
             android:id="@+id/fab2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#E8BD80"
+            app:fab_colorNormal="@color/colorSecundario"
             app:fab_icon="@drawable/ic_add"
             app:fab_size="mini"
             app:fab_title="Añadir artículo" />
@@ -71,7 +84,7 @@
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#E8BD80"
+            app:fab_colorNormal="@color/colorSecundario"
             app:fab_icon="@drawable/ic_history"
             app:fab_size="mini"
             app:fab_title="Historial" />

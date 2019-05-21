@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Tarea implements Serializable {
 
+    private  String keyTarea;
     private Usuario persona;
     private String tipoTarea;
     private String diaSemana;
@@ -12,7 +13,8 @@ public class Tarea implements Serializable {
     public Tarea() {
     }
 
-    public Tarea(Usuario persona, String tipoTarea, String diaSemana, String codigoCasa) {
+    public Tarea(String keyTarea, Usuario persona, String tipoTarea, String diaSemana, String codigoCasa) {
+        this.keyTarea=keyTarea;
         this.persona = persona;
         this.tipoTarea = tipoTarea;
         this.diaSemana = diaSemana;
@@ -47,5 +49,7 @@ public class Tarea implements Serializable {
         this.diaSemana = diaSemana;
     }
 
-
+    public String getKeyTarea() {
+        return keyTarea;
+    }
 }

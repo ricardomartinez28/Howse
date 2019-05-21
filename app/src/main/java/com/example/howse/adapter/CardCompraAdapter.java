@@ -55,11 +55,16 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
 
         final Articulo articulo=mLista.get(position);
 
-        holder.tvArticulo.setText(articulo.getNombre());
+
+        String upperString = articulo.getNombre().substring(0,1).toUpperCase() + articulo.getNombre().substring(1);
+
+
+        holder.tvArticulo.setText(upperString);
         if(articulo.getPrecio().trim().equals("")){
             holder.tvPrecio.setText("Precio : No especificado");
 
         }else {
+
 
             holder.tvPrecio.setText("Precio Aprox: "+articulo.getPrecio());
             holder.username.setText(articulo.getUsuario().getNombreUsuario());
@@ -139,13 +144,6 @@ public class CardCompraAdapter extends RecyclerView.Adapter<CardCompraAdapter.Ca
        }
     }
 
-    /*
-             public void removeAt(int position) {
-        datos.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, datos.size());
-    }
-         */
 
     public void removeAt(int position){
         mLista.remove(position);

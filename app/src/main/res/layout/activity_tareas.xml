@@ -4,26 +4,77 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#44F2A922"
+    android:background="#154FAFAD"
     tools:context=".TareasActivity">
 
-    <TextView
-        android:id="@+id/tvTituloTareas"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_thin"
-        android:padding="16dp"
-        android:text="Tareas semanales"
-        android:textAlignment="center"
-        android:textColor="@color/TextGrey"
-        android:textSize="30sp" />
+        android:background="@color/ColorBackGround"
+        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+        app:popupTheme="@style/MenuStyle"
+        >
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_checklist"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_thin"
+            android:padding="16dp"
+            android:text="Tareas semanales"
+            android:textColor="@color/blanco"
+            android:textSize="24sp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvDiasdelaSemana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="64dp"
 
         ></android.support.v7.widget.RecyclerView>
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/grupoFavTareas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        app:fab_addButtonColorNormal="@color/TextGrey"
+        app:fab_labelStyle="@style/etiqueta"
+        >
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab1tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorSecundario"
+
+
+            app:fab_icon="@drawable/ic_add"
+            app:fab_size="mini"
+            app:fab_title="Añadir tarea" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab2tarea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/colorSecundario"
+            app:fab_icon="@drawable/ic_clipboards"
+            app:fab_size="mini"
+            app:fab_title="Eliminar Tabla"/>
+
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

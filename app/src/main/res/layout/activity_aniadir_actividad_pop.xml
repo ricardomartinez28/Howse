@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pop_bg"
-    tools:context=".AniadirActividadPopActivity">
+    tools:context=".AniadirActividadPopActivity"
+    >
 
     <Button
         android:id="@+id/button"
