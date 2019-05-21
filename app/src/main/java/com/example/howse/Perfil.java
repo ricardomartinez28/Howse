@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -35,19 +36,17 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 
 
-//TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
 public class Perfil extends MenuAbstractActivity {
     private ImageView fotoPerfil;
 
-    private TextView Email;
+    private TextView email;
     private EditText Nombre;
     private EditText Apellido;
+    private TextView casero;
 
     private Button btnModificar;
 
     private FloatingActionButton fba;
-
-
 
     StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
@@ -59,9 +58,15 @@ public class Perfil extends MenuAbstractActivity {
     private FirebaseUser usuario;
 
     private String nombrePersona;
+    private String nombreCasero;
     private String emailPersona;
     private String apellidoPersona;
     private String fotoPersona;
+
+    private Usuario usu;
+
+    String codCasa;
+
 
 
     private final Usuario[] usr = new Usuario[1];
@@ -78,7 +83,9 @@ public class Perfil extends MenuAbstractActivity {
         //setContentView( R.layout.activity_perfil );
         setActActual(PERFIL);
 
-        Email = (TextView) findViewById( R.id.tvEmail );
+        email = (TextView) findViewById( R.id.tvEmail );
+        casero = (TextView) findViewById( R.id.tvNombreCasero );
+
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         Nombre = (EditText) findViewById( R.id.etNombre );
         Apellido = (EditText) findViewById( R.id.etApellido );
@@ -94,10 +101,13 @@ public class Perfil extends MenuAbstractActivity {
         usuario = firebaseAuth.getCurrentUser();
         emailPersona = usuario.getEmail();
 
+        cargarCodCasa();
+
 
         btnModificar.setVisibility(View.INVISIBLE);
 
         cargarDatos();
+        readUsers();
 
         fotoPerfil.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -172,8 +182,6 @@ public class Perfil extends MenuAbstractActivity {
         }
    }
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
@@ -189,7 +197,6 @@ public class Perfil extends MenuAbstractActivity {
             }
         }
     }
-
 
     public void deshabilitar(){
 
@@ -207,11 +214,76 @@ public class Perfil extends MenuAbstractActivity {
 
         btnModificar.setVisibility(View.VISIBLE);
     }
+    public void cargarCodCasa(){
 
+        Query qq1 = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
+
+        qq1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    usr[0] = dataSnapshot1.getValue(Usuario.class);
+                }
+
+                if (emailPersona.equals( usr[0].getEmailUsuario() )){
+
+                    codCasa=usr[0].getCodCasa();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+    private void readUsers() {
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Usuarios" );
+
+        mDatabaseRef.addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    try {
+                        usu = snapshot.getValue( Usuario.class );
+                    } catch (DatabaseException de) {
+
+                        break;
+                    }
+                    assert usu != null;
+                    assert usuario != null;
+
+
+                    if ( usu.getCodCasa().equals( codCasa )&&!usu.getTipoUs()) {
+
+                        nombreCasero = usu.getNombreUsuario();
+                        casero.setText( nombreCasero );
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
     private void cargarDatos() {
-        Query qq = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
+        Query qq3 = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
 
-        qq.addListenerForSingleValueEvent(new ValueEventListener() {
+        qq3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -230,7 +302,7 @@ public class Perfil extends MenuAbstractActivity {
 
                     Nombre.setText( nombrePersona );
 
-                    Email.setText(  emailPersona );
+                    email.setText(  emailPersona );
                     Apellido.setText( apellidoPersona );
 
                     Glide.with(fotoPerfil.getContext())

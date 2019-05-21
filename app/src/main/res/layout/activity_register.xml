@@ -14,7 +14,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="592dp"
+        android:layout_marginBottom="656dp"
         android:backgroundTint="@color/ColorBackGround"
         android:text="@string/tvRegistro"
         android:textColor="@color/colorSecundario"
@@ -22,6 +22,7 @@
         app:fontFamily="@font/roboto_thin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -179,24 +180,29 @@
         app:layout_constraintVertical_bias="0.956" />
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgvFotoPerfil"
-        android:layout_width="123dp"
-        android:layout_height="146dp"
+        android:layout_width="227dp"
+        android:layout_height="194dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-
         android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="436dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/custom_image_button"
         android:onClick="fotoPerfil"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.153"
         app:srcCompat="@drawable/ic_user"
         tools:ignore="VectorDrawableCompat" />
 

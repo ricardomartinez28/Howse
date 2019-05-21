@@ -1,6 +1,9 @@
 package com.example.howse;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -37,15 +40,18 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 
 
-//TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
+//TODO TENGO QUE CARGAR EL CODIGO CASA EN EL PERFIL DEL ARRENDADOR CON UN BOTON DE COPIAR EN PORTAPAPELES.
+
 public class PerfilArrendador extends MenuAbstractActivityArrendador {
     private ImageView fotoPerfil;
 
     private TextView Email;
+    private TextView codigo;
     private EditText Nombre;
     private EditText Apellido;
 
     private Button btnModificar;
+    private Button btnClipBoard;
 
     private FloatingActionButton fba;
 
@@ -58,6 +64,7 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
     private Uri imageUri;
     private StorageTask uploadTask;
 
+    private String codCasa;
 
     private String nombrePersona;
     private String emailPersona;
@@ -79,10 +86,12 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
         setActActual(PERFILARR);
 
         Email = (TextView) findViewById( R.id.tvEmail );
+        codigo = (TextView) findViewById( R.id.tvCodCasa );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         Nombre = (EditText) findViewById( R.id.etNombre );
         Apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
+        btnClipBoard = (Button) findViewById( R.id.btnClipBoard );
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
@@ -95,6 +104,18 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
 
 
         btnModificar.setVisibility(View.INVISIBLE);
+        btnClipBoard.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = codigo.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService( Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text",  text);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText( PerfilArrendador.this, "Copiado en el Portapapeles", Toast.LENGTH_LONG ).show();
+
+
+            }
+        } );
 
         cargarDatos();
 
@@ -187,6 +208,7 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
             }
         }
     }
+
     public void deshabilitar(){
 
         Nombre.setEnabled( false );
@@ -223,6 +245,7 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
                     nombrePersona = usr[0].getNombreUsuario();
                     apellidoPersona = usr[0].getApellidosUsuario();
                     fotoPersona = usr[0].getFotoUsuario();
+                    codCasa = usr[0].getCodCasa();
 
                     Nombre.setText( nombrePersona );
 
@@ -232,6 +255,8 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
                     Glide.with(fotoPerfil.getContext())
                             .load(usr[0].getFotoUsuario())
                             .into(fotoPerfil);
+
+                    codigo.setText( codCasa );
 
                 }
 

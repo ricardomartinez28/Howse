@@ -37,11 +37,14 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Register extends AppCompatActivity {
     private EditText etNombre;
@@ -49,6 +52,7 @@ public class Register extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword, etPasswordRepeat;
     private ProgressDialog progressDialog;
+    private CircleImageView foto;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     final private int RC_PHOTO_ADJ = 1;
@@ -97,11 +101,14 @@ public class Register extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
 
+
         etNombre = (EditText) findViewById(R.id.etNombreReg);
         etApellido = (EditText) findViewById(R.id.etApellidoReg);
         etEmail = (EditText) findViewById(R.id.etEmailReg);
         etPassword = (EditText) findViewById(R.id.etPasswordReg);
         etPasswordRepeat = (EditText) findViewById(R.id.etPasswordRepeat);
+
+        foto = (CircleImageView) findViewById( R.id.imgvFotoPerfil);
 
 
 
@@ -109,27 +116,23 @@ public class Register extends AppCompatActivity {
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
 
-        if(tipoUs==true){
-
-            codCasa= getIntent().getStringExtra("codCasa");
-        }
+        validaciones();
 
         listaArrendadores= new ArrayList<>();
-
-
-
-
-
-
-
-
 
     }
 
     public void fotoPerfil(View v) {
         enviarFoto();
     }
-
+    public void validaciones(){
+        if(tipoUs==true){
+            codCasa= getIntent().getStringExtra("codCasa");
+        }
+        if(mImageUri==null) {
+            foto.setImageResource(R.drawable.ic_user);
+        }
+    }
 
     public void enviarFoto() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
