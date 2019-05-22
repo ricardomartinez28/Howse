@@ -56,58 +56,87 @@
             android:layout_centerHorizontal="true"
             />
 
-        <TextView
-            android:id="@+id/tvPerfNormbre"
-            android:layout_marginLeft="16dp"
-            android:layout_width="76dp"
-            android:layout_height="29dp"
-            android:layout_gravity="center"
-            android:text="Nombre"
-            android:textColor="@color/ColorBackGround"
-            android:textSize="18sp"
-            app:fontFamily="@font/roboto_light"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/tvEmail"/>
+    <TextView
+        android:id="@+id/tvPerfNormbre"
+        android:layout_width="76dp"
+        android:layout_height="29dp"
+        android:layout_below="@+id/tvEmail"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="319dp"
+        android:layout_marginRight="319dp"
+        android:layout_marginBottom="444dp"
+        android:text="Nombre"
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light" />
 
 
-        <EditText
-            android:id="@+id/etNombre"
-            android:layout_width="225dp"
-            android:layout_height="50dp"
-            android:backgroundTint="@color/ColorBackGround"
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
 
-            android:enabled="false"
-            android:layout_marginLeft="16dp"
-            android:fontFamily="@font/roboto_light"
-            android:inputType="textPersonName"
-            android:textColor="@color/TextGrey"
-            android:layout_gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:backgroundTint="@color/ColorBackGround"
+        android:enabled="false"
+        android:fontFamily="@font/roboto_light"
+        android:inputType="textPersonName"
+        android:textColor="@color/TextGrey" />
 
 
+    <TextView
+        android:id="@+id/tvPerfApellido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="22dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="322dp"
+        android:layout_marginEnd="327dp"
+        android:layout_marginRight="327dp"
+        android:layout_marginBottom="385dp"
+        android:text="Apellido"
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light" />
 
-        <TextView
-            android:id="@+id/tvPerfApellido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Apellido"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/ColorBackGround"
-            android:textSize="18sp"
-            app:fontFamily="@font/roboto_light"
-            android:layout_gravity="center"/>
-
-        <EditText
-            android:id="@+id/etApellido"
-            android:layout_width="225dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="30dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/ColorBackGround"
-            android:enabled="false"
-            android:fontFamily="@font/roboto_light"
-            android:inputType="textPersonName"
-            android:textColor="@color/TextGrey"
-            />
+    <EditText
+        android:id="@+id/etApellido"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginStart="94dp"
+        android:layout_marginLeft="94dp"
+        android:layout_marginTop="426dp"
+        android:layout_marginEnd="92dp"
+        android:layout_marginRight="92dp"
+        android:layout_marginBottom="255dp"
+        android:backgroundTint="@color/ColorBackGround"
+        android:enabled="false"
+        android:fontFamily="@font/roboto_light"
+        android:inputType="textPersonName"
+        android:textColor="@color/TextGrey" />
 
 
     <android.support.design.widget.FloatingActionButton
