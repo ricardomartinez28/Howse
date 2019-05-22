@@ -50,5 +50,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_ClipBoard">Copiar</string>
+    <string name="title_activity_lista_de_la_compra">ListaDeLaCompraActivity</string>
+    <string name="title_activity_lista_compra">ListaCompraActivity</string>
+    <string name="tv_titulo_compra">Lista de la compra</string>
+    <string name="btn_AniadirActividad">Añadir Actividad</string>
+    <string name="btn_agnadir_tarea">Añadir tarea</string>
+    <string name="btn_GuardarCambiosTareas">guardar cambios</string>
+    <string name="btn_AniadirActividadPop">añadir actividad</string>
+    <string name="et_actividad">Ej: limpiar baño</string>
 
 </resources>

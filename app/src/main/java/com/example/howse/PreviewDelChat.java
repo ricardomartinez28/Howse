@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PreviewDelChat extends MenuAbstractActivity {
+public class PreviewDelChat extends MenuActivity {
 
 
 
@@ -54,9 +54,20 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
 
 
-    @Override
+    /*@Override
     public int cargarLayout() {
         return R.layout.activity_preview_del_chat;
+    }
+*/
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_preview_del_chat;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_chat;
     }
 
     @Override
@@ -67,7 +78,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-
+        //setActActual(CHAT);
 
 
 
@@ -110,6 +121,8 @@ public class PreviewDelChat extends MenuAbstractActivity {
         cargarDatos();
     }
 
+
+
     private void cargarDatos() {
 
         Query qq = reference.orderByChild("emailUsuario").equalTo(emailPersona);
@@ -130,7 +143,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
                     tvnombre.setText(usr[0].getNombreUsuario());
 
                     if(usr[0].getFotoUsuario()==null){
-                        imgperfil.setImageResource(R.drawable.ic_user);
+                        imgperfil.setImageResource(R.mipmap.ic_launcher_round);
 
                     }else{
                         Glide.with(PreviewDelChat.this)

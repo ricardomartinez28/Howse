@@ -65,7 +65,7 @@ public class UsersFragment extends android.support.v4.app.Fragment {
         mUsers= new ArrayList<>();
 
         firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-         emailPersona=firebaseUser.getEmail();
+        emailPersona=firebaseUser.getEmail();
 
         reference= FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
@@ -78,11 +78,6 @@ public class UsersFragment extends android.support.v4.app.Fragment {
     }
 
     private void readUsers(){
-
-
-
-
-
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -106,12 +101,7 @@ public class UsersFragment extends android.support.v4.app.Fragment {
                     if (usuario.getEmailUsuario().equals(firebaseUser.getEmail())){
                          usFin=usuario;
 
-
-
-
-
                     }
-
 
                     if(!(usuario.getEmailUsuario().equals(firebaseUser.getEmail()))  && usuario.getCodCasa().equals(codCasa)){
 
@@ -123,11 +113,15 @@ public class UsersFragment extends android.support.v4.app.Fragment {
 
                 userAdapter= new UserAdapter(getContext(), mUsers);
 
-                DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
-                dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycledview_divider));
-                recyclerView.addItemDecoration(dividerItemDecoration);
+                if(isAdded()){
+                    DividerItemDecoration dividerItemDecoration= new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+                    dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.recycledview_divider));
+                    recyclerView.addItemDecoration(dividerItemDecoration);
+
+                }
+
                 recyclerView.setAdapter(userAdapter);
-                            }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

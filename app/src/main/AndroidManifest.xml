@@ -18,10 +18,22 @@
         <activity android:name=".MenuAbstractActivityArrendador" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ListaDeLaCompraActivity" />
+        <activity android:name=".AniadirTareasActivity"></activity>
+        <activity android:name=".HistorialComprasActivity" />
+        <activity
+            android:name=".AgnadirArticuloActivity"
+            android:theme="@style/AppTheme.PopCompra" />
+        <activity
+            android:name=".ListaCompraActivity"
+            android:label="@string/title_activity_lista_compra" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".TareasActivity" />
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".MenuAbstractActivity" />
         <activity android:name=".ActivityCodigoCasa" />
         <activity android:name=".ActivityCaseroInquilino" />
+        <activity android:name=".AniadirActividadPopActivity"
+            android:theme="@style/AppTheme.PopCompra"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
