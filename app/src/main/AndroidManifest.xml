@@ -23,7 +23,8 @@
         <activity android:name=".MenuAbstractActivity" />
         <activity android:name=".ActivityCodigoCasa" />
         <activity android:name=".ActivityCaseroInquilino" />
-        <activity android:name=".AniadirActividadPopActivity"/>
+        <activity android:name=".AniadirActividadPopActivity"
+            android:theme="@style/AppTheme.PopCompra"/>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

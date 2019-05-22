@@ -20,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-//TODO ARREGLAR TODO
 public class AniadirActividadPopActivity extends Activity {
 
     private EditText actividad;
@@ -47,20 +46,21 @@ public class AniadirActividadPopActivity extends Activity {
         firebaseUser = firebaseAuth.getCurrentUser();
         emailPersona = firebaseUser.getEmail();
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics( dm );
+        DisplayMetrics dm= new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
 
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+        int width=dm.widthPixels;
+        int height= dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.7), (int)(height*.4) );
+        getWindow().setLayout((int) (width*.8), (int)(height*.5));
 
-        WindowManager.LayoutParams params = getWindow().getAttributes();
-        params.gravity = Gravity.CENTER;
-        params.x = 0;
-        params.y = -20;
+        WindowManager.LayoutParams params=getWindow().getAttributes();
 
-        getWindow().setAttributes( params );
+        params.gravity= Gravity.CENTER;
+        params.x=0;
+        params.y=-20;
+
+        getWindow().setAttributes(params);
         cargarCodCasa();
     }
 
@@ -105,6 +105,4 @@ public class AniadirActividadPopActivity extends Activity {
         });
 
     }
-
-
 }

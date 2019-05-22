@@ -34,7 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class TareasActivity extends MenuAbstractActivity {
+public class TareasActivity extends MenuActivity {
 
 
     ArrayList<DiasTareas> tareasDias;
@@ -68,10 +68,10 @@ public class TareasActivity extends MenuAbstractActivity {
     private final Usuario[] usr = new Usuario[1];
     String codCasa;
 
-    @Override
-    public int cargarLayout() {
-        return R.layout.activity_tareas;
-    }
+   // @Override
+  //  public int cargarLayout() {
+      //  return R.layout.activity_tareas;
+   // }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +82,7 @@ public class TareasActivity extends MenuAbstractActivity {
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        setActActual(TAREAS);
+        //setActActual(TAREAS);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Usuarios");
@@ -129,13 +129,25 @@ public class TareasActivity extends MenuAbstractActivity {
             }
         });
         listaTareas.clear();
+        tareasDias.clear();
 
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_tareas;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_lista;
     }
 
 
     public void rellenarLista() {
 
         listaTareas.clear();
+        tareasDias.clear();
         reference = FirebaseDatabase.getInstance().getReference("Tareas");
 
         rvDiasdelaSemana.setLayoutManager(new LinearLayoutManager(this));
@@ -145,6 +157,7 @@ public class TareasActivity extends MenuAbstractActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
                 listaTareas.clear();
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -152,7 +165,7 @@ public class TareasActivity extends MenuAbstractActivity {
 
                     tarea=snapshot.getValue(Tarea.class);
 
-                    if(tarea.getCodigoCasa().equals(codCasa)){
+                    if(tarea.getPersona().getCodCasa().equals(codCasa)){
 
                         listaTareas.add(tarea);
 
@@ -195,6 +208,7 @@ public class TareasActivity extends MenuAbstractActivity {
 
 
                 }
+
 
                 if(tareasLunes.size()!=0){
 
@@ -253,7 +267,7 @@ public class TareasActivity extends MenuAbstractActivity {
             }
         });
 
-        listaTareas.clear();
+
 
     }
 

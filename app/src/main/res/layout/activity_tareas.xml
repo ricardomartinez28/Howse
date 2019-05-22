@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -47,17 +47,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        app:fab_addButtonColorNormal="@color/TextGrey"
+        app:fab_addButtonColorNormal="#FF807A"
         app:fab_labelStyle="@style/etiqueta"
-        >
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dp">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab1tarea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorSecundario"
-
-
+            app:fab_colorNormal="#FF807A"
             app:fab_icon="@drawable/ic_add"
             app:fab_size="mini"
             app:fab_title="Añadir tarea" />
@@ -66,8 +67,8 @@
             android:id="@+id/fab2tarea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/colorSecundario"
-            app:fab_icon="@drawable/ic_clipboards"
+            app:fab_colorNormal="#FF807A"
+            app:fab_icon="@drawable/ic_cruz"
             app:fab_size="mini"
             app:fab_title="Eliminar Tabla"/>
 
@@ -75,6 +76,13 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/activity_menu_abstract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 
 
-</android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

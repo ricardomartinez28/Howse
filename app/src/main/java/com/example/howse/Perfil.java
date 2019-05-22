@@ -27,7 +27,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 
 //TODO MIRAR COMO SACAR EL USUARIO SIN TENER A MANO EL CORREO NI NADA
-public class Perfil extends MenuAbstractActivity {
+public class Perfil extends MenuActivity {
     private ImageView fotoPerfil;
 
     private TextView Email;
@@ -56,10 +56,6 @@ public class Perfil extends MenuAbstractActivity {
     DatabaseReference reference;
 
 
-    @Override
-    public int cargarLayout() {
-        return R.layout.activity_perfil;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,7 @@ public class Perfil extends MenuAbstractActivity {
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        setActActual(PERFIL);
+
 
 
         Email = (TextView) findViewById( R.id.tvEmail );
@@ -97,6 +93,15 @@ public class Perfil extends MenuAbstractActivity {
 
     }
 
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_perfil;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_perfil;
+    }
 
 
     public void deshabilitar(){

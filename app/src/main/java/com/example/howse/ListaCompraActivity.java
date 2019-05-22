@@ -39,7 +39,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class ListaCompraActivity extends MenuAbstractActivity {
+public class ListaCompraActivity extends MenuActivity {
 
     private ArrayList<Articulo> listaCompra;
 
@@ -63,16 +63,16 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
 
 
-    @Override
+    /*@Override
     public int cargarLayout() {
         return R.layout.activity_lista_compra;
     }
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
-        setActActual(COMPRA);
+        //setActActual(COMPRA);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -157,6 +157,16 @@ public class ListaCompraActivity extends MenuAbstractActivity {
 
 
 
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_lista_compra;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_compra;
     }
 
     public void cargarCodCasa(){

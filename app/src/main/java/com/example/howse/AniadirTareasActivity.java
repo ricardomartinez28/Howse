@@ -135,7 +135,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
         ArrayAdapter adpTareas = new ArrayAdapter(
                 AniadirTareasActivity.this, android.R.layout.simple_spinner_dropdown_item, nombreActividades );
 
-        spDia.setAdapter( adpDias );
+        spDia.setAdapter(adpDias);
         spPersona.setAdapter( adpPersonas );
         spTarea.setAdapter( adpTareas );
 

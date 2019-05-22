@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,18 +28,17 @@
             />
     </android.support.v7.widget.Toolbar>
 
-
-
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/imgvFotoPerfil"
         android:layout_width="120dp"
         android:layout_height="120dp"
-
         android:layout_marginTop="10dp"
         android:layout_marginBottom="8dp"
         android:src="@mipmap/ic_launcher"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/toolbar"/>
 
 
 
@@ -53,14 +52,9 @@
             android:textColor="@color/colorSecundario"
             android:textSize="22sp"
             app:fontFamily="@font/roboto_light"
-            android:layout_gravity="center"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+            android:layout_below="@+id/imgvFotoPerfil"
+            android:layout_centerHorizontal="true"
+            />
 
         <TextView
             android:id="@+id/tvPerfNormbre"
@@ -71,7 +65,9 @@
             android:text="Nombre"
             android:textColor="@color/ColorBackGround"
             android:textSize="18sp"
-            app:fontFamily="@font/roboto_light"/>
+            app:fontFamily="@font/roboto_light"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/tvEmail"/>
 
 
         <EditText
@@ -87,12 +83,7 @@
             android:textColor="@color/TextGrey"
             android:layout_gravity="center"/>
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvPerfApellido"
@@ -117,21 +108,23 @@
             android:inputType="textPersonName"
             android:textColor="@color/TextGrey"
             />
-    </LinearLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fbaEditar"
-
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clickable="true"
         android:onClick="editable"
         app:backgroundTint="@color/colorSecundario"
-        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/ic_new_file"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:layout_marginRight="16dp"
+        />
 
 
 
@@ -147,8 +140,20 @@
         android:textColor="@color/ColorBackGround"
         android:layout_marginTop="10dp"
         android:textSize="18sp"
-        android:layout_gravity="center"/>
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"/>
+
+    <include
+        android:id="@+id/navigation"
+        layout="@layout/activity_menu_abstract"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        />
 
 
 
-</LinearLayout>
+
+</RelativeLayout>
