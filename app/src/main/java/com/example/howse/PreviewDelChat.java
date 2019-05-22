@@ -71,6 +71,7 @@ public class PreviewDelChat extends MenuAbstractActivity {
 
 
 
+
         imgperfil = findViewById(R.id.profileImage);
         tvnombre= findViewById(R.id.username);
 
