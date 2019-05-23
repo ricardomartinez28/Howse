@@ -144,29 +144,8 @@ public class TareasActivity extends MenuActivity {
             public void onClick(View v) {
 
 
-                /*
-                                AlertDialog.Builder builder= new AlertDialog.Builder(ListaCompraActivity.this);
 
 
-
-                builder.setMessage("¿Quieres hacer una nueva lista?")
-                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-
-                                hacerFactura();
-                                nuevaLista();
-
-                            }
-                        }).setNegativeButton("Cancelar", null);
-
-
-                AlertDialog alert=builder.create();
-                alert.show();
-
-                v.setFocusable(false);
-                 */
                 AlertDialog.Builder builder= new AlertDialog.Builder(TareasActivity.this);
 
 
