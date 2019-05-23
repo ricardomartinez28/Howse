@@ -25,24 +25,4 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
-    <style name="etiqueta">
-        <item name="android:background">@drawable/fondo_eti_fab</item>
-        <item name="android:textColor">#fff</item>
-    </style>
-    <style name="AppTheme.PopCompra">
-
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-
-    <style name="etiqueta">
-        <item name="android:background">@drawable/fondo_eti_fab</item>
-        <item name="android:textColor">#fff</item>
-    </style>
-    <style name="AppTheme.PopCompra">
-
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
-    </style>
-
 </resources>

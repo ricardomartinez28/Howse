@@ -35,11 +35,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PreviewChatArrendador extends MenuAbstractActivityArrendador {
-
-
-
-
+public class PreviewChatArrendador extends MenuActivityArrendador {
 
 
     CircleImageView imgperfil;
@@ -54,16 +50,16 @@ public class PreviewChatArrendador extends MenuAbstractActivityArrendador {
 
 
 
-    @Override
+    /*@Override
     public int cargarLayout() {
         return R.layout.activity_preview_del_chat;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_preview_del_chat);
-        setActActual( CHATARR );
+        //setActActual( CHATARR );
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -107,6 +103,16 @@ public class PreviewChatArrendador extends MenuAbstractActivityArrendador {
 
 
         cargarDatos();
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_preview_chat_arrendador;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_chat_arrendador;
     }
 
     private void cargarDatos() {

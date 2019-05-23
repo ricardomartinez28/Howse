@@ -1,175 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/padding"
-    tools:context=".Perfil">
+    tools:context=".PerfilArrendador">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/ColorBackGround"
+        android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
+        app:popupTheme="@style/MenuStyle">
+
+        <TextView
+            android:id="@+id/TituloPerfil"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="Perfil"
+            android:textColor="@color/blanco"
+            android:textSize="24dp" />
+    </android.support.v7.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
+
         android:id="@+id/imgvFotoPerfil"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="161dp"
+        android:layout_height="161dp"
         android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.013" />
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorSecundario"
+        android:textSize="22sp"
+        app:fontFamily="@font/roboto_light" />
+
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+
+        android:layout_below="@+id/imgvFotoPerfil"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:text="Email"
+        android:textColor="@color/colorSecundario"
+        android:textSize="22sp"
+        app:fontFamily="@font/roboto_light" />
+
+    <TextView
+        android:id="@+id/tvPerfNormbre"
+        android:layout_width="74dp"
+        android:layout_height="35dp"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+
+        android:layout_gravity="center"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="319dp"
+        android:layout_marginRight="319dp"
+        android:layout_marginBottom="376dp"
+
+        android:text="Nombre"
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light" />
+
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tvNombreCasero"
+
+        android:layout_alignLeft="@+id/tvNombreCasero"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+
+        android:layout_gravity="center"
+        android:layout_marginStart="-27dp"
+        android:layout_marginLeft="-27dp"
+        android:layout_marginTop="313dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="367dp"
+        android:backgroundTint="@color/ColorBackGround"
+        android:enabled="false"
+        android:fontFamily="@font/roboto_light"
+        android:inputType="textPersonName"
+        android:textColor="@color/TextGrey" />
+
+
+    <TextView
+        android:id="@+id/tvPerfApellido"
+        android:layout_width="74dp"
+        android:layout_height="35dp"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+        android:layout_gravity="center"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="399dp"
+        android:layout_marginEnd="318dp"
+        android:layout_marginRight="318dp"
+        android:layout_marginBottom="297dp"
+
+        android:text="Apellido"
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light" />
 
     <EditText
         android:id="@+id/etApellido"
         android:layout_width="225dp"
         android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+
+        android:layout_gravity="center"
+        android:layout_marginStart="109dp"
+        android:layout_marginLeft="109dp"
+        android:layout_marginTop="391dp"
+        android:layout_marginRight="75dp"
+
         android:backgroundTint="@color/ColorBackGround"
-        android:ems="10"
         android:enabled="false"
         android:fontFamily="@font/roboto_light"
         android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:textColor="@color/TextGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.575" />
-
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/ColorBackGround"
-        android:ems="10"
-        android:enabled="false"
-        android:fontFamily="@font/roboto_light"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        android:textColor="@color/TextGrey"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <TextView
-        android:id="@+id/tvPerfNormbre"
-        android:layout_width="76dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Nombre"
-        android:textColor="@color/ColorBackGround"
-        android:textSize="18sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.408" />
+        android:textColor="@color/TextGrey" />
 
 
-    <TextView
-        android:id="@+id/tvPerfApellido"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbaEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Apellido"
-        android:textColor="@color/ColorBackGround"
-        android:textSize="18sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.024"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.587" />
+        android:layout_gravity="bottom|end"
+        android:layout_marginStart="333dp"
+        android:layout_marginLeft="333dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginRight="22dp"
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Email"
-        android:textColor="@color/colorSecundario"
-        android:textSize="22sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.304" />
+        android:clickable="true"
+        android:onClick="editable"
+        app:backgroundTint="@color/colorSecundario"
+        app:srcCompat="@drawable/ic_new_file"
+        tools:ignore="VectorDrawableCompat" />
+
 
     <TextView
         android:id="@+id/tvCodCasa"
         android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
+        android:layout_height="41dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="490dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginRight="172dp"
+        android:layout_marginBottom="200dp"
         android:text="Código"
         android:textColor="@color/colorSecundario"
         android:textSize="22sp"
@@ -182,63 +177,40 @@
         app:layout_constraintVertical_bias="0.698" />
 
     <Button
+
         android:id="@+id/btnModificarDatosPerfil"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/custom_button4"
+        android:layout_marginStart="57dp"
+        android:layout_marginLeft="57dp"
+        android:layout_marginTop="584dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginRight="53dp"
+        android:layout_marginBottom="97dp"
+        android:background="@drawable/custom_button1"
         android:fontFamily="@font/roboto_light"
         android:onClick="modificarDatos"
         android:text="Guardar cambios"
-        android:textColor="@color/blanco"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fbaEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:clickable="true"
-
-        android:onClick="editable"
-        app:backgroundTint="@color/colorSecundario"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869"
-        app:srcCompat="@drawable/ic_new_file"
-        tools:ignore="VectorDrawableCompat" />
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp" />
 
     <Button
         android:id="@+id/btnClipBoard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="75dp"
+        android:layout_height="88dp"
+
+
+        android:layout_alignStart="@+id/toolbar"
+        android:layout_alignLeft="@+id/toolbar"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+
+        android:layout_marginStart="249dp"
+        android:layout_marginLeft="249dp"
+        android:layout_marginTop="466dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="177dp"
         android:text="@string/btn_ClipBoard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -248,4 +220,17 @@
         app:layout_constraintVertical_bias="0.709" />
 
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        layout="@layout/activity_menu_abstract_arrendador"
+ />
+
+
+
+
+
+
+</RelativeLayout>

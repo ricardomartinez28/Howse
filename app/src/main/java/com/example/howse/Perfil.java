@@ -36,7 +36,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 
 
-public class Perfil extends MenuAbstractActivity {
+public class Perfil extends MenuActivity {
     private ImageView fotoPerfil;
 
     private TextView email;
@@ -71,17 +71,18 @@ public class Perfil extends MenuAbstractActivity {
 
     private final Usuario[] usr = new Usuario[1];
 
-
+/*
     @Override
     public int cargarLayout() {
         return R.layout.activity_perfil;
     }
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil );
-        setActActual(PERFIL);
+        //setActActual(PERFIL);
 
         email = (TextView) findViewById( R.id.tvEmail );
         casero = (TextView) findViewById( R.id.tvNombreCasero );
@@ -117,6 +118,16 @@ public class Perfil extends MenuAbstractActivity {
             }
         } );
 
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_perfil;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_perfil;
     }
 
     private void openImage() {

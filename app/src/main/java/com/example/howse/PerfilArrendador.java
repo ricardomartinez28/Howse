@@ -42,7 +42,7 @@ import java.util.HashMap;
 
 //TODO TENGO QUE CARGAR EL CODIGO CASA EN EL PERFIL DEL ARRENDADOR CON UN BOTON DE COPIAR EN PORTAPAPELES.
 
-public class PerfilArrendador extends MenuAbstractActivityArrendador {
+public class PerfilArrendador extends MenuActivityArrendador {
     private ImageView fotoPerfil;
 
     private TextView email;
@@ -74,16 +74,16 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
     private final Usuario[] usr = new Usuario[1];
 
 
-    @Override
+    /*@Override
     public int cargarLayout() {
         return R.layout.activity_perfil_arrendador;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil_arrendador );
-        setActActual(PERFILARR);
+        //setActActual(PERFILARR);
 
         email = (TextView) findViewById( R.id.tvEmail );
         codigo = (TextView) findViewById( R.id.tvCodCasa );
@@ -128,6 +128,17 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
         } );
 
     }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_perfil_arrendador;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_perfil_arrendador;
+    }
+
     private void openImage() {
         Intent intent = new Intent( );
         intent.setType( "image/*" );
@@ -234,8 +245,6 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
 
-
-
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
                     usr[0] = dataSnapshot1.getValue(Usuario.class);
                 }
@@ -287,7 +296,7 @@ public class PerfilArrendador extends MenuAbstractActivityArrendador {
         }else{
             usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
-            mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
+            mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);
 
 
             deshabilitar();

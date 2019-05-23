@@ -38,10 +38,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PreviewDelChat extends MenuActivity {
 
 
-
-
-
-
     CircleImageView imgperfil;
     TextView tvnombre;
 
@@ -74,7 +70,7 @@ public class PreviewDelChat extends MenuActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_preview_del_chat);
-        setActActual( CHAT );
+        //setActActual( CHAT );
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
