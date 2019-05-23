@@ -39,16 +39,16 @@ import java.util.ArrayList;
 public class TareasActivity extends MenuActivity {
 
 
-    ArrayList<DiasTareas> tareasDias;
-    ArrayList<DiasTareas> tareasSinRepetir;
+    private ArrayList<DiasTareas> tareasDias;
+    private ArrayList<DiasTareas> tareasSinRepetir;
 
-    ArrayList<TareasVisual> tareasLunes;
-    ArrayList<TareasVisual> tareasMartes;
-    ArrayList<TareasVisual> tareasMiercoles;
-    ArrayList<TareasVisual> tareasJueves;
-    ArrayList<TareasVisual> tareasViernes;
-    ArrayList<TareasVisual> tareasSabado;
-    ArrayList<TareasVisual> tareasDomingo;
+    private ArrayList<TareasVisual> tareasLunes;
+    private ArrayList<TareasVisual> tareasMartes;
+    private  ArrayList<TareasVisual> tareasMiercoles;
+    private ArrayList<TareasVisual> tareasJueves;
+    private ArrayList<TareasVisual> tareasViernes;
+    private ArrayList<TareasVisual> tareasSabado;
+    private ArrayList<TareasVisual> tareasDomingo;
 
 
     RecyclerView rvDiasdelaSemana;
