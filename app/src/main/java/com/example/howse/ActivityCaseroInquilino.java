@@ -20,7 +20,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
     FirebaseUser firebaseUser;
 /*
 
-   @Override
+  /* @Override
     protected void onStart() {
         super.onStart();
 
@@ -31,7 +31,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-    }
+    }*/
 
 */
 

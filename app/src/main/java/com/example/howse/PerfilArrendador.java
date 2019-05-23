@@ -1,11 +1,15 @@
 package com.example.howse;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.os.Bundle;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -13,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.Continuation;
@@ -23,7 +28,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -36,79 +40,84 @@ import com.google.firebase.storage.UploadTask;
 import java.util.HashMap;
 
 
-public class Perfil extends MenuActivity {
+//TODO TENGO QUE CARGAR EL CODIGO CASA EN EL PERFIL DEL ARRENDADOR CON UN BOTON DE COPIAR EN PORTAPAPELES.
+
+public class PerfilArrendador extends MenuActivityArrendador {
     private ImageView fotoPerfil;
 
     private TextView email;
+    private TextView codigo;
     private EditText nombre;
     private EditText apellido;
-    private TextView casero;
 
     private Button btnModificar;
+    private Button btnClipBoard;
 
     private FloatingActionButton fba;
+
+    private DatabaseReference mDatabaseRef;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser usuario;
 
     StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
 
-    private DatabaseReference mDatabaseRef;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser usuario;
+    private String codCasa;
 
     private String nombrePersona;
-    private String nombreCasero;
     private String emailPersona;
     private String apellidoPersona;
     private String fotoPersona;
 
-    private Usuario usu;
-
-    String codCasa;
-
-
-
     private final Usuario[] usr = new Usuario[1];
 
-/*
-    @Override
+
+    /*@Override
     public int cargarLayout() {
-        return R.layout.activity_perfil;
-    }
-    */
+        return R.layout.activity_perfil_arrendador;
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        //setContentView( R.layout.activity_perfil );
-        //setActActual(PERFIL);
+        //setContentView( R.layout.activity_perfil_arrendador );
+        //setActActual(PERFILARR);
 
         email = (TextView) findViewById( R.id.tvEmail );
-        casero = (TextView) findViewById( R.id.tvNombreCasero );
-
+        codigo = (TextView) findViewById( R.id.tvCodCasa );
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         nombre = (EditText) findViewById( R.id.etNombre );
         apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
+        btnClipBoard = (Button) findViewById( R.id.btnClipBoard );
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
 
-        storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
-
+        storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilCas");
 
         firebaseAuth = FirebaseAuth.getInstance();
         usuario = firebaseAuth.getCurrentUser();
         emailPersona = usuario.getEmail();
 
-        cargarCodCasa();
-
 
         btnModificar.setVisibility(View.INVISIBLE);
+        btnClipBoard.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = codigo.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService( Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text",  text);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText( PerfilArrendador.this, "Copiado en el Portapapeles", Toast.LENGTH_LONG ).show();
+
+
+            }
+        } );
 
         cargarDatos();
-        readUsers();
 
         fotoPerfil.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -122,12 +131,12 @@ public class Perfil extends MenuActivity {
 
     @Override
     int getContentViewId() {
-        return R.layout.activity_perfil;
+        return R.layout.activity_perfil_arrendador;
     }
 
     @Override
     int getNavigationMenuItemId() {
-        return R.id.nav_perfil;
+        return R.id.nav_perfil_arrendador;
     }
 
     private void openImage() {
@@ -142,9 +151,9 @@ public class Perfil extends MenuActivity {
         ContentResolver contentResolver = getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return  mimeTypeMap.getExtensionFromMimeType( contentResolver.getType( uri ) );
-   }
+    }
 
-   private void uploadImage(){
+    private void uploadImage(){
 
 
         if(imageUri !=null){
@@ -177,21 +186,23 @@ public class Perfil extends MenuActivity {
 
 
                     }else{
-                        Toast.makeText( Perfil.this, "Failed!", Toast.LENGTH_SHORT ).show();
+                        Toast.makeText( PerfilArrendador.this, "Failed!", Toast.LENGTH_SHORT ).show();
                     }
-                        
+
                 }
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText( Perfil.this, e.getMessage(), Toast.LENGTH_SHORT ).show();
+                    Toast.makeText( PerfilArrendador.this, e.getMessage(), Toast.LENGTH_SHORT ).show();
                 }
             } );
 
         }else {
             Toast.makeText( this, "Selecciona una imagen ", Toast.LENGTH_SHORT ).show();
         }
-   }
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -225,80 +236,13 @@ public class Perfil extends MenuActivity {
 
         btnModificar.setVisibility(View.VISIBLE);
     }
-    public void cargarCodCasa(){
 
-        Query qq1 = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
-
-        qq1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-
-
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
-                    usr[0] = dataSnapshot1.getValue(Usuario.class);
-                }
-
-                if (emailPersona.equals( usr[0].getEmailUsuario() )){
-
-                    codCasa=usr[0].getCodCasa();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-    private void readUsers() {
-
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference().child( "Usuarios" );
-
-        mDatabaseRef.addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                    try {
-                        usu = snapshot.getValue( Usuario.class );
-                    } catch (DatabaseException de) {
-
-                        break;
-                    }
-                    assert usu != null;
-                    assert usuario != null;
-
-
-                    if ( usu.getCodCasa().equals( codCasa )&&!usu.getTipoUs()) {
-
-                        nombreCasero = usu.getNombreUsuario();
-                        casero.setText( nombreCasero );
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        } );
-    }
     private void cargarDatos() {
-        Query qq3 = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
+        Query qq = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
 
-        qq3.addListenerForSingleValueEvent(new ValueEventListener() {
+        qq.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
 
 
                 for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
@@ -310,6 +254,7 @@ public class Perfil extends MenuActivity {
                     nombrePersona = usr[0].getNombreUsuario();
                     apellidoPersona = usr[0].getApellidosUsuario();
                     fotoPersona = usr[0].getFotoUsuario();
+                    codCasa = usr[0].getCodCasa();
 
                     nombre.setText( nombrePersona );
 
@@ -319,6 +264,8 @@ public class Perfil extends MenuActivity {
                     Glide.with(fotoPerfil.getContext())
                             .load(usr[0].getFotoUsuario())
                             .into(fotoPerfil);
+
+                    codigo.setText( codCasa );
 
                 }
 
@@ -349,7 +296,7 @@ public class Perfil extends MenuActivity {
         }else{
             usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
-            mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
+            mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);
 
 
             deshabilitar();

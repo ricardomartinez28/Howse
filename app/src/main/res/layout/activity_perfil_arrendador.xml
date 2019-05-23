@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Perfil">
+    tools:context=".PerfilArrendador">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="670dp"
+        android:layout_alignParentTop="true"
         android:background="@color/ColorBackGround"
         android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
         app:popupTheme="@style/MenuStyle">
@@ -26,45 +26,15 @@
             android:textSize="24dp" />
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/tvCasero"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvNombreCasero"
-        android:layout_alignLeft="@+id/tvNombreCasero"
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
-        android:layout_marginStart="-130dp"
-        android:layout_marginLeft="-130dp"
-        android:layout_marginTop="486dp"
-        android:layout_marginEnd="294dp"
-        android:layout_marginRight="294dp"
-        android:layout_marginBottom="218dp"
-        android:text="Tu Casero: "
-        android:textColor="@color/ColorBackGround"
-        android:textSize="18sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
-
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/imgvFotoPerfil"
-        android:layout_width="158dp"
+        android:layout_width="161dp"
         android:layout_height="161dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
-
-        android:layout_marginBottom="487dp"
         android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/toolbar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
         android:textColor="@color/colorSecundario"
         android:textSize="22sp"
         app:fontFamily="@font/roboto_light" />
@@ -72,15 +42,12 @@
 
     <TextView
         android:id="@+id/tvEmail"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="260dp"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
 
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="442dp"
+        android:layout_below="@+id/imgvFotoPerfil"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         android:text="Email"
         android:textColor="@color/colorSecundario"
@@ -187,23 +154,18 @@
 
 
     <TextView
-        android:id="@+id/tvNombreCasero"
-        android:layout_width="99dp"
-        android:layout_height="29dp"
-
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="139dp"
-        android:layout_marginLeft="139dp"
-        android:layout_marginTop="481dp"
-        android:layout_marginEnd="173dp"
-        android:layout_marginRight="173dp"
-        android:layout_marginBottom="210dp"
-        android:text="Casero"
+        android:id="@+id/tvCodCasa"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="490dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginRight="172dp"
+        android:layout_marginBottom="200dp"
+        android:text="Código"
         android:textColor="@color/colorSecundario"
         android:textSize="22sp"
         app:fontFamily="@font/roboto_light"
@@ -212,7 +174,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741" />
+        app:layout_constraintVertical_bias="0.698" />
 
     <Button
 
@@ -232,16 +194,41 @@
         android:textColor="@color/ColorBackGround"
         android:textSize="18sp" />
 
+    <Button
+        android:id="@+id/btnClipBoard"
+        android:layout_width="75dp"
+        android:layout_height="88dp"
+
+
+        android:layout_alignStart="@+id/toolbar"
+        android:layout_alignLeft="@+id/toolbar"
+        android:layout_alignEnd="@+id/toolbar"
+        android:layout_alignRight="@+id/toolbar"
+
+        android:layout_marginStart="249dp"
+        android:layout_marginLeft="249dp"
+        android:layout_marginTop="466dp"
+        android:layout_marginEnd="88dp"
+        android:layout_marginRight="88dp"
+        android:layout_marginBottom="177dp"
+        android:text="@string/btn_ClipBoard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.837"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.709" />
+
+
     <include
         android:id="@+id/navigation"
-        layout="@layout/activity_menu_abstract"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/toolbar"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="675dp"
+        layout="@layout/activity_menu_abstract_arrendador"
+ />
 
-        android:layout_marginRight="0dp" />
+
 
 
 

@@ -35,7 +35,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PreviewDelChat extends MenuActivity {
+public class PreviewChatArrendador extends MenuActivityArrendador {
 
 
     CircleImageView imgperfil;
@@ -53,28 +53,16 @@ public class PreviewDelChat extends MenuActivity {
     /*@Override
     public int cargarLayout() {
         return R.layout.activity_preview_del_chat;
-    }
-*/
-
-    @Override
-    int getContentViewId() {
-        return R.layout.activity_preview_del_chat;
-    }
-
-    @Override
-    int getNavigationMenuItemId() {
-        return R.id.nav_chat;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_preview_del_chat);
-        //setActActual( CHAT );
+        //setActActual( CHATARR );
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        //setActActual(CHAT);
 
 
 
@@ -117,7 +105,15 @@ public class PreviewDelChat extends MenuActivity {
         cargarDatos();
     }
 
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_preview_chat_arrendador;
+    }
 
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.nav_chat_arrendador;
+    }
 
     private void cargarDatos() {
 
@@ -139,10 +135,10 @@ public class PreviewDelChat extends MenuActivity {
                     tvnombre.setText(usr[0].getNombreUsuario());
 
                     if(usr[0].getFotoUsuario()==null){
-                        imgperfil.setImageResource(R.mipmap.ic_launcher_round);
+                        imgperfil.setImageResource(R.drawable.ic_user);
 
                     }else{
-                        Glide.with(PreviewDelChat.this)
+                        Glide.with(PreviewChatArrendador.this)
                                 .load(usr[0].getFotoUsuario())
                                 .into(imgperfil);
 
@@ -154,7 +150,7 @@ public class PreviewDelChat extends MenuActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( PreviewDelChat.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
+                Toast.makeText( PreviewChatArrendador.this, "Algo salio Mal ai", Toast.LENGTH_SHORT ).show();
 
             }
         });
@@ -173,7 +169,7 @@ public class PreviewDelChat extends MenuActivity {
 
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(PreviewDelChat.this, ActivityCaseroInquilino.class));
+                startActivity(new Intent(PreviewChatArrendador.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
         }
