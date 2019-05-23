@@ -1,7 +1,9 @@
 package com.example.howse;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -61,6 +63,7 @@ public class TareasActivity extends MenuActivity {
 
 
     FloatingActionsMenu fam;
+    LinearLayoutManager llManager;
 
 
 
@@ -84,6 +87,9 @@ public class TareasActivity extends MenuActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         //setActActual(TAREAS);
+
+
+        llManager= new LinearLayoutManager(this);
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Usuarios");
@@ -133,6 +139,61 @@ public class TareasActivity extends MenuActivity {
         listaTareas.clear();
         tareasDias.clear();
 
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                /*
+                                AlertDialog.Builder builder= new AlertDialog.Builder(ListaCompraActivity.this);
+
+
+
+                builder.setMessage("¿Quieres hacer una nueva lista?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                hacerFactura();
+                                nuevaLista();
+
+                            }
+                        }).setNegativeButton("Cancelar", null);
+
+
+                AlertDialog alert=builder.create();
+                alert.show();
+
+                v.setFocusable(false);
+                 */
+                AlertDialog.Builder builder= new AlertDialog.Builder(TareasActivity.this);
+
+
+                builder.setMessage("¿Quieres hacer una nueva lista de tareas semanales?")
+                        .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+
+                                borrarTareas();
+                                Toast.makeText(TareasActivity.this,"Se ha borrado la lista de tareas",Toast.LENGTH_SHORT).show();
+
+
+                            }
+                        }).setNegativeButton("Cancelar", null);
+
+
+                AlertDialog alert=builder.create();
+                alert.show();
+
+                v.setFocusable(false);
+
+
+
+            }
+        });
+
     }
 
     @Override
@@ -147,6 +208,8 @@ public class TareasActivity extends MenuActivity {
 
 
     public void rellenarLista() {
+
+        rvDiasdelaSemana.setLayoutManager(llManager);
 
         listaTareas.clear();
         tareasDias.clear();
@@ -336,6 +399,37 @@ public class TareasActivity extends MenuActivity {
                 return true;
         }
         return false;
+    }
+
+
+    public void borrarTareas(){
+
+        reference= FirebaseDatabase.getInstance().getReference("Tareas");
+
+        rvDiasdelaSemana.setLayoutManager(llManager);
+
+
+        Query qq= reference.orderByChild("codigoCasa").equalTo(codCasa);
+
+        qq.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+
+                    Tarea tarea= snapshot.getValue(Tarea.class);
+
+                    snapshot.getRef().removeValue();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
     }
 
 

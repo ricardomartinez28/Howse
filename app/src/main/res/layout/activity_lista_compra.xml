@@ -45,7 +45,9 @@
         android:id="@+id/rvCompra"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="66dp"
+
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@id/navigation"
 
         ></android.support.v7.widget.RecyclerView>
 
@@ -68,8 +70,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorSecundario"
-
-
             app:fab_icon="@drawable/ic_repeat"
             app:fab_size="mini"
             app:fab_title="Nueva Lista" />
@@ -84,6 +84,7 @@
             app:fab_title="Añadir artículo" />
 
 
+
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab4"
             android:layout_width="wrap_content"
@@ -92,6 +93,8 @@
             app:fab_icon="@drawable/ic_history"
             app:fab_size="mini"
             app:fab_title="Historial" />
+
+
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

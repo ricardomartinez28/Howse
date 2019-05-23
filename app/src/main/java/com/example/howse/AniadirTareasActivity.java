@@ -217,7 +217,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
             Tarea tar = new Tarea( clave, usuarioTarea, tarea, dia, codCasa );
             mDatabaseRef.child( clave ).setValue( tar );
 
-            Toast.makeText( AniadirTareasActivity.this, persona + " Tiene que " + tarea + " el dia " + dia, Toast.LENGTH_LONG ).show();
+            Toast.makeText( AniadirTareasActivity.this, persona + " Tiene que " + tarea + " el " + dia, Toast.LENGTH_LONG ).show();
 
             Toast.makeText( AniadirTareasActivity.this, "Tarea Añadida para "+persona, Toast.LENGTH_LONG ).show();
         }

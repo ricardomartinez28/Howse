@@ -38,7 +38,7 @@
         android:id="@+id/rvDiasdelaSemana"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:layout_below="@+id/toolbar"
         android:layout_above="@id/navigation"
 
         ></android.support.v7.widget.RecyclerView>

@@ -16,9 +16,7 @@ public class Actividad {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+
 
     public String getCodCasa() {
         return codCasa;

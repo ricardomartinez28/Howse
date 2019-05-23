@@ -84,6 +84,7 @@ public class ListaCompraActivity extends MenuActivity {
 
         final FloatingActionButton fab=(FloatingActionButton)findViewById(R.id.fab1);
         final FloatingActionButton fab2=(FloatingActionButton)findViewById(R.id.fab2);
+
         final FloatingActionButton fab4=(FloatingActionButton)findViewById(R.id.fab4);
 
         btnEl=findViewById(R.id.btnEliminarArt);
@@ -115,15 +116,15 @@ public class ListaCompraActivity extends MenuActivity {
 
 
 
-                builder.setMessage("¿Quieres hacer una nueva lista?")
+                builder.setMessage("¿Quieres hacer una nueva lista? Se guardará automaticamente")
                         .setPositiveButton("Sí", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
 
 
+                                hacerFactura();
                                 nuevaLista();
 
-                                hacerFactura();
                             }
                         }).setNegativeButton("Cancelar", null);
 
@@ -285,14 +286,18 @@ public class ListaCompraActivity extends MenuActivity {
         DatabaseReference newRefe= FirebaseDatabase.getInstance().getReference("HistorialCompra");
         factura="Lista: ";
 
-        if(listaArt.size()==0){
+        if(listaCompra.size()==0){
             Toast.makeText(ListaCompraActivity.this,"Introduce un articulo paracrear una nueva lista",Toast.LENGTH_SHORT).show();
 
         }else{
 
-            for (String artic: listaArt){
-                factura+=artic+", ";
+            for (Articulo artic: listaCompra){
+                factura+=artic.getNombre()+", ";
             }
+
+
+            factura=factura.substring(0,factura.trim().length()-1);
+            factura+=".";
 
             final String clave= newRefe.push().getKey();
 
