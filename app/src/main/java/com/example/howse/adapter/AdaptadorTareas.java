@@ -82,6 +82,7 @@ public class AdaptadorTareas extends RecyclerView.Adapter<AdaptadorTareas.TareaV
                                 tareas.remove(tareas.get(position).getKeyTarea());
                                 reference.child(tareas.get(position).getKeyTarea()).removeValue();
                                 removeAt(position);
+                                notifyDataSetChanged();
 
                             }
                         }).setNegativeButton("Cancelar", null);

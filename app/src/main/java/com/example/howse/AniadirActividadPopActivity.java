@@ -52,7 +52,7 @@ public class AniadirActividadPopActivity extends Activity {
         int width=dm.widthPixels;
         int height= dm.heightPixels;
 
-        getWindow().setLayout((int) (width*.8), (int)(height*.5));
+        getWindow().setLayout((int) (width*.8), (int)(height*.45));
 
         WindowManager.LayoutParams params=getWindow().getAttributes();
 

@@ -38,6 +38,7 @@ public class TareasActivity extends MenuActivity {
 
 
     ArrayList<DiasTareas> tareasDias;
+    ArrayList<DiasTareas> tareasSinRepetir;
 
     ArrayList<TareasVisual> tareasLunes;
     ArrayList<TareasVisual> tareasMartes;
@@ -94,6 +95,7 @@ public class TareasActivity extends MenuActivity {
 
         tareasDias= new ArrayList<>();
         listaTareas= new ArrayList<>();
+        tareasSinRepetir= new ArrayList<>();
 
 
         tareasLunes= new ArrayList<>();
@@ -159,6 +161,15 @@ public class TareasActivity extends MenuActivity {
 
 
                 listaTareas.clear();
+                tareasDias.clear();
+                tareasLunes.clear();
+                tareasMartes.clear();
+                tareasMiercoles.clear();
+                tareasJueves.clear();
+                tareasViernes.clear();
+                tareasSabado.clear();
+                tareasDomingo.clear();
+
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Tarea tarea;
@@ -253,6 +264,8 @@ public class TareasActivity extends MenuActivity {
 
 
                 }
+
+
                 adapter = new AdaptadorDiasSemana(getApplicationContext(), tareasDias);
                 rvDiasdelaSemana.setAdapter(adapter);
 

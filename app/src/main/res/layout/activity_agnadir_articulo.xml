@@ -4,44 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_agnadir_articulo"
+    android:background="@drawable/pop_bg"
     tools:context=".AgnadirArticuloActivity"
+
     android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="~Añadir artículo~"
+        android:textSize="30dp"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="@color/TextGrey"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"/>
 
     <EditText
         android:id="@+id/etNewArticulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:backgroundTint="@color/TextGrey"
+        android:layout_marginTop="90dp"
+        android:backgroundTint="#6FBD4B"
         android:fontFamily="@font/roboto_light"
         android:hint="Escribe un articulo"
         android:inputType="textShortMessage"
-
         android:selectAllOnFocus="false"
-        android:textColor="@color/TextGrey" />
+        android:textColor="@color/TextGrey"
+        android:textColorLink="@color/colorSecundario" />
 
     <EditText
         android:id="@+id/etNewPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
-        android:backgroundTint="@color/TextGrey"
+        android:layout_marginTop="150dp"
+        android:backgroundTint="#6FBD4B"
         android:fontFamily="@font/roboto_light"
         android:hint="Precio Opcional: €£$"
         android:inputType="number|numberDecimal"
 
-        android:textColor="@color/TextGrey" />
+        android:textColor="@color/TextGrey"
+        android:textColorLink="@color/colorSecundario" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="250dp"
-        android:background="@drawable/custom_button5"
+        android:background="@drawable/custom_button7"
         android:fontFamily="@font/roboto_light"
         android:onClick="agnadirArt"
         android:text="Añadir un alimento"
-        android:textColor="@color/blanco"
+        android:textColor="#6FBD4B"
         android:textSize="16dp" />
 
 
