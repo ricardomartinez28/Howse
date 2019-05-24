@@ -127,7 +127,7 @@
         android:layout_marginTop="50dp"
         />
     <TextView
-        android:id="@+id/tvNombreCasero"
+        android:id="@+id/tvCodCasa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Casero"
@@ -140,8 +140,19 @@
         android:layout_marginLeft="30dp"
         />
 
-    <Button
+    <ImageButton
+        android:id="@+id/btnCopiarCodCasa"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/etApellido"
+        android:layout_toRightOf="@+id/tvCodCasa"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/custom_button9"
+        android:src="@drawable/ic_copy"
+        />
 
+    <Button
         android:id="@+id/btnModificarDatosPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
