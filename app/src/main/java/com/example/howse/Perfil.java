@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -82,8 +85,10 @@ public class Perfil extends MenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        //setContentView( R.layout.activity_perfil );
-        //setActActual(PERFIL);
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
 
         email = (TextView) findViewById( R.id.tvEmail );
         casero = (TextView) findViewById( R.id.tvNombreCasero );
@@ -365,6 +370,28 @@ public class Perfil extends MenuActivity {
     private void mensaje(String s) {
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Perfil.this, ActivityCaseroInquilino.class));
+                finish();
+                return true;
+        }
+        return false;
+    }
+
 
 
 }

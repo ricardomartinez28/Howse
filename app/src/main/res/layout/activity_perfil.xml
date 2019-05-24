@@ -10,10 +10,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="670dp"
         android:background="@color/ColorBackGround"
         android:theme="@style/Base.Theme.AppCompat.Light.DarkActionBar"
         app:popupTheme="@style/MenuStyle">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_user_profile"/>
 
         <TextView
             android:id="@+id/TituloPerfil"
@@ -23,227 +26,160 @@
             android:fontFamily="@font/roboto_thin"
             android:text="Perfil"
             android:textColor="@color/blanco"
-            android:textSize="24dp" />
+            android:textSize="24dp"/>
     </android.support.v7.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/tvCasero"
-        android:layout_width="108dp"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvNombreCasero"
-        android:layout_alignLeft="@+id/tvNombreCasero"
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
-        android:layout_marginStart="-130dp"
-        android:layout_marginLeft="-130dp"
-        android:layout_marginTop="486dp"
-        android:layout_marginEnd="294dp"
-        android:layout_marginRight="294dp"
-        android:layout_marginBottom="218dp"
-        android:text="Tu Casero: "
-        android:textColor="@color/ColorBackGround"
-        android:textSize="18sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.748" />
 
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:id="@+id/imgvFotoPerfil"
-        android:layout_width="158dp"
-        android:layout_height="161dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
-
-        android:layout_marginBottom="487dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/toolbar"
         android:src="@mipmap/ic_launcher"
         android:textColor="@color/colorSecundario"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"
         android:textSize="22sp"
         app:fontFamily="@font/roboto_light" />
-
 
     <TextView
         android:id="@+id/tvEmail"
-        android:layout_width="205dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginLeft="105dp"
-        android:layout_marginTop="260dp"
-
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="442dp"
-        android:gravity="center"
+       android:gravity="center"
         android:text="Email"
         android:textColor="@color/colorSecundario"
         android:textSize="22sp"
-        app:fontFamily="@font/roboto_light" />
+        app:fontFamily="@font/roboto_light"
+        android:layout_below="@+id/imgvFotoPerfil"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="30dp"/>
+
 
     <TextView
         android:id="@+id/tvPerfNormbre"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="17dp"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="320dp"
-        android:layout_marginEnd="319dp"
-        android:layout_marginRight="319dp"
-        android:layout_marginBottom="376dp"
-
         android:text="Nombre"
         android:textColor="@color/ColorBackGround"
         android:textSize="18sp"
-        app:fontFamily="@font/roboto_light" />
+        app:fontFamily="@font/roboto_light"
+        android:layout_below="@+id/tvEmail"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="30dp"/>
 
 
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/tvNombreCasero"
-
-        android:layout_alignLeft="@+id/tvNombreCasero"
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
         android:layout_gravity="center"
-        android:layout_marginStart="-27dp"
-        android:layout_marginLeft="-27dp"
-        android:layout_marginTop="313dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginBottom="367dp"
         android:backgroundTint="@color/ColorBackGround"
         android:enabled="false"
         android:fontFamily="@font/roboto_light"
         android:inputType="textPersonName"
-        android:textColor="@color/TextGrey" />
-
+        android:textColor="@color/TextGrey"
+        android:layout_below="@+id/tvEmail"
+        android:layout_toRightOf="@id/tvPerfNormbre"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/tvPerfApellido"
-        android:layout_width="74dp"
-        android:layout_height="35dp"
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-        android:layout_gravity="center"
-        android:layout_marginStart="19dp"
-        android:layout_marginLeft="19dp"
-        android:layout_marginTop="399dp"
-        android:layout_marginEnd="318dp"
-        android:layout_marginRight="318dp"
-        android:layout_marginBottom="297dp"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Apellido"
         android:textColor="@color/ColorBackGround"
         android:textSize="18sp"
-        app:fontFamily="@font/roboto_light" />
+        app:fontFamily="@font/roboto_light"
+        android:layout_below="@+id/tvPerfNormbre"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="16dp"
+        />
 
     <EditText
         android:id="@+id/etApellido"
         android:layout_width="225dp"
-        android:layout_height="50dp"
-
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="109dp"
-        android:layout_marginLeft="109dp"
-        android:layout_marginTop="391dp"
-        android:layout_marginRight="75dp"
-
         android:backgroundTint="@color/ColorBackGround"
         android:enabled="false"
         android:fontFamily="@font/roboto_light"
         android:inputType="textPersonName"
-        android:textColor="@color/TextGrey" />
+        android:textColor="@color/TextGrey"
+        android:layout_below="@+id/etNombre"
+        android:layout_toRightOf="@id/tvPerfApellido"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"/>
 
+
+    <TextView
+        android:id="@+id/tvCasero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tu  codigo de casa: "
+        android:textColor="@color/ColorBackGround"
+        android:textSize="18sp"
+        android:layout_below="@+id/tvPerfApellido"
+        app:fontFamily="@font/roboto_light"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        />
+    <TextView
+        android:id="@+id/tvNombreCasero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Casero"
+        android:textColor="@color/colorSecundario"
+        android:textSize="18sp"
+        app:fontFamily="@font/roboto_light"
+        android:layout_below="@+id/etApellido"
+        android:layout_toRightOf="@+id/tvCasero"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        />
+
+    <Button
+
+        android:id="@+id/btnModificarDatosPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button1"
+        android:fontFamily="@font/roboto_light"
+        android:onClick="modificarDatos"
+        android:text="Guardar cambios"
+        android:textColor="@color/ColorBackGround"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="70dp"
+        android:textSize="18sp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fbaEditar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginStart="333dp"
-        android:layout_marginLeft="333dp"
-        android:layout_marginTop="500dp"
-        android:layout_marginRight="22dp"
-
         android:clickable="true"
         android:onClick="editable"
         app:backgroundTint="@color/colorSecundario"
         app:srcCompat="@drawable/ic_new_file"
-        tools:ignore="VectorDrawableCompat" />
-
-
-    <TextView
-        android:id="@+id/tvNombreCasero"
-        android:layout_width="99dp"
-        android:layout_height="29dp"
-
-        android:layout_alignEnd="@+id/toolbar"
-        android:layout_alignRight="@+id/toolbar"
-
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="139dp"
-        android:layout_marginLeft="139dp"
-        android:layout_marginTop="481dp"
-        android:layout_marginEnd="173dp"
-        android:layout_marginRight="173dp"
-        android:layout_marginBottom="210dp"
-        android:text="Casero"
-        android:textColor="@color/colorSecundario"
-        android:textSize="22sp"
-        app:fontFamily="@font/roboto_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.741" />
-
-    <Button
-
-        android:id="@+id/btnModificarDatosPerfil"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="57dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="584dp"
-        android:layout_marginEnd="53dp"
-        android:layout_marginRight="53dp"
-        android:layout_marginBottom="97dp"
-        android:background="@drawable/custom_button1"
-        android:fontFamily="@font/roboto_light"
-        android:onClick="modificarDatos"
-        android:text="Guardar cambios"
-        android:textColor="@color/ColorBackGround"
-        android:textSize="18sp" />
+        tools:ignore="VectorDrawableCompat"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_above="@+id/navigation"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="16dp"/>
 
     <include
         android:id="@+id/navigation"
         layout="@layout/activity_menu_abstract"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/toolbar"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="675dp"
-
-        android:layout_marginRight="0dp" />
-
-
-
+         />
 
 </RelativeLayout>
