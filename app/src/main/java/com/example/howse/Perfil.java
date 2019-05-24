@@ -1,6 +1,8 @@
 package com.example.howse;
-import android.app.ProgressDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,6 +69,9 @@ public class Perfil extends MenuActivity {
     private String emailPersona;
     private String apellidoPersona;
     private String fotoPersona;
+    private TextView tvCodCasa;
+
+    private ImageButton btnCopycodCasa;
 
     private Usuario usu;
 
@@ -75,12 +81,6 @@ public class Perfil extends MenuActivity {
 
     private final Usuario[] usr = new Usuario[1];
 
-/*
-    @Override
-    public int cargarLayout() {
-        return R.layout.activity_perfil;
-    }
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,15 +91,17 @@ public class Perfil extends MenuActivity {
         getSupportActionBar().setTitle("");
 
         email = (TextView) findViewById( R.id.tvEmail );
-        casero = (TextView) findViewById( R.id.tvNombreCasero );
+        casero = (TextView) findViewById( R.id.tvCodCasa);
 
         fotoPerfil = (ImageView) findViewById( R.id.imgvFotoPerfil );
         nombre = (EditText) findViewById( R.id.etNombre );
         apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
+        btnCopycodCasa= findViewById(R.id.btnCopiarCodCasa);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
+        tvCodCasa=findViewById(R.id.tvCodCasa);
 
         storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
 
@@ -121,6 +123,19 @@ public class Perfil extends MenuActivity {
             public void onClick(View v) {
 
                 openImage();
+            }
+        } );
+
+        btnCopycodCasa.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = tvCodCasa.getText().toString();
+                ClipboardManager clipboard = (ClipboardManager) getSystemService( Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("text",  text);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText( Perfil.this, "Copiado en el Portapapeles", Toast.LENGTH_LONG ).show();
+
+
             }
         } );
 
@@ -151,9 +166,7 @@ public class Perfil extends MenuActivity {
    }
 
    private void uploadImage(){
-    final ProgressDialog pd = new ProgressDialog(this);
-    pd.setMessage( "Cambiando Imagen. . ." );
-    pd.show();
+
 
         if(imageUri !=null){
             final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
@@ -180,8 +193,6 @@ public class Perfil extends MenuActivity {
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("fotoUsuario", mUri);
                         mDatabaseRef.updateChildren( map );
-
-                        pd.dismiss();
 
 
 
@@ -287,8 +298,8 @@ public class Perfil extends MenuActivity {
 
                     if ( usu.getCodCasa().equals( codCasa )&&!usu.getTipoUs()) {
 
-                        nombreCasero = usu.getNombreUsuario();
-                        casero.setText( nombreCasero );
+
+                        casero.setText(usu.getCodCasa());
                     }
 
                 }
