@@ -10,6 +10,8 @@
         android:id="@+id/tvRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/ColorBackGround"
         android:text="@string/tvRegistro"
         android:textColor="@color/colorSecundario"
@@ -21,10 +23,14 @@
         android:id="@+id/etNombreReg"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:enabled="false"
+        android:drawablePadding="10dp"
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_name"
-        android:drawablePadding="10dp"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/imgvFotoPerfil"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_NombreReg"
         android:inputType="textPersonName"
@@ -35,36 +41,41 @@
         android:id="@+id/etApellidoReg"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:drawablePadding="10dp"
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_dog_tag"
-        android:drawablePadding="10dp"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/etNombreReg"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_ApellidoReg"
         android:inputType="textPersonName"
-        android:paddingLeft="10dp"
         android:textColor="@color/TextGrey" />
 
     <EditText
         android:id="@+id/etEmailReg"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:drawablePadding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/etApellidoReg"
         android:backgroundTint="@color/ColorBackGround"
         android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_EmailReg"
         android:inputType="textPersonName"
         android:textColor="@color/TextGrey"
-        android:drawableLeft="@drawable/ic_send"
-        android:drawablePadding="10dp"
-        android:paddingLeft="10dp" />
+        android:drawableLeft="@drawable/ic_send" />
 
     <EditText
         android:id="@+id/etPasswordReg"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/ColorBackGround"
-        android:ems="10"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/etEmailReg"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_PasswordReg"
         android:inputType="textPassword"
@@ -78,44 +89,47 @@
         android:id="@+id/etPasswordRepeat"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:drawablePadding="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/etPasswordReg"
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_key"
-        android:drawablePadding="10dp"
-        android:ems="10"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_PasswordRepeat"
         android:inputType="textPassword"
-        android:paddingLeft="10dp"
         android:textColor="@color/TextGrey" />
 
 
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/custom_button4"
         android:fontFamily="@font/roboto_light"
         android:onClick="tipoRegistro"
         android:text="@string/btn_RegistrarUsuario"
         android:textColor="@color/blanco"
-        android:textSize="18sp" />
+        android:layout_below="@+id/etPasswordRepeat"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="30dp"
+        android:textSize="18sp"
+/>
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgvFotoPerfil"
-        android:layout_width="227dp"
-        android:layout_height="194dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:background="@drawable/custom_image_button"
         android:onClick="fotoPerfil"
+        android:layout_below="@+id/tvRegistro"
         app:srcCompat="@drawable/ic_user"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 
-    <TextView
-        android:id="@+id/tvCodigoCasaRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp" />
-
-
-    app:srcCompat="@drawable/addimage"/>
 </RelativeLayout>
