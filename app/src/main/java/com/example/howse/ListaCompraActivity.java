@@ -63,11 +63,7 @@ public class ListaCompraActivity extends MenuActivity {
 
 
 
-    /*@Override
-    public int cargarLayout() {
-        return R.layout.activity_lista_compra;
-    }
-*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
