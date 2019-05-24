@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -14,6 +15,17 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.howse.javabean.Usuario;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -21,10 +33,29 @@ public class SplashScreen extends AppCompatActivity {
     TextView tvLogo;
     TextView tvDescInicio;
 
+    FirebaseUser firebaseUser;
+    DatabaseReference reference;
+
+    private String emailPersona="vaya vaya vaya ";
+    private final Usuario[] usr = new Usuario[1];
+
+    Usuario usuario;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spash_screen);
+
+        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUser!=null){
+            reference = FirebaseDatabase.getInstance().getReference( "Usuarios" );
+
+            emailPersona=firebaseUser.getEmail();
+            usuario=cargarDatos();
+            System.out.println(emailPersona);
+            System.out.println(firebaseUser.getDisplayName()+" esto es un nombre como dios manda ");
+        }
 
         if (Build.VERSION.SDK_INT < 16) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -75,11 +106,47 @@ public class SplashScreen extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+
+
                 Intent i= new Intent(SplashScreen.this, ActivityCaseroInquilino.class);
+                if(firebaseUser!=null){
+
+                    i.putExtra("tipoUs",usuario.getTipoUs());
+                }
                 startActivity(i);
                 finish();
             }
         },5000);
+    }
+
+    private Usuario cargarDatos() {
+
+        Query qq = reference.orderByChild("emailUsuario").equalTo(emailPersona);
+
+        qq.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) {
+                    usr[0] = dataSnapshot1.getValue(Usuario.class);
+                    System.out.println(usr[0].getEmailUsuario()+" efskejfegfbmsbesjvkesjbf");
+
+
+                }
+
+                if (emailPersona.equals( usr[0].getEmailUsuario() )){
+                    usuario=usr[0];
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return usuario;
     }
 
 }

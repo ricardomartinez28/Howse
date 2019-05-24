@@ -14,6 +14,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +52,7 @@ public class PerfilArrendador extends MenuActivityArrendador {
     private EditText apellido;
 
     private Button btnModificar;
-    private Button btnClipBoard;
+    private ImageButton btnClipBoard;
 
     private FloatingActionButton fba;
 
@@ -91,7 +92,7 @@ public class PerfilArrendador extends MenuActivityArrendador {
         nombre = (EditText) findViewById( R.id.etNombre );
         apellido = (EditText) findViewById( R.id.etApellido );
         btnModificar = (Button) findViewById( R.id.btnModificarDatosPerfil );
-        btnClipBoard = (Button) findViewById( R.id.btnClipBoard );
+        btnClipBoard = findViewById( R.id.btnCopiarCodCasa);
         fba = (FloatingActionButton) findViewById( R.id.fbaEditar );
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
