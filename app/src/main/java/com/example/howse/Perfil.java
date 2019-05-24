@@ -354,7 +354,7 @@ public class Perfil extends MenuActivity {
         }else{
             usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
-            mDatabaseRef.child(usr[0].getKeyUsuario()).setValue(usr[0]);
+            mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);
 
 
             deshabilitar();
