@@ -1,5 +1,6 @@
 package com.example.howse;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -11,40 +12,27 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.howse.javabean.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.ArrayList;
 
 public class Login extends AppCompatActivity  {
     private EditText etEmail, etPassword;
-    private FirebaseAuth auth;
-    private ProgressBar progressBar;
-    private DatabaseReference mDatabaseRef;
-
-    private ChildEventListener cel;
-    private String id;
-    private String email;
-
-    private final Usuario[] usuario= new Usuario[1];
-
-    private String nombrePersona;
-    private String emailPersona="";
-
     private TextView tvLogo;
 
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabaseRef;
+
     private boolean tipoUs;
+
     private String codCasa="";
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,54 +40,35 @@ public class Login extends AppCompatActivity  {
 
         setContentView( R.layout.activity_login );
 
-
-
-
         etEmail = (EditText) findViewById( R.id.etCorreoLogin );
         etPassword = (EditText) findViewById( R.id.etPasswordLogin );
 
         auth = FirebaseAuth.getInstance();
 
-
         tvLogo=findViewById(R.id.tvLogoLogIn);
-
-
-
-
 
         String logo="Howse";
         SpannableString ss1= new SpannableString(logo);
         ForegroundColorSpan fcsOrange= new ForegroundColorSpan(Color.rgb(242,169,34));
 
-
         ss1.setSpan(fcsOrange,1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         tvLogo.setText(ss1);
-
-
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
         codCasa=getIntent().getStringExtra("codCasa");
 
-
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
-
-
-
-
 
     }
 
     public void logIn(View v) {
         loguearse();
-        System.out.println( tipoUs+"BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" );
 
     }
-
 
     public void register(View v) {
 
         if(tipoUs){
-
 
             Intent i= new Intent(Login.this, Register.class);
             i.putExtra("tipo",tipoUs);
@@ -113,7 +82,6 @@ public class Login extends AppCompatActivity  {
             startActivity(i);
 
         }
-
 
     }
 
@@ -138,15 +106,13 @@ public class Login extends AppCompatActivity  {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            System.out.println( tipoUs+"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" );
+
                             if (tipoUs){
-                                Intent i = new Intent( Login.this, PreviewDelChat.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
+                                Intent i = new Intent( Login.this, PreviewDelChat.class );
                                 startActivity( i );
-                                System.out.println( tipoUs+"CCCCCCCCCCCCCCCCCCCCCCCCCCC" );
                             }else{
-                                Intent i = new Intent( Login.this, PreviewChatArrendador.class );//TODO AQUI TE LLEVA A LA VENTANA DEL CHAT
+                                Intent i = new Intent( Login.this, PreviewChatArrendador.class );
                                 startActivity( i );
-                                System.out.println( tipoUs+"HHHHHHHHHHHHHHHHHHHHHHHHHH" );
                             }
                         } else {
                             Toast.makeText( Login.this, "El email o la contraseña no es correcta", Toast.LENGTH_LONG ).show();
@@ -154,11 +120,6 @@ public class Login extends AppCompatActivity  {
                     }
                 });
 
-
-
     }
 
-
-
-
-    }
+}

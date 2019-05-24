@@ -1,4 +1,5 @@
 package com.example.howse;
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -145,7 +146,9 @@ public class Perfil extends MenuActivity {
    }
 
    private void uploadImage(){
-
+    final ProgressDialog pd = new ProgressDialog(this);
+    pd.setMessage( "Cambiando Imagen. . ." );
+    pd.show();
 
         if(imageUri !=null){
             final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
@@ -172,6 +175,8 @@ public class Perfil extends MenuActivity {
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("fotoUsuario", mUri);
                         mDatabaseRef.updateChildren( map );
+
+                        pd.dismiss();
 
 
 

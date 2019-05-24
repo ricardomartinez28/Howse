@@ -1,5 +1,6 @@
 package com.example.howse;
 
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
@@ -154,6 +155,9 @@ public class PerfilArrendador extends MenuActivityArrendador {
     }
 
     private void uploadImage(){
+        final ProgressDialog pd = new ProgressDialog(this);
+        pd.setMessage( "Cambiando Imagen. . ." );
+        pd.show();
 
 
         if(imageUri !=null){
@@ -181,6 +185,8 @@ public class PerfilArrendador extends MenuActivityArrendador {
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("fotoUsuario", mUri);
                         mDatabaseRef.updateChildren( map );
+
+                        pd.dismiss();
 
 
 

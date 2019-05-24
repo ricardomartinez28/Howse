@@ -193,6 +193,7 @@ public class Register extends AppCompatActivity {
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
                                                             i.putExtra("codCasa", codCasa);
+                                                            progressDialog.dismiss();
                                                             startActivity(i);
                                                         }
                                                     });
@@ -209,14 +210,16 @@ public class Register extends AppCompatActivity {
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);
                                     i.putExtra("codCasa", codCasa);
+                                    progressDialog.dismiss();
                                     startActivity(i);
 
                                 }
 
                             } else {
+                                progressDialog.dismiss();
                                 Toast.makeText(Register.this, getString(R.string.msj_no_registrado), Toast.LENGTH_SHORT).show();
                             }
-                            progressDialog.dismiss();
+
                         }
                     });
 
