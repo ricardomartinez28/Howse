@@ -147,6 +147,7 @@ public class Register extends AppCompatActivity {
 
        }else{
            registroCasero();
+
        }
     }
 
@@ -165,8 +166,6 @@ public class Register extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
                                 user = firebaseAuth.getCurrentUser();
-                                Toast.makeText(Register.this, getString(R.string.msj_userregistered_register) + ": " + user.getEmail(),
-                                        Toast.LENGTH_SHORT).show();
 
 
                                 final String clave = mDatabaseRef.push().getKey();
@@ -193,8 +192,8 @@ public class Register extends AppCompatActivity {
                                                             Intent i = new Intent(Register.this, Login.class);
                                                             i.putExtra("tipo", tipoUs);
                                                             i.putExtra("codCasa", codCasa);
-                                                            progressDialog.dismiss();
                                                             startActivity(i);
+
                                                         }
                                                     });
                                                 }
@@ -210,13 +209,11 @@ public class Register extends AppCompatActivity {
                                     Intent i = new Intent(Register.this, Login.class);
                                     i.putExtra("tipo", tipoUs);
                                     i.putExtra("codCasa", codCasa);
-                                    progressDialog.dismiss();
                                     startActivity(i);
 
                                 }
 
                             } else {
-                                progressDialog.dismiss();
                                 Toast.makeText(Register.this, getString(R.string.msj_no_registrado), Toast.LENGTH_SHORT).show();
                             }
 
@@ -261,8 +258,8 @@ public class Register extends AppCompatActivity {
 
 
                                 user = firebaseAuth.getCurrentUser();
-                                Toast.makeText(Register.this, getString(R.string.msj_userregistered_register) + ": " + user.getEmail(),
-                                        Toast.LENGTH_SHORT).show();
+                               // Toast.makeText(Register.this, getString(R.string.msj_userregistered_register) + ": " + user.getEmail(), Toast.LENGTH_SHORT).show();
+
 
 
                                 final String clave = mDatabaseRef.push().getKey();
@@ -346,16 +343,19 @@ public class Register extends AppCompatActivity {
 
                             } else {
                                 Toast.makeText(Register.this, getString(R.string.msj_no_registrado), Toast.LENGTH_SHORT).show();
+
                             }
-                            progressDialog.dismiss();
+
                         }
                     });
 
         } else {
             Toast.makeText(this, warning,
                     Toast.LENGTH_LONG).show();
+            progressDialog.dismiss();
         }
     }
+
     private String validarDatos() {
 
         String msj = null;
