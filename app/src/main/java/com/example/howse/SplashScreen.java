@@ -133,11 +133,11 @@ public class SplashScreen extends AppCompatActivity {
 
 
                 }
-
-                if (emailPersona.equals( usr[0].getEmailUsuario() )){
-                    usuario=usr[0];
+                if (usr[0]!=null) {
+                    if (emailPersona.equals( usr[0].getEmailUsuario() )) {
+                        usuario = usr[0];
+                    }
                 }
-
             }
 
             @Override
