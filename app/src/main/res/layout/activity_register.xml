@@ -24,7 +24,6 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:enabled="false"
         android:drawablePadding="10dp"
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_name"
