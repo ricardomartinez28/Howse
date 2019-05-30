@@ -233,6 +233,8 @@ public class PerfilArrendador extends MenuActivityArrendador {
         apellido.setEnabled( false );
         btnModificar.setEnabled( false );
         btnModificar.setVisibility(View.INVISIBLE);
+        fotoPerfil.setEnabled( false );
+
 
     }
 
@@ -301,6 +303,7 @@ public class PerfilArrendador extends MenuActivityArrendador {
             nombre.setText("");
 
         }else{
+
             usr[0].setNombreUsuario(nombre.getText().toString().trim());
 
             mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);

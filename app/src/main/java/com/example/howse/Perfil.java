@@ -61,6 +61,7 @@ public class Perfil extends MenuActivity {
     private StorageTask uploadTask;
 
     private DatabaseReference mDatabaseRef;
+    private DatabaseReference mDatabaseRefFotoUsuario;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser usuario;
 
@@ -101,6 +102,7 @@ public class Perfil extends MenuActivity {
         btnCopycodCasa= findViewById(R.id.btnCopiarCodCasa);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
+        mDatabaseRefFotoUsuario = FirebaseDatabase.getInstance().getReference( "Usuarios" );
         tvCodCasa=findViewById(R.id.tvCodCasa);
 
         storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
@@ -189,10 +191,10 @@ public class Perfil extends MenuActivity {
                     if (task.isSuccessful()){
                         Uri downloadUri = task.getResult();
                         String mUri = downloadUri.toString();
-                        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios" ).child( usuario.getUid() );
+                        mDatabaseRefFotoUsuario = FirebaseDatabase.getInstance().getReference("Usuarios" ).child( usuario.getUid() );
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("fotoUsuario", mUri);
-                        mDatabaseRef.updateChildren( map );
+                        mDatabaseRefFotoUsuario.updateChildren( map );
 
 
 
@@ -212,6 +214,7 @@ public class Perfil extends MenuActivity {
         }else {
             Toast.makeText( this, "Selecciona una imagen ", Toast.LENGTH_SHORT ).show();
         }
+
    }
 
     @Override
@@ -226,6 +229,7 @@ public class Perfil extends MenuActivity {
                 Toast.makeText( this, "En Proceso", Toast.LENGTH_SHORT ).show();
             }else {
                 uploadImage();
+
             }
         }
     }
@@ -237,13 +241,13 @@ public class Perfil extends MenuActivity {
         btnModificar.setEnabled( false );
         btnModificar.setVisibility(View.INVISIBLE);
 
+
     }
 
     public void editable(View v){
         nombre.setEnabled( true );
         apellido.setEnabled( true );
         btnModificar.setEnabled( true );
-
         btnModificar.setVisibility(View.VISIBLE);
     }
     public void cargarCodCasa(){
@@ -313,6 +317,8 @@ public class Perfil extends MenuActivity {
         } );
     }
     private void cargarDatos() {
+
+
         Query qq3 = mDatabaseRef.orderByChild("emailUsuario").equalTo(emailPersona);
 
         qq3.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -369,7 +375,7 @@ public class Perfil extends MenuActivity {
 
         }else{
             usr[0].setNombreUsuario(nombre.getText().toString().trim());
-
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference( "Usuarios" );
             mDatabaseRef.child(usr[0].getUid()).setValue(usr[0]);
 
 
