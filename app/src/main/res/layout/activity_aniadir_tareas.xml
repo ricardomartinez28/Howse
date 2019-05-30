@@ -10,6 +10,8 @@
 
     android:padding="16dp">
 
+
+
     <Spinner
         android:id="@+id/spDia"
         android:layout_width="match_parent"

@@ -18,6 +18,18 @@
         android:textSize="36sp"
         app:fontFamily="@font/roboto_thin"
  />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgvFotoPerfil"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/custom_image_button"
+        android:onClick="fotoPerfil"
+        android:layout_below="@+id/tvRegistro"
+        app:srcCompat="@drawable/ic_user"
+        tools:ignore="VectorDrawableCompat"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:id="@+id/etNombreReg"
@@ -28,7 +40,7 @@
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_name"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/imgvFotoPerfil"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_NombreReg"
@@ -44,7 +56,7 @@
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_dog_tag"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/etNombreReg"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_ApellidoReg"
@@ -57,7 +69,7 @@
         android:layout_height="50dp"
         android:drawablePadding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/etApellidoReg"
         android:backgroundTint="@color/ColorBackGround"
         android:ems="10"
@@ -73,7 +85,7 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/ColorBackGround"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/etEmailReg"
         android:fontFamily="@font/roboto_light"
         android:hint="@string/et_PasswordReg"
@@ -90,7 +102,7 @@
         android:layout_height="50dp"
         android:drawablePadding="10dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/etPasswordReg"
         android:backgroundTint="@color/ColorBackGround"
         android:drawableLeft="@drawable/ic_key"
@@ -110,25 +122,12 @@
         android:text="@string/btn_RegistrarUsuario"
         android:textColor="@color/blanco"
         android:layout_below="@+id/etPasswordRepeat"
-        android:layout_marginTop="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="30dp"
         android:textSize="18sp"
 />
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgvFotoPerfil"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:background="@drawable/custom_image_button"
-        android:onClick="fotoPerfil"
-        android:layout_below="@+id/tvRegistro"
-        app:srcCompat="@drawable/ic_user"
-        tools:ignore="VectorDrawableCompat"
-        android:textSize="22sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+
 
 </RelativeLayout>
