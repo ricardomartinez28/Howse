@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -86,6 +89,11 @@ public class PerfilArrendador extends MenuActivityArrendador {
         super.onCreate( savedInstanceState );
         //setContentView( R.layout.activity_perfil_arrendador );
         //setActActual(PERFILARR);
+
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
+
 
         email = (TextView) findViewById( R.id.tvEmail );
         codigo = (TextView) findViewById( R.id.tvCodCasa );
@@ -320,6 +328,26 @@ public class PerfilArrendador extends MenuActivityArrendador {
     }
     private void mensaje(String s) {
         Toast.makeText(this,s,Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.menu_chat,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+
+            case R.id.logout:
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(PerfilArrendador.this, ActivityCaseroInquilino.class));
+                finish();
+                return true;
+        }
+        return false;
     }
 
 

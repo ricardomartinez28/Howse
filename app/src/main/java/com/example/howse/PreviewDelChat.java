@@ -145,6 +145,8 @@ public class PreviewDelChat extends MenuActivity {
                                 .load(usr[0].getFotoUsuario())
                                 .into(imgperfil);
 
+
+
                     }
 
                 }
