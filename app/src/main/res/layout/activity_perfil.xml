@@ -178,7 +178,6 @@
         app:backgroundTint="@color/colorSecundario"
         app:srcCompat="@drawable/ic_new_file"
         tools:ignore="VectorDrawableCompat"
-
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"

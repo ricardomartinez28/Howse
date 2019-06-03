@@ -181,7 +181,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
             }
         } );
     }
-    
+
 
     public void abrirPop(View v){
         nombreActividades.clear();
@@ -338,6 +338,12 @@ public class AniadirTareasActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+
+    public  void cancel(View v){
+
+        finish();
     }
 
 
