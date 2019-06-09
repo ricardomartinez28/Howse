@@ -61,6 +61,9 @@ public class Login extends AppCompatActivity  {
 
     }
 
+    public void atras(View v){
+        finish();
+    }
     public void logIn(View v) {
         loguearse();
 

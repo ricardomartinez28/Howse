@@ -117,82 +117,9 @@ public class ActivityCodigoCasa extends AppCompatActivity {
                 }
             });
 
-            /*for (Usuario usuario: listaArrendadores){
 
-                if(usuario!=null){
-                    if(codigo.trim().equals(usuario.getCodCasa()) && !usuario.getTipoUs()){
-                        esCorrecto=true;
-
-                    }
-                }else{
-                    Toast.makeText(this, "Codigo Incorrecto",Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-
-            if(esCorrecto){
-                Toast.makeText(this, "Codigo correcto",Toast.LENGTH_LONG).show();
-
-                Intent i = new Intent(ActivityCodigoCasa.this, Login.class);
-                i.putExtra("tipo", tipoUs);
-                i.putExtra("codCasa", codigo);
-                startActivity(i);
-
-
-            }else{
-
-                Toast.makeText(this, "El codigo no es correcto",Toast.LENGTH_LONG).show();
-
-
-            }
-
-
-        }*/
-        }
-
-    /*public void addChildEventListener(){
-        if (cel==null){
-            cel= new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-
-                        Usuario usuario = dataSnapshot.getValue(Usuario.class);
-
-
-                        if (!usuario.getTipoUs()) {
-
-                            listaArrendadores.add(usuario);
-                        }
-
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            };
-            mDatabaseRefCas.addChildEventListener(cel);
         }
 
 
-
-    }*/
     }
 }
