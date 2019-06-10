@@ -10,7 +10,10 @@
 
     tools:context=".AboutUs">
 
+
+
     <android.support.design.widget.AppBarLayout
+
         android:id="@+id/app_bar"
         android:background="@drawable/apaisado_howse"
         android:layout_gravity="center_horizontal"
@@ -33,7 +36,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                android:layout_margin="16dp"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <ImageButton
+                    android:id="@+id/salir"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/ic_cruz"/>
+
+            </android.support.v7.widget.Toolbar>
+
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -47,13 +61,16 @@
 
 
 
+
+
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="bottom|right"
+
         app:srcCompat="@android:drawable/ic_dialog_email" />
        <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnTwitter"
@@ -62,7 +79,7 @@
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="center|bottom"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:src="@drawable/ic_twitter_logo_silhouette"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnInstagram"
@@ -70,8 +87,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/include"
+        android:background="@color/blanco"
         app:layout_anchorGravity="left|bottom"
-        android:src="@drawable/ic_instagram1"/>
+        android:src="@drawable/ic_camera"/>
 
 
 </android.support.design.widget.CoordinatorLayout>

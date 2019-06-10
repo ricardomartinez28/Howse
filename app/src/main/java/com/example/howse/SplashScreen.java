@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class SplashScreen extends AppCompatActivity {
 
     TextView tvLogo;
     TextView tvDescInicio;
+    ImageView imgfoto;
 
     FirebaseUser firebaseUser;
     DatabaseReference reference;
@@ -72,6 +74,7 @@ public class SplashScreen extends AppCompatActivity {
         }
 
         tvDescInicio=findViewById(R.id.tvDescricionInicio);
+        imgfoto=findViewById(R.id.imgIcono);
 
         String desIni="Make the living easy!";
         SpannableString ss= new SpannableString(desIni);
@@ -83,21 +86,11 @@ public class SplashScreen extends AppCompatActivity {
         tvDescInicio.setText(ss);
 
 
-        tvLogo=findViewById(R.id.tvLogo);
-
-        String logo="Howse";
-        SpannableString ss1= new SpannableString(logo);
-
-
-
-        ss1.setSpan(fcsOrange,1,2, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        tvLogo.setText(ss1);
-
 
 
 
         Animation animTitulo = AnimationUtils.loadAnimation(this, R.anim.fadein);
-        tvLogo.setAnimation(animTitulo);
+        imgfoto.setAnimation(animTitulo);
 
         siguienteActivity();
            }

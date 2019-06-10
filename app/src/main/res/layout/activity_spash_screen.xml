@@ -11,7 +11,7 @@
         android:id="@+id/tvDescricionInicio"
         android:layout_width="wrap_content"
         android:layout_height="36dp"
-        android:layout_below="@+id/tvLogo"
+        android:layout_below="@+id/imgIcono"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
         android:text="@string/tv_descripcion_inicio"
@@ -21,20 +21,11 @@
 
     <ImageView
         android:id="@+id/imgIcono"
-        android:layout_width="320dp"
-        android:layout_height="180dp"
+        android:layout_width="480dp"
+        android:layout_height="240dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"
-        android:background="@drawable/logotipo"/>
+        android:layout_marginTop="150dp"
+        android:background="@drawable/tituloletras"/>
 
-    <TextView
-        android:id="@+id/tvLogo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
 
-        android:text="@string/tv_logo"
-        android:textColor="@android:color/background_light"
-        android:textSize="90sp"
-        app:fontFamily="@font/logo" />
 </RelativeLayout>
