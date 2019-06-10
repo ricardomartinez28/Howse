@@ -14,8 +14,8 @@
         android:id="@+id/app_bar"
         android:background="@drawable/apaisado_howse"
         android:layout_gravity="center_horizontal"
-        android:layout_width="480dp"
-        android:layout_height="270dp"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -41,7 +41,11 @@
     <include
 
         android:id="@+id/include"
-        layout="@layout/content_about_us2" />
+        layout="@layout/content_about_us" />
+
+
+
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -49,19 +53,25 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         app:layout_anchor="@+id/include"
-        app:layout_anchorGravity="end|center"
+        app:layout_anchorGravity="bottom|right"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-
-    <Button
-        android:id="@+id/btnInstagram"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Instagram" />
-
-    <Button
+       <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnTwitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Twitter" />
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="center|bottom"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnInstagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="left|bottom"
+        android:src="@drawable/ic_instagram1"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

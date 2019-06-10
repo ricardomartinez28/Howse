@@ -9,15 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 public class AboutUs extends AppCompatActivity {
-    Button Twitter;
-    Button Instagram;
+    FloatingActionButton Twitter;
+    FloatingActionButton Instagram;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_about_us2 );
+        setContentView( R.layout.activity_about_us);
         Toolbar toolbar = (Toolbar) findViewById( R.id.toolbar );
         setSupportActionBar( toolbar );
 
@@ -30,8 +29,10 @@ public class AboutUs extends AppCompatActivity {
             }
         } );
 
-        Twitter = (Button) findViewById( R.id.btnTwitter );
-        Instagram = (Button) findViewById( R.id.btnInstagram );
+
+
+        Twitter =  findViewById( R.id.btnTwitter );
+        Instagram = findViewById( R.id.btnInstagram );
 
         Twitter.setOnClickListener( new View.OnClickListener() {
             @Override
