@@ -40,7 +40,7 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
        if(firebaseUser!=null){
 
            if(tipoUsuario){
-                  Intent i= new Intent(ActivityCaseroInquilino.this, PreviewDelChat.class);
+                  Intent i= new Intent(ActivityCaseroInquilino.this, TareasActivity.class);
                   startActivity(i);
                   finish();
 

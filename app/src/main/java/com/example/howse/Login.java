@@ -30,6 +30,7 @@ public class Login extends AppCompatActivity  {
     private DatabaseReference mDatabaseRef;
 
     private boolean tipoUs;
+    private TextView tvLogIn;
 
     private String codCasa="";
     private String email;
@@ -42,6 +43,7 @@ public class Login extends AppCompatActivity  {
 
         etEmail = (EditText) findViewById( R.id.etCorreoLogin );
         etPassword = (EditText) findViewById( R.id.etPasswordLogin );
+        tvLogIn= findViewById(R.id.tvLogIn);
 
         auth = FirebaseAuth.getInstance();
 
@@ -56,6 +58,14 @@ public class Login extends AppCompatActivity  {
 
         tipoUs=getIntent().getBooleanExtra("tipo",true);
         codCasa=getIntent().getStringExtra("codCasa");
+
+
+        if (tipoUs) {
+
+            tvLogIn.setText("Log in inquilino");
+        }else{
+            tvLogIn.setText("Log in arrendador");
+        }
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 
@@ -111,7 +121,7 @@ public class Login extends AppCompatActivity  {
                         if (task.isSuccessful()) {
 
                             if (tipoUs){
-                                Intent i = new Intent( Login.this, PreviewDelChat.class );
+                                Intent i = new Intent( Login.this, TareasActivity.class );
                                 startActivity( i );
                             }else{
                                 Intent i = new Intent( Login.this, PreviewChatArrendador.class );
