@@ -4,41 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pop_bg"
+    android:background="@drawable/custom_button2"
     android:padding="16dp"
-    tools:context=".AniadirActividadPopActivity"
-    >
+    tools:context=".AniadirActividadPopActivity">
+
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="~Añadir Actividad~"
-        android:textColor="@color/TextGrey"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/roboto_thin"
-        android:textSize="24dp"
         android:gravity="center"
-        android:layout_marginTop="30dp"/>
+        android:text="Añadir Actividad"
+        android:textColor="@color/TextGrey"
+        android:textSize="24dp" />
 
 
     <EditText
         android:id="@+id/etActividad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
         android:ems="10"
         android:hint="@string/et_actividad"
-        android:inputType="textPersonName"
-        android:layout_marginTop="100dp"
-        />
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="subirActividad"
+        android:layout_marginTop="200dp"
         android:background="@drawable/custom_button8"
         android:fontFamily="@font/roboto_thin"
-        android:textColor="@color/colorSecundario"
-        android:layout_marginTop="200dp"
+        android:onClick="subirActividad"
         android:text="@string/btn_AniadirActividadPop"
+        android:textColor="@color/colorSecundario"
 
         />
 

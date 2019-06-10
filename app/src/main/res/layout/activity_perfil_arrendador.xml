@@ -72,7 +72,7 @@
 
     <EditText
         android:id="@+id/etNombre"
-        android:layout_width="220dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/ColorBackGround"
@@ -83,6 +83,7 @@
         android:layout_below="@+id/tvEmail"
         android:layout_toRightOf="@id/tvPerfNormbre"
         android:layout_marginTop="18dp"
+        android:layout_marginRight="16dp"
         android:layout_marginLeft="20dp"/>
 
     <TextView
@@ -100,7 +101,7 @@
 
     <EditText
         android:id="@+id/etApellido"
-        android:layout_width="225dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/ColorBackGround"
@@ -111,6 +112,7 @@
         android:layout_below="@+id/etNombre"
         android:layout_toRightOf="@id/tvPerfApellido"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="16dp"
         android:layout_marginLeft="20dp"/>
 
 
@@ -118,13 +120,13 @@
         android:id="@+id/tvCasero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tu  codigo de casa: "
+        android:text="Código de casa: "
         android:textColor="@color/ColorBackGround"
         android:textSize="18sp"
         android:layout_below="@+id/tvPerfApellido"
         app:fontFamily="@font/roboto_light"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         />
     <TextView
         android:id="@+id/tvCodCasa"
@@ -136,7 +138,7 @@
         app:fontFamily="@font/roboto_light"
         android:layout_below="@+id/etApellido"
         android:layout_toRightOf="@+id/tvCasero"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
         />
 
@@ -146,15 +148,16 @@
         android:layout_height="50dp"
         android:layout_below="@id/etApellido"
         android:layout_toRightOf="@+id/tvCodCasa"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/custom_button9"
         android:src="@drawable/ic_copy"
+
         />
 
     <Button
         android:id="@+id/btnModificarDatosPerfil"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button1"
         android:fontFamily="@font/roboto_light"
@@ -165,6 +168,8 @@
         android:layout_centerInParent="true"
         android:layout_marginBottom="70dp"
         android:textSize="18sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"/>
 
@@ -182,7 +187,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_above="@+id/navigation"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="130dp"
         android:layout_marginRight="16dp"/>
 
     <include

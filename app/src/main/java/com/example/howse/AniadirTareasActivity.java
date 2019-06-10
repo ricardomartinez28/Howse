@@ -1,13 +1,17 @@
 package com.example.howse;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -67,9 +71,10 @@ public class AniadirTareasActivity extends AppCompatActivity {
 
 
 
-    private String porDefectoPersona="--Selecciona una Persona--";
-    private String porDefectoDia="--Selecciona un dia--";
-    private String porDefectoActividad="--Selecciona una Actividad--";
+    private String porDefectoPersona="Selecciona una Persona";
+    private String porDefectoDia="Selecciona un dia";
+    private String porDefectoActividad="Selecciona una Actividad";
+
 
     private String imail;
 
@@ -77,6 +82,7 @@ public class AniadirTareasActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView(R.layout.activity_aniadir_tareas);
+
 
         spDia = (Spinner) findViewById( R.id.spDia );
         spPersona = (Spinner) findViewById( R.id.spPersona );
@@ -181,9 +187,11 @@ public class AniadirTareasActivity extends AppCompatActivity {
             }
         } );
     }
-    
+
+
 
     public void abrirPop(View v){
+
         nombreActividades.clear();
         nombreActividades.add( porDefectoActividad );
         nombreActividades.add( "Lavar" );
@@ -338,6 +346,12 @@ public class AniadirTareasActivity extends AppCompatActivity {
 
             }
         } );
+    }
+
+
+    public  void cancel(View v){
+
+        finish();
     }
 
 

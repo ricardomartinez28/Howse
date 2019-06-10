@@ -5,7 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ColorBackGround"
+    android:padding="16dp"
     tools:context=".Login">
+
+    <ImageButton
+        android:id="@+id/btnAtras"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@null"
+        android:onClick="atras"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cruz"
+        tools:ignore="VectorDrawableCompat" />
 
     <TextView
         android:id="@+id/tvLogoLogIn"
@@ -36,7 +54,7 @@
 
     <EditText
         android:id="@+id/etCorreoLogin"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
@@ -64,7 +82,7 @@
 
     <EditText
         android:id="@+id/etPasswordLogin"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

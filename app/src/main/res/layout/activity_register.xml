@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".Register">
 
     <TextView
@@ -33,7 +34,7 @@
 
     <EditText
         android:id="@+id/etNombreReg"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:drawablePadding="10dp"
@@ -50,7 +51,7 @@
 
     <EditText
         android:id="@+id/etApellidoReg"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:drawablePadding="10dp"
         android:backgroundTint="@color/ColorBackGround"
@@ -65,7 +66,7 @@
 
     <EditText
         android:id="@+id/etEmailReg"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:drawablePadding="10dp"
         android:layout_centerHorizontal="true"
@@ -81,7 +82,7 @@
 
     <EditText
         android:id="@+id/etPasswordReg"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:backgroundTint="@color/ColorBackGround"
         android:layout_centerHorizontal="true"
@@ -98,7 +99,7 @@
 
     <EditText
         android:id="@+id/etPasswordRepeat"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:drawablePadding="10dp"
         android:layout_centerHorizontal="true"
@@ -114,7 +115,7 @@
 
     <Button
         android:id="@+id/btnRegistrar"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_button4"
         android:fontFamily="@font/roboto_light"
