@@ -107,7 +107,6 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-
                 Intent i= new Intent(SplashScreen.this, ActivityCaseroInquilino.class);
                     if( firebaseUser!=null && usuario!=null){
                         i.putExtra("tipoUs",usuario.getTipoUs());

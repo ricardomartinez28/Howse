@@ -78,8 +78,6 @@ public class Register extends AppCompatActivity {
     ArrayList<Usuario>listaArrendadores;
 
 
-
-
     private char[] conjunto = new char[6];
     char[] elementos={'0','1','2','3','4','5','6','7','8','9' ,'a',
             'b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t',
@@ -186,7 +184,14 @@ public class Register extends AppCompatActivity {
                                                     task.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                         @Override
                                                         public void onSuccess(Uri uri) {
-                                                            Usuario usuario = new Usuario(clave, etNombre.getText().toString(), etApellido.getText().toString(), etEmail.getText().toString().toLowerCase(), uri.toString(), codCasa, tipoUs, user.getUid());
+                                                            Usuario usuario = new Usuario(clave,
+                                                                    etNombre.getText().toString(),
+                                                                    etApellido.getText().toString(),
+                                                                    etEmail.getText().toString().toLowerCase(),
+                                                                    uri.toString(),
+                                                                    codCasa,
+                                                                    tipoUs,
+                                                                    user.getUid());
                                                             mDatabaseRef.child(user.getUid()).setValue(usuario);
 
                                                             Intent i = new Intent(Register.this, Login.class);

@@ -376,6 +376,18 @@ public class TareasActivity extends MenuActivity {
                 startActivity(new Intent(TareasActivity.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+
+            case R.id.aboutUs:
+                Intent i = new Intent( TareasActivity.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( TareasActivity.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
+
         }
         return false;
     }

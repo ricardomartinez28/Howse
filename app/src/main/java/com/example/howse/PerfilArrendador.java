@@ -346,6 +346,16 @@ public class PerfilArrendador extends MenuActivityArrendador {
                 startActivity(new Intent(PerfilArrendador.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+            case R.id.aboutUs:
+                Intent i = new Intent( PerfilArrendador.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( PerfilArrendador.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
         }
         return false;
     }

@@ -330,6 +330,16 @@ public class ListaCompraActivity extends MenuActivity {
                 startActivity(new Intent(ListaCompraActivity.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+            case R.id.aboutUs:
+                Intent i = new Intent( ListaCompraActivity.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( ListaCompraActivity.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
         }
         return false;
     }

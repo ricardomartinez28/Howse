@@ -172,6 +172,17 @@ public class PreviewChatArrendador extends MenuActivityArrendador {
                 startActivity(new Intent(PreviewChatArrendador.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+
+            case R.id.aboutUs:
+                Intent i = new Intent( PreviewChatArrendador.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( PreviewChatArrendador.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
         }
         return false;
     }
