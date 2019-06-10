@@ -177,6 +177,16 @@ public class PreviewDelChat extends MenuActivity {
                 startActivity(new Intent(PreviewDelChat.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+            case R.id.aboutUs:
+                Intent i = new Intent( PreviewDelChat.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( PreviewDelChat.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
         }
         return false;
     }

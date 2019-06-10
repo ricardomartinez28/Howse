@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.howse">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -14,9 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreviewChatArrendador"></activity>
+        <activity
+            android:name=".AboutUs"
+            android:label="@string/title_activity_about_us"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ContactUs" />
+        <activity android:name=".PreviewChatArrendador" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".AniadirTareasActivity"></activity>
+        <activity android:name=".AniadirTareasActivity" />
         <activity android:name=".HistorialComprasActivity" />
         <activity
             android:name=".AgnadirArticuloActivity"
@@ -28,8 +33,9 @@
         <activity android:name=".PreviewDelChat" />
         <activity android:name=".ActivityCodigoCasa" />
         <activity android:name=".ActivityCaseroInquilino" />
-        <activity android:name=".AniadirActividadPopActivity"
-            android:theme="@style/AppTheme.PopCompra"/>
+        <activity
+            android:name=".AniadirActividadPopActivity"
+            android:theme="@style/AppTheme.PopCompra" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactUs">
+
+    <EditText
+        android:id="@+id/etMensaje"
+        android:layout_width="340dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/etSubject"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:hint="@string/et_Mensaje"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etSubject"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNuestroCorreo"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="80dp"
+        android:ems="10"
+        android:hint="@string/et_Subject"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/tvNuestroCorreo"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="TextView" />
+
+    <Button
+        android:id="@+id/btnEnviarMensaje"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etMensaje"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:text="@string/btn_EnviarMensaje" />
+</RelativeLayout>

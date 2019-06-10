@@ -35,30 +35,19 @@ public class ActivityCaseroInquilino extends AppCompatActivity {
    @Override
     protected void onStart() {
         super.onStart();
-      tipoUsuario=getIntent().getBooleanExtra("tipoUs",true);
+        tipoUsuario=getIntent().getBooleanExtra("tipoUs",true);
 
        if(firebaseUser!=null){
-
            if(tipoUsuario){
                   Intent i= new Intent(ActivityCaseroInquilino.this, PreviewDelChat.class);
                   startActivity(i);
                   finish();
-
               }else{
                   Intent i= new Intent(ActivityCaseroInquilino.this, PreviewChatArrendador.class);
                   startActivity(i);
                   finish();
-
               }
-
-
-
-
-
        }
-
-
-
    }
 
 

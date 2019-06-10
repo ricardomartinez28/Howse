@@ -101,6 +101,9 @@ public class Login extends AppCompatActivity  {
         }
 
         //AUTENTIFICACION
+
+
+
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override

@@ -1,4 +1,5 @@
 package com.example.howse;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
@@ -76,6 +77,8 @@ public class Perfil extends MenuActivity {
 
     private Usuario usu;
 
+    private ProgressDialog pd;
+
     String codCasa;
 
 
@@ -107,6 +110,7 @@ public class Perfil extends MenuActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference("FotosPerfilInq");
 
+        pd= new ProgressDialog( this );
 
         firebaseAuth = FirebaseAuth.getInstance();
         usuario = firebaseAuth.getCurrentUser();
@@ -125,6 +129,7 @@ public class Perfil extends MenuActivity {
             public void onClick(View v) {
 
                 openImage();
+
             }
         } );
 
@@ -168,8 +173,6 @@ public class Perfil extends MenuActivity {
    }
 
    private void uploadImage(){
-
-
         if(imageUri !=null){
             final StorageReference fileReference = storageReference.child(System.currentTimeMillis()
                     +"."+getFileExtension( imageUri ));
@@ -195,14 +198,9 @@ public class Perfil extends MenuActivity {
                         HashMap<String, Object> map = new HashMap<>();
                         map.put("fotoUsuario", mUri);
                         mDatabaseRefFotoUsuario.updateChildren( map );
-
-
-
-
                     }else{
                         Toast.makeText( Perfil.this, "Failed!", Toast.LENGTH_SHORT ).show();
                     }
-                        
                 }
             } ).addOnFailureListener( new OnFailureListener() {
                 @Override
@@ -210,6 +208,7 @@ public class Perfil extends MenuActivity {
                     Toast.makeText( Perfil.this, e.getMessage(), Toast.LENGTH_SHORT ).show();
                 }
             } );
+
 
         }else {
             Toast.makeText( this, "Selecciona una imagen ", Toast.LENGTH_SHORT ).show();
@@ -221,14 +220,21 @@ public class Perfil extends MenuActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult( requestCode, resultCode, data );
 
+
         if (requestCode == IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             imageUri = data.getData();
 
             fotoPerfil.setImageURI( imageUri );
+
             if (uploadTask != null && uploadTask.isInProgress()){
                 Toast.makeText( this, "En Proceso", Toast.LENGTH_SHORT ).show();
+
             }else {
+                pd.setMessage( "Subiendo" );
+                pd.show();
+
                 uploadImage();
+                pd.dismiss();
 
             }
         }
@@ -405,6 +411,16 @@ public class Perfil extends MenuActivity {
                 startActivity(new Intent(Perfil.this, ActivityCaseroInquilino.class));
                 finish();
                 return true;
+            case R.id.aboutUs:
+                Intent i = new Intent( Perfil.this, AboutUs.class );
+                startActivity( i );
+                return true;
+
+            case R.id.contactUs:
+                Intent i2 = new Intent( Perfil.this, ContactUs.class );
+                startActivity( i2 );
+                return true;
+
         }
         return false;
     }

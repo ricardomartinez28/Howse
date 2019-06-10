@@ -54,7 +54,7 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.getbase:floatingactionbutton:1.10.1'
 
-    implementation'com.jcminarro:RoundKornerLayouts:0.2.0'
+    implementation 'com.jcminarro:RoundKornerLayouts:0.2.0'
 }
 
 apply plugin: 'com.google.gms.google-services'
