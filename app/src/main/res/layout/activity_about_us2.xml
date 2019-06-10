@@ -3,15 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
+
     android:fitsSystemWindows="true"
+
     tools:context=".AboutUs">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
-        android:background="@drawable/logo_apaisado"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:background="@drawable/apaisado_howse"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="480dp"
+        android:layout_height="270dp"
         android:fitsSystemWindows="true"
         android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -35,6 +39,7 @@
     </android.support.design.widget.AppBarLayout>
 
     <include
+
         android:id="@+id/include"
         layout="@layout/content_about_us2" />
 
