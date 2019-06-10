@@ -62,9 +62,9 @@ public class Login extends AppCompatActivity  {
 
         if (tipoUs) {
 
-            tvLogIn.setText("Log in inquilino");
+            tvLogIn.setText("Inquilino");
         }else{
-            tvLogIn.setText("Log in arrendador");
+            tvLogIn.setText("Arrendador");
         }
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
