@@ -26,7 +26,7 @@ public class ContactUs extends AppCompatActivity {
         message= (EditText) findViewById( R.id.etMensaje );
 
         enviar= (Button) findViewById( R.id.btnEnviarMensaje );
-        email = "danisom1b@gmail.com";
+        email = "howseproject2k19@gmail.com";
 
         enviar.setOnClickListener( new View.OnClickListener() {
             @Override
