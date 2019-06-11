@@ -4,44 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".ContactUs">
 
-    <EditText
-        android:id="@+id/etMensaje"
-        android:layout_width="340dp"
-        android:layout_height="200dp"
-        android:layout_below="@+id/etSubject"
+    <TextView
+        android:id="@+id/tvNuestroCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Mejor no quedarse con la duda... No?
+
+Envíanos un email con cualquier duda que tengas. Obtendrás respuesta"
+        android:textSize="30dp"
+        android:fontFamily="@font/roboto_thin"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_paper_plane"
+        android:layout_below="@id/tvNuestroCorreo"
         android:layout_centerInParent="true"
-        android:layout_marginTop="70dp"
-        android:ems="10"
-        android:hint="@string/et_Mensaje"
-        android:inputType="textPersonName" />
+        android:layout_marginTop="40dp"/>
+
+
 
     <EditText
         android:id="@+id/etSubject"
-        android:layout_width="340dp"
+        android:backgroundTint="@color/ColorBackGround"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvNuestroCorreo"
         android:layout_centerInParent="true"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="@string/et_Subject"
         android:inputType="textPersonName" />
 
-    <TextView
-        android:id="@+id/tvNuestroCorreo"
-        android:layout_width="340dp"
+    <EditText
+        android:id="@+id/etMensaje"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="TextView" />
+        android:layout_below="@+id/etSubject"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+
+        android:ems="10"
+        android:hint="@string/et_Mensaje"
+        android:inputType="textPersonName"
+        android:backgroundTint="@color/ColorBackGround"/>
+
+
+
 
     <Button
         android:id="@+id/btnEnviarMensaje"
-        android:layout_width="170dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_button1"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="@color/ColorBackGround"
+        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etMensaje"
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
+        android:textSize="18dp"
         android:text="@string/btn_EnviarMensaje" />
 </RelativeLayout>
